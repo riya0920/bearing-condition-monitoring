@@ -1,6 +1,6 @@
 # ML-3 — Multivariate Sensor Anomaly Detection & Health Indexing
 
-**Status: ~20% slice.** The physics feature layer, the health index with a
+**Status: ~50% slice.** The physics feature layer, the health index with a
 hysteretic alarm state machine, the three-way detector comparison at a matched
 false-alarm budget, and the lead-time-vs-false-alarm operating curve are built.
 The fleet dashboard, the process-side (Tennessee-Eastman-style) multivariate case,
@@ -154,7 +154,30 @@ energy, and that phase is where the kurtosis lead is won. What actually delivers
 the lead here is the envelope band energy at the fault frequency, which is
 physics-located rather than a generic shape statistic.
 
-## What is NOT built (the other 80%)
+## Built in the second pass — see [docs/EXTENSIONS.md](docs/EXTENSIONS.md)
+
+`python extend.py` — a larger fleet (18 failing + 6 healthy, up from 9 + 3) plus
+three gaps this README previously named:
+
+- **The per-alarm "why" panel.** The first build recommended shipping Hotelling T²
+  *partly because its score decomposes into per-feature contributions* — and then
+  did not decompose it. It does now, exactly: with `d = x − μ`, feature *j*
+  contributes `d_j·(S⁻¹d)_j` and the contributions **sum to T² identically**,
+  unlike SHAP or occlusion which approximate. **The leading contributor names the
+  correct bearing race on 100% of failing assets**, so the alarm card carries a
+  diagnosis rather than a score.
+- **Cold start, exercised.** `LOW_CONFIDENCE` and the fleet prior existed and were
+  never run. Three states now, and the middle one is what most systems omit:
+  `PROVISIONAL` widens thresholds by **1 + 1/√(2(n−1))** — the sampling error of a
+  standard-deviation estimate, not a tuning knob — so the detector becomes less
+  trigger-happy exactly when its baseline is least trustworthy.
+- **The P-F interval, quantified.** The vocabulary was used correctly and the
+  number was never produced. It is the quantity that sets the inspection interval,
+  and the distribution matters more than usual: **setting the interval from the
+  mean rather than the P10 makes it 1.5× too long** (12 cycles against 8), missing
+  the fast half of the failures by construction.
+
+## What is NOT built (the other 50%)
 
 1. **No real data.** No CWRU, no IMS, no SKAB. Everything is synthesised. Swapping
    in real data is a loader change, and every number above changes with it.
