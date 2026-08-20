@@ -1,0 +1,602 @@
+{
+  "geometry": {
+    "n_elements": 9,
+    "ball_diameter_mm": 7.94,
+    "pitch_diameter_mm": 39.04,
+    "orders": {
+      "BPFO": 3.584784836065573,
+      "BPFI": 5.415215163934427,
+      "BSF": 2.3567477133831605,
+      "FTF": 0.39830942622950816,
+      "shaft": 1.0
+    },
+    "harmonic_collision": "BPFO*3 = 10.754x shaft vs BPFI*2 = 10.830x shaft: 0.70% apart"
+  },
+  "fleet": [
+    {
+      "asset": "BPFO-1",
+      "fault": "BPFO",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BPFO-2",
+      "fault": "BPFO",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BPFO-3",
+      "fault": "BPFO",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BPFI-1",
+      "fault": "BPFI",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BPFI-2",
+      "fault": "BPFI",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BPFI-3",
+      "fault": "BPFI",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BSF-1",
+      "fault": "BSF",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BSF-2",
+      "fault": "BSF",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "BSF-3",
+      "fault": "BSF",
+      "failing": true,
+      "n_cycles": 260,
+      "onset": 130
+    },
+    {
+      "asset": "healthy-1",
+      "fault": null,
+      "failing": false,
+      "n_cycles": 260,
+      "onset": null
+    },
+    {
+      "asset": "healthy-2",
+      "fault": null,
+      "failing": false,
+      "n_cycles": 260,
+      "onset": null
+    },
+    {
+      "asset": "healthy-3",
+      "fault": null,
+      "failing": false,
+      "n_cycles": 260,
+      "onset": null
+    }
+  ],
+  "commissioned_band": [
+    3000.0,
+    4000.0
+  ],
+  "kurtogram": [
+    {
+      "asset": "BPFO-1",
+      "failing": true,
+      "healthy_band": [
+        1625.0,
+        2187.5
+      ],
+      "healthy_sk": 3.576952341392033,
+      "degraded_band": [
+        2750.0,
+        3312.5
+      ],
+      "degraded_sk": 3.755623872111145,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "BPFO-2",
+      "failing": true,
+      "healthy_band": [
+        5562.5,
+        6125.0
+      ],
+      "healthy_sk": 3.3740202637075853,
+      "degraded_band": [
+        2750.0,
+        3312.5
+      ],
+      "degraded_sk": 3.9440510534541913,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "BPFO-3",
+      "failing": true,
+      "healthy_band": [
+        4437.5,
+        5000.0
+      ],
+      "healthy_sk": 4.124088400382357,
+      "degraded_band": [
+        3875.0,
+        4437.5
+      ],
+      "degraded_sk": 3.892621030860587,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "BPFI-1",
+      "failing": true,
+      "healthy_band": [
+        4437.5,
+        5000.0
+      ],
+      "healthy_sk": 3.314542793808096,
+      "degraded_band": [
+        2187.5,
+        2750.0
+      ],
+      "degraded_sk": 5.857916795776437,
+      "healthy_agrees": false,
+      "degraded_agrees": false
+    },
+    {
+      "asset": "BPFI-2",
+      "failing": true,
+      "healthy_band": [
+        6125.0,
+        6687.5
+      ],
+      "healthy_sk": 3.498467532483395,
+      "degraded_band": [
+        1062.5,
+        1625.0
+      ],
+      "degraded_sk": 4.850717770721691,
+      "healthy_agrees": false,
+      "degraded_agrees": false
+    },
+    {
+      "asset": "BPFI-3",
+      "failing": true,
+      "healthy_band": [
+        4437.5,
+        5000.0
+      ],
+      "healthy_sk": 3.8722376743901386,
+      "degraded_band": [
+        3875.0,
+        4437.5
+      ],
+      "degraded_sk": 5.153409297302978,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "BSF-1",
+      "failing": true,
+      "healthy_band": [
+        5562.5,
+        6125.0
+      ],
+      "healthy_sk": 3.670722905760056,
+      "degraded_band": [
+        2750.0,
+        3312.5
+      ],
+      "degraded_sk": 5.5840311100530915,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "BSF-2",
+      "failing": true,
+      "healthy_band": [
+        7250.0,
+        7812.5
+      ],
+      "healthy_sk": 3.4207714364942188,
+      "degraded_band": [
+        2750.0,
+        3312.5
+      ],
+      "degraded_sk": 5.549170604263054,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "BSF-3",
+      "failing": true,
+      "healthy_band": [
+        6125.0,
+        6687.5
+      ],
+      "healthy_sk": 3.495016793539476,
+      "degraded_band": [
+        2750.0,
+        3312.5
+      ],
+      "degraded_sk": 5.559337006092809,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "healthy-1",
+      "failing": false,
+      "healthy_band": [
+        3312.5,
+        3875.0
+      ],
+      "healthy_sk": 3.5632753538532054,
+      "degraded_band": [
+        2187.5,
+        2750.0
+      ],
+      "degraded_sk": 3.3759149523081557,
+      "healthy_agrees": true,
+      "degraded_agrees": false
+    },
+    {
+      "asset": "healthy-2",
+      "failing": false,
+      "healthy_band": [
+        2750.0,
+        3312.5
+      ],
+      "healthy_sk": 3.652196391932254,
+      "degraded_band": [
+        3312.5,
+        3875.0
+      ],
+      "degraded_sk": 3.486813077155097,
+      "healthy_agrees": true,
+      "degraded_agrees": true
+    },
+    {
+      "asset": "healthy-3",
+      "failing": false,
+      "healthy_band": [
+        6125.0,
+        6687.5
+      ],
+      "healthy_sk": 3.3716419801529587,
+      "degraded_band": [
+        3875.0,
+        4437.5
+      ],
+      "degraded_sk": 3.63305377700263,
+      "healthy_agrees": false,
+      "degraded_agrees": true
+    }
+  ],
+  "kurtosis_vs_rms": [
+    {
+      "asset": "BPFO-1",
+      "fault": "BPFO",
+      "onset_cycle": 130,
+      "first_kurtosis": 208,
+      "first_rms": 213,
+      "first_env_kurtosis": 182,
+      "first_crest_factor": 231
+    },
+    {
+      "asset": "BPFO-2",
+      "fault": "BPFO",
+      "onset_cycle": 130,
+      "first_kurtosis": 210,
+      "first_rms": 205,
+      "first_env_kurtosis": 199,
+      "first_crest_factor": 224
+    },
+    {
+      "asset": "BPFO-3",
+      "fault": "BPFO",
+      "onset_cycle": 130,
+      "first_kurtosis": 201,
+      "first_rms": 211,
+      "first_env_kurtosis": 190,
+      "first_crest_factor": 216
+    },
+    {
+      "asset": "BPFI-1",
+      "fault": "BPFI",
+      "onset_cycle": 130,
+      "first_kurtosis": 192,
+      "first_rms": 195,
+      "first_env_kurtosis": 193,
+      "first_crest_factor": 221
+    },
+    {
+      "asset": "BPFI-2",
+      "fault": "BPFI",
+      "onset_cycle": 130,
+      "first_kurtosis": 196,
+      "first_rms": 196,
+      "first_env_kurtosis": 187,
+      "first_crest_factor": 217
+    },
+    {
+      "asset": "BPFI-3",
+      "fault": "BPFI",
+      "onset_cycle": 130,
+      "first_kurtosis": 207,
+      "first_rms": 187,
+      "first_env_kurtosis": 195,
+      "first_crest_factor": 220
+    },
+    {
+      "asset": "BSF-1",
+      "fault": "BSF",
+      "onset_cycle": 130,
+      "first_kurtosis": 211,
+      "first_rms": 215,
+      "first_env_kurtosis": 183,
+      "first_crest_factor": 228
+    },
+    {
+      "asset": "BSF-2",
+      "fault": "BSF",
+      "onset_cycle": 130,
+      "first_kurtosis": 214,
+      "first_rms": 205,
+      "first_env_kurtosis": 191,
+      "first_crest_factor": 214
+    },
+    {
+      "asset": "BSF-3",
+      "fault": "BSF",
+      "onset_cycle": 130,
+      "first_kurtosis": 217,
+      "first_rms": 217,
+      "first_env_kurtosis": 192,
+      "first_crest_factor": 238
+    }
+  ],
+  "detectors": [
+    {
+      "name": "Hotelling T\u00b2 (statistical)",
+      "threshold_percentile_of_healthy": 92.87491525423728,
+      "median_lead": 79.0,
+      "min_lead": 75.0,
+      "max_lead": 85.0,
+      "false_alarms_per_asset": 0.3333333333333333,
+      "n_detected": 9,
+      "n_failing": 9,
+      "fa_budget": 0.5
+    },
+    {
+      "name": "IsolationForest (ML)",
+      "threshold_percentile_of_healthy": 93.89135593220338,
+      "median_lead": 79.0,
+      "min_lead": 72.0,
+      "max_lead": 91.0,
+      "false_alarms_per_asset": 0.3333333333333333,
+      "n_detected": 9,
+      "n_failing": 9,
+      "fa_budget": 0.5
+    },
+    {
+      "name": "Autoencoder (deep)",
+      "threshold_percentile_of_healthy": 92.87491525423728,
+      "median_lead": 78.0,
+      "min_lead": 68.0,
+      "max_lead": 87.0,
+      "false_alarms_per_asset": 0.3333333333333333,
+      "n_detected": 9,
+      "n_failing": 9,
+      "fa_budget": 0.5
+    }
+  ],
+  "operating_curve": [
+    {
+      "threshold": 95.0,
+      "median_lead": 199.0,
+      "p05_lead": 178.2,
+      "false_alarms_per_asset": 8.0,
+      "n_missed": 0
+    },
+    {
+      "threshold": 90.0,
+      "median_lead": 102.0,
+      "p05_lead": 81.4,
+      "false_alarms_per_asset": 8.0,
+      "n_missed": 0
+    },
+    {
+      "threshold": 85.0,
+      "median_lead": 78.0,
+      "p05_lead": 74.4,
+      "false_alarms_per_asset": 1.3333333333333333,
+      "n_missed": 0
+    },
+    {
+      "threshold": 80.0,
+      "median_lead": 76.0,
+      "p05_lead": 70.0,
+      "false_alarms_per_asset": 0.0,
+      "n_missed": 0
+    },
+    {
+      "threshold": 70.0,
+      "median_lead": 70.0,
+      "p05_lead": 66.8,
+      "false_alarms_per_asset": 0.0,
+      "n_missed": 0
+    },
+    {
+      "threshold": 60.0,
+      "median_lead": 69.0,
+      "p05_lead": 65.8,
+      "false_alarms_per_asset": 0.0,
+      "n_missed": 0
+    },
+    {
+      "threshold": 50.0,
+      "median_lead": 67.0,
+      "p05_lead": 59.6,
+      "false_alarms_per_asset": 0.0,
+      "n_missed": 0
+    },
+    {
+      "threshold": 40.0,
+      "median_lead": 65.0,
+      "p05_lead": 56.6,
+      "false_alarms_per_asset": 0.0,
+      "n_missed": 0
+    }
+  ],
+  "alarm_state_machine": [
+    {
+      "asset": "BPFO-1",
+      "first_alert": 185,
+      "lead": 74,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BPFO-2",
+      "first_alert": 179,
+      "lead": 80,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BPFO-3",
+      "first_alert": 189,
+      "lead": 70,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BPFI-1",
+      "first_alert": 191,
+      "lead": 68,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BPFI-2",
+      "first_alert": 187,
+      "lead": 72,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BPFI-3",
+      "first_alert": 178,
+      "lead": 81,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BSF-1",
+      "first_alert": 193,
+      "lead": 66,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BSF-2",
+      "first_alert": 190,
+      "lead": 69,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "BSF-3",
+      "first_alert": 191,
+      "lead": 68,
+      "flaps": 0,
+      "final_state": "CRITICAL"
+    },
+    {
+      "asset": "healthy-1",
+      "first_alert": null,
+      "lead": null,
+      "flaps": 0,
+      "final_state": "NORMAL"
+    },
+    {
+      "asset": "healthy-2",
+      "first_alert": null,
+      "lead": null,
+      "flaps": 0,
+      "final_state": "NORMAL"
+    },
+    {
+      "asset": "healthy-3",
+      "first_alert": null,
+      "lead": null,
+      "flaps": 0,
+      "final_state": "NORMAL"
+    }
+  ],
+  "diagnosis": {
+    "confusion": [
+      {
+        "true": "BPFO",
+        "healthy": 362,
+        "BPFO": 235,
+        "BPFI": 0,
+        "BSF": 1,
+        "indeterminate": 2
+      },
+      {
+        "true": "BPFI",
+        "healthy": 353,
+        "BPFO": 0,
+        "BPFI": 245,
+        "BSF": 0,
+        "indeterminate": 2
+      },
+      {
+        "true": "BSF",
+        "healthy": 375,
+        "BPFO": 0,
+        "BPFI": 0,
+        "BSF": 224,
+        "indeterminate": 1
+      },
+      {
+        "true": "healthy",
+        "healthy": 591,
+        "BPFO": 3,
+        "BPFI": 1,
+        "BSF": 5,
+        "indeterminate": 0
+      }
+    ],
+    "severity_threshold": 0.15,
+    "accuracy_when_developed": 0.9762962962962963,
+    "indeterminate_when_developed": 0.0044444444444444444,
+    "n_developed_cycles": 675
+  },
+  "wall_seconds": 90.02802590001374
+}
