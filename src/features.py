@@ -178,6 +178,38 @@ def sideband_ratio(freqs: np.ndarray, spec: np.ndarray, f0: float, shaft_hz: flo
     return float(side / (2 * center))
 
 
+def sideband_prominence(freqs: np.ndarray, spec: np.ndarray, f0: float,
+                        shaft_hz: float, floor: float, tol_pct: float = 1.5) -> float:
+    """Sideband energy at f0 +/- shaft, relative to the LOCAL NOISE FLOOR.
+
+    THE BUG THIS REPLACES, found by running against real CWRU data. The original
+    `sideband_ratio` divides by the carrier:
+
+        side / (2 * center)
+
+    which inverts exactly when it matters. A genuine inner-race fault produces an
+    enormous BPFI peak, so dividing by it drives the statistic DOWN; a bearing
+    with no inner-race fault has BPFI at the noise floor, so the statistic is
+    noise over noise and lands near 1. Measured on CWRU, the median was 0.26 on
+    inner-race faults against 0.84 on everything else -- backwards, and confidently
+    so: the gate fired on 88% of all snapshots and overrode every other piece of
+    evidence to BPFI, costing about 30 points of diagnosis accuracy.
+
+    On synthetic data it never surfaced, because the simulator injected sidebands
+    in proportion to the fault it was already injecting -- numerator and
+    denominator grew together and the ratio behaved. That is the general hazard of
+    validating a signal-processing chain against the signal model it was written
+    from.
+
+    The correction is the normalisation this project already argued for everywhere
+    else: express the quantity as exceedance over a baseline, not as a fraction of
+    another part of the same signal.
+    """
+    side = (_peak_near(freqs, spec, f0 - shaft_hz, tol_pct)
+            + _peak_near(freqs, spec, f0 + shaft_hz, tol_pct))
+    return float(side / (2.0 * max(floor, 1e-12)))
+
+
 def estimate_shaft_speed(x: np.ndarray, fs: float = FS,
                          search=(20.0, 40.0)) -> float:
     """Estimate shaft rate from the raw spectrum's dominant low-frequency line.
@@ -196,10 +228,23 @@ def estimate_shaft_speed(x: np.ndarray, fs: float = FS,
 
 
 def snapshot_features(x: np.ndarray, geom, fs: float = FS,
-                      band: tuple[float, float] | None = None) -> dict:
-    """The full per-snapshot feature vector: time domain + physics-located energies."""
+                      band: tuple[float, float] | None = None,
+                      shaft_hz: float | None = None) -> dict:
+    """The full per-snapshot feature vector: time domain + physics-located energies.
+
+    `shaft_hz` overrides the spectral speed estimate. It exists for real data:
+    the CWRU records carry a measured RPM, and a measured tachometer reading beats
+    an estimate off the vibration spectrum every time. The estimator stays the
+    default because most installations have no tacho, which is the situation the
+    rest of this project is designed for.
+    """
     out = time_domain(x)
-    shaft_hz = estimate_shaft_speed(x, fs)
+    if shaft_hz is None:
+        shaft_hz = estimate_shaft_speed(x, fs)
+        out["shaft_hz_source"] = "estimated"
+    else:
+        shaft_hz = float(shaft_hz)
+        out["shaft_hz_source"] = "measured"
     out["shaft_hz_est"] = shaft_hz
     if band is None:
         lo, hi, sk = select_band(x, fs)
@@ -212,10 +257,16 @@ def snapshot_features(x: np.ndarray, geom, fs: float = FS,
     out["env_rms"] = float(np.sqrt(np.mean(env**2)))
 
     ff = geom.fault_frequencies(shaft_hz)
+    # 2xBSF is where a rolling-element defect actually shows up. The defect
+    # strikes the outer race, then half a ball revolution later strikes the inner
+    # race -- two impacts per ball rotation. Computing BSF alone and calling the
+    # result "ball fault energy" is a modelling error, and CWRU priced it: ball
+    # faults were diagnosed correctly 16% of the time, mostly misread as BPFI.
+    ff["BSF2"] = 2.0 * ff["BSF"]
     # MEDIAN, not mean: the mean of the band includes the fault lines themselves,
     # so a strong fault inflates its own normaliser and the ratio understates it.
     broadband = float(np.median(spec[(freqs > 5) & (freqs < 1000)])) + 1e-12
-    for name in ("BPFO", "BPFI", "BSF", "FTF", "shaft"):
+    for name in ("BPFO", "BPFI", "BSF", "BSF2", "FTF", "shaft"):
         e = _band_energy(freqs, spec, ff[name])
         out[f"env_{name}"] = e
         # Ratio to the local broadband floor. The absolute number moves with
@@ -225,10 +276,16 @@ def snapshot_features(x: np.ndarray, geom, fs: float = FS,
         out[f"env_{name}_ratio"] = e / broadband
     for name in ("BPFO", "BPFI"):
         out[f"sb_{name}"] = sideband_ratio(freqs, spec, ff[name], shaft_hz)
+        # The corrected statistic, normalised against the same broadband floor as
+        # every other feature here. `sb_*` is retained because docs/REAL_DATA.md
+        # compares the two directly.
+        out[f"sbp_{name}"] = sideband_prominence(freqs, spec, ff[name], shaft_hz,
+                                                 broadband)
+    out["broadband_floor"] = broadband
     return out
 
 
-def diagnose(feats: dict, margin: float = 1.25, sideband_threshold: float = 0.25,
+def diagnose(feats: dict, margin: float = 1.25, sideband_threshold: float = 4.0,
              min_ratio: float = 4.0) -> tuple[str, float]:
     """Name the fault, or refuse to.
 
@@ -249,14 +306,31 @@ def diagnose(feats: dict, margin: float = 1.25, sideband_threshold: float = 0.25
     "something is wrong with this bearing" are different work orders, and the
     second is the honest answer more often than vendors admit.
     """
-    cands = {k: feats[f"env_{k}_ratio"] for k in ("BPFO", "BPFI", "BSF")}
+    # The ball candidate is the STRONGER of BSF and 2xBSF. Both are the same
+    # fault; which line dominates depends on where the defect sits on the ball and
+    # on whether it is in the load zone at the moment of impact, so taking the max
+    # is the physically honest reduction rather than a fitted choice.
+    cands = {k: feats[f"env_{k}_ratio"] for k in ("BPFO", "BPFI")}
+    cands["BSF"] = max(feats["env_BSF_ratio"],
+                       feats.get("env_BSF2_ratio", 0.0))
     order = sorted(cands.items(), key=lambda kv: -kv[1])
     top, second = order[0], order[1]
     if top[1] < min_ratio:
         return "healthy", top[1]
-    if feats.get("sb_BPFI", 0.0) > sideband_threshold and cands["BPFI"] >= min_ratio:
-        return "BPFI", feats["sb_BPFI"]
+
+    # THE TIE-BREAK, corrected. Two changes, both forced by real data:
+    #
+    #  1. it uses `sbp_BPFI` (sidebands over the noise floor) rather than
+    #     `sb_BPFI` (sidebands over the carrier), which was inverted -- see
+    #     sideband_prominence() and docs/REAL_DATA.md
+    #  2. it only breaks a TIE. The original fired whenever the threshold was
+    #     cleared, overriding a BPFO line six times larger than BPFI. Sidebands
+    #     are evidence about which of two close contenders it is, which is what
+    #     the docstring always claimed and what the code did not do.
     ratio = top[1] / max(second[1], 1e-9)
+    sbp = feats.get("sbp_BPFI", feats.get("sb_BPFI", 0.0))
     if ratio < margin:
+        if sbp > sideband_threshold and cands["BPFI"] >= min_ratio:
+            return "BPFI", sbp
         return "indeterminate", ratio
     return top[0], ratio

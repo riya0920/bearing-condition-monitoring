@@ -1,0 +1,249 @@
+{
+ "source": "Case Western Reserve University Bearing Data Center",
+ "url": "https://engineering.case.edu/bearingdatacenter",
+ "sampling_hz": 12000,
+ "bearing": "SKF 6205-2RS JEM deep groove ball, drive end",
+ "note": "Not redistributed; fetched by fetch_cwru.py into a gitignored dir.",
+ "files": {
+  "97": {
+   "fault": "normal",
+   "size_in": 0.0,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "98": {
+   "fault": "normal",
+   "size_in": 0.0,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "99": {
+   "fault": "normal",
+   "size_in": 0.0,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "100": {
+   "fault": "normal",
+   "size_in": 0.0,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "105": {
+   "fault": "inner_race",
+   "size_in": 0.007,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "106": {
+   "fault": "inner_race",
+   "size_in": 0.007,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "107": {
+   "fault": "inner_race",
+   "size_in": 0.007,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "108": {
+   "fault": "inner_race",
+   "size_in": 0.007,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "118": {
+   "fault": "ball",
+   "size_in": 0.007,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "119": {
+   "fault": "ball",
+   "size_in": 0.007,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "120": {
+   "fault": "ball",
+   "size_in": 0.007,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "121": {
+   "fault": "ball",
+   "size_in": 0.007,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "130": {
+   "fault": "outer_race",
+   "size_in": 0.007,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "131": {
+   "fault": "outer_race",
+   "size_in": 0.007,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "132": {
+   "fault": "outer_race",
+   "size_in": 0.007,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "133": {
+   "fault": "outer_race",
+   "size_in": 0.007,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "169": {
+   "fault": "inner_race",
+   "size_in": 0.014,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "170": {
+   "fault": "inner_race",
+   "size_in": 0.014,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "171": {
+   "fault": "inner_race",
+   "size_in": 0.014,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "172": {
+   "fault": "inner_race",
+   "size_in": 0.014,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "185": {
+   "fault": "ball",
+   "size_in": 0.014,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "186": {
+   "fault": "ball",
+   "size_in": 0.014,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "187": {
+   "fault": "ball",
+   "size_in": 0.014,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "188": {
+   "fault": "ball",
+   "size_in": 0.014,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "197": {
+   "fault": "outer_race",
+   "size_in": 0.014,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "198": {
+   "fault": "outer_race",
+   "size_in": 0.014,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "199": {
+   "fault": "outer_race",
+   "size_in": 0.014,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "200": {
+   "fault": "outer_race",
+   "size_in": 0.014,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "209": {
+   "fault": "inner_race",
+   "size_in": 0.021,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "210": {
+   "fault": "inner_race",
+   "size_in": 0.021,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "211": {
+   "fault": "inner_race",
+   "size_in": 0.021,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "212": {
+   "fault": "inner_race",
+   "size_in": 0.021,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "222": {
+   "fault": "ball",
+   "size_in": 0.021,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "223": {
+   "fault": "ball",
+   "size_in": 0.021,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "224": {
+   "fault": "ball",
+   "size_in": 0.021,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "225": {
+   "fault": "ball",
+   "size_in": 0.021,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  },
+  "234": {
+   "fault": "outer_race",
+   "size_in": 0.021,
+   "load_hp": 0,
+   "rpm_nominal": 1797
+  },
+  "235": {
+   "fault": "outer_race",
+   "size_in": 0.021,
+   "load_hp": 1,
+   "rpm_nominal": 1772
+  },
+  "236": {
+   "fault": "outer_race",
+   "size_in": 0.021,
+   "load_hp": 2,
+   "rpm_nominal": 1750
+  },
+  "237": {
+   "fault": "outer_race",
+   "size_in": 0.021,
+   "load_hp": 3,
+   "rpm_nominal": 1730
+  }
+ }
+}

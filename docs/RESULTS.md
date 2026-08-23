@@ -23,20 +23,20 @@ The demodulation band is a property of the STRUCTURE — the housing resonance t
 
 | asset | kurtogram on healthy data | agrees | kurtogram on degraded data | agrees |
 |---|---|---|---|---|
-| BPFO-1 | 1625–2188 Hz (SK 3.6) | no | 2750–3312 Hz (SK 3.8) | yes |
-| BPFO-2 | 5562–6125 Hz (SK 3.4) | no | 2750–3312 Hz (SK 3.9) | yes |
-| BPFO-3 | 4438–5000 Hz (SK 4.1) | no | 3875–4438 Hz (SK 3.9) | yes |
-| BPFI-1 | 4438–5000 Hz (SK 3.3) | no | 2188–2750 Hz (SK 5.9) | no |
-| BPFI-2 | 6125–6688 Hz (SK 3.5) | no | 1062–1625 Hz (SK 4.9) | no |
-| BPFI-3 | 4438–5000 Hz (SK 3.9) | no | 3875–4438 Hz (SK 5.2) | yes |
-| BSF-1 | 5562–6125 Hz (SK 3.7) | no | 2750–3312 Hz (SK 5.6) | yes |
-| BSF-2 | 7250–7812 Hz (SK 3.4) | no | 2750–3312 Hz (SK 5.5) | yes |
-| BSF-3 | 6125–6688 Hz (SK 3.5) | no | 2750–3312 Hz (SK 5.6) | yes |
+| BPFO-1 | 6125–6688 Hz (SK 3.7) | no | 2750–3312 Hz (SK 4.2) | yes |
+| BPFO-2 | 3875–4438 Hz (SK 3.6) | yes | 2750–3312 Hz (SK 4.5) | yes |
+| BPFO-3 | 6688–7250 Hz (SK 3.7) | no | 2188–2750 Hz (SK 4.3) | no |
+| BPFI-1 | 3312–3875 Hz (SK 3.9) | yes | 2750–3312 Hz (SK 4.7) | yes |
+| BPFI-2 | 2188–2750 Hz (SK 3.9) | no | 1625–2188 Hz (SK 5.1) | no |
+| BPFI-3 | 6125–6688 Hz (SK 3.3) | no | 3875–4438 Hz (SK 5.3) | yes |
+| BSF-1 | 3312–3875 Hz (SK 3.4) | yes | 2750–3312 Hz (SK 5.6) | yes |
+| BSF-2 | 7812–8375 Hz (SK 3.4) | no | 2750–3312 Hz (SK 5.9) | yes |
+| BSF-3 | 8938–9500 Hz (SK 3.6) | no | 2750–3312 Hz (SK 6.4) | yes |
 | healthy-1 | 3312–3875 Hz (SK 3.6) | yes | 2188–2750 Hz (SK 3.4) | no |
 | healthy-2 | 2750–3312 Hz (SK 3.7) | yes | 3312–3875 Hz (SK 3.5) | yes |
 | healthy-3 | 6125–6688 Hz (SK 3.4) | no | 3875–4438 Hz (SK 3.6) | yes |
 
-On failing assets the kurtogram recovers the commissioned band from degraded data in **7/9** cases, and from healthy data in **0/9**. That asymmetry is the whole argument for treating the band as commissioned configuration with a kurtogram *audit*, rather than as something to re-derive every acquisition.
+On failing assets the kurtogram recovers the commissioned band from degraded data in **7/9** cases, and from healthy data in **3/9**. That asymmetry is the whole argument for treating the band as commissioned configuration with a kurtogram *audit*, rather than as something to re-derive every acquisition.
 
 ## 3. Kurtosis leads RMS — measured, not asserted
 
@@ -44,21 +44,21 @@ First cycle at which each feature rises above its own baseline 95th percentile *
 
 | asset | onset | kurtosis | env. kurtosis | crest factor | RMS | lead of kurtosis over RMS |
 |---|---|---|---|---|---|---|
-| BPFO-1 | 130 | 208 | 182 | 231 | 213 | 31 |
-| BPFO-2 | 130 | 210 | 199 | 224 | 205 | 6 |
-| BPFO-3 | 130 | 201 | 190 | 216 | 211 | 21 |
-| BPFI-1 | 130 | 192 | 193 | 221 | 195 | 2 |
-| BPFI-2 | 130 | 196 | 187 | 217 | 196 | 9 |
-| BPFI-3 | 130 | 207 | 195 | 220 | 187 | -8 |
-| BSF-1 | 130 | 211 | 183 | 228 | 215 | 32 |
-| BSF-2 | 130 | 214 | 191 | 214 | 205 | 14 |
-| BSF-3 | 130 | 217 | 192 | 238 | 217 | 25 |
+| BPFO-1 | 130 | 218 | 195 | 217 | 194 | -1 |
+| BPFO-2 | 130 | 205 | 193 | 242 | 208 | 15 |
+| BPFO-3 | 130 | 216 | 188 | 221 | 201 | 13 |
+| BPFI-1 | 130 | 193 | 194 | 222 | 210 | 16 |
+| BPFI-2 | 130 | 193 | 203 | 210 | 193 | -10 |
+| BPFI-3 | 130 | 197 | 183 | 211 | 183 | 0 |
+| BSF-1 | 130 | 202 | 190 | 235 | 207 | 17 |
+| BSF-2 | 130 | 216 | 191 | 224 | 210 | 19 |
+| BSF-3 | 130 | 220 | 186 | 232 | 221 | 35 |
 
-Median lead of envelope kurtosis over RMS: **14 cycles**, positive on 8 of 9 assets.
+Median lead of envelope kurtosis over RMS: **15 cycles**, positive on 6 of 9 assets.
 
 The textbook claim is that kurtosis moves first: a single spall changes the *shape* of the signal (one impulse per element pass) long before it changes its *energy*, and RMS integrates over the whole record so a brief impulse barely moves it.
 
-**That claim is only weakly supported by this data, and the reason is a limitation of my simulator rather than a refutation of the physics.** The degradation model raises a single amplitude parameter smoothly, so the impulse train gains energy and impulsiveness *together*; a real bearing goes through a distinct phase where one small spall produces sharp impulses at almost constant total energy, and that phase is where the kurtosis lead is won. On 1 of 9 assets the lead is negative or zero, and the inner-race cases are the worst of them, because their amplitude modulation lifts RMS early as well.
+**That claim is only weakly supported by this data, and the reason is a limitation of my simulator rather than a refutation of the physics.** The degradation model raises a single amplitude parameter smoothly, so the impulse train gains energy and impulsiveness *together*; a real bearing goes through a distinct phase where one small spall produces sharp impulses at almost constant total energy, and that phase is where the kurtosis lead is won. On 3 of 9 assets the lead is negative or zero, and the inner-race cases are the worst of them, because their amplitude modulation lifts RMS early as well.
 
 The honest reading: on this data the two indicators are near-simultaneous, the measured advantage is small, and I would not sell a lead-time claim on kurtosis alone. What actually delivers the lead here is the envelope band energy at the fault frequency — section 5 — which is physics-located rather than a generic shape statistic.
 
@@ -68,11 +68,11 @@ All three consume the SAME physics features and are tuned to the SAME false-alar
 
 | detector | median lead time (cycles) | worst-case lead | false alarms per asset-life | assets detected |
 |---|---|---|---|---|
-| Hotelling T² (statistical) | 79 | 75 | 0.33 | 9/9 |
-| IsolationForest (ML) | 79 | 72 | 0.33 | 9/9 |
-| Autoencoder (deep) | 78 | 68 | 0.33 | 9/9 |
+| Hotelling T² (statistical) | 80 | 71 | 0.33 | 9/9 |
+| IsolationForest (ML) | 77 | 69 | 0.33 | 9/9 |
+| Autoencoder (deep) | 82 | 63 | 0.33 | 9/9 |
 
-**There is no winner, and that is the result.** The three families land within 1 cycle of each other (78–79) at an identical false-alarm budget, on 9 failing assets. A 1-cycle spread across 9 trajectories is not a difference; it is the sampling noise of a median over 9 numbers, and calling Hotelling T² (statistical) the winner on that basis would be exactly the mistake this table exists to prevent.
+**There is no winner, and that is the result.** The three families land within 5 cycles of each other (77–82) at an identical false-alarm budget, on 9 failing assets. A 5-cycles spread across 9 trajectories is not a difference; it is the sampling noise of a median over 9 numbers, and calling Autoencoder (deep) the winner on that basis would be exactly the mistake this table exists to prevent.
 
 What I would ship is **Hotelling T²**. It is thirty lines, it has no training step and therefore no retraining pipeline, its score decomposes into per-feature contributions so the alarm can be explained to the operator who receives it, and its failure modes are a hundred years old and documented. The autoencoder buys nothing here and costs a model registry, a GPU-free inference path, and an answer to "why did it alarm" that I do not have.
 
@@ -84,30 +84,30 @@ The deliverable chart of this whole project, as a table. Sweeping the alarm thre
 
 | health-index alarm threshold | median lead (cycles) | P05 lead | false alarms per healthy asset-life | assets missed |
 |---|---|---|---|---|
-| 95 | 199 | 178 | 8.00 | 0 |
-| 90 | 102 | 81 | 8.00 | 0 |
-| 85 | 78 | 74 | 1.33 | 0 |
-| 80 | 76 | 70 | 0.00 | 0 |
-| 70 | 70 | 67 | 0.00 | 0 |
-| 60 | 69 | 66 | 0.00 | 0 |
-| 50 | 67 | 60 | 0.00 | 0 |
-| 40 | 65 | 57 | 0.00 | 0 |
+| 95 | 194 | 185 | 8.00 | 0 |
+| 90 | 91 | 81 | 8.00 | 0 |
+| 85 | 79 | 74 | 1.33 | 0 |
+| 80 | 74 | 68 | 0.00 | 0 |
+| 70 | 71 | 67 | 0.00 | 0 |
+| 60 | 70 | 60 | 0.00 | 0 |
+| 50 | 66 | 59 | 0.00 | 0 |
+| 40 | 65 | 59 | 0.00 | 0 |
 
-At a budget of **≤1 false alarm per asset-lifetime**, the best available threshold is 80, delivering a median of 76 cycles of warning with 0 assets missed. That sentence — a lead time quoted *at* a false-alarm budget — is the operational contract. A lead time quoted without one is a number chosen after seeing the answer.
+At a budget of **≤1 false alarm per asset-lifetime**, the best available threshold is 80, delivering a median of 74 cycles of warning with 0 assets missed. That sentence — a lead time quoted *at* a false-alarm budget — is the operational contract. A lead time quoted without one is a number chosen after seeing the answer.
 
 ## 6. Alarm state machine: does it flap?
 
 | asset | first sustained ALERT | cycles before failure | flaps (in-and-out of alarm) | final state |
 |---|---|---|---|---|
-| BPFO-1 | 185 | 74 | 0 | CRITICAL |
-| BPFO-2 | 179 | 80 | 0 | CRITICAL |
-| BPFO-3 | 189 | 70 | 0 | CRITICAL |
+| BPFO-1 | 186 | 73 | 0 | CRITICAL |
+| BPFO-2 | 188 | 71 | 0 | CRITICAL |
+| BPFO-3 | 186 | 73 | 0 | CRITICAL |
 | BPFI-1 | 191 | 68 | 0 | CRITICAL |
-| BPFI-2 | 187 | 72 | 0 | CRITICAL |
-| BPFI-3 | 178 | 81 | 0 | CRITICAL |
+| BPFI-2 | 186 | 73 | 0 | CRITICAL |
+| BPFI-3 | 183 | 76 | 0 | CRITICAL |
 | BSF-1 | 193 | 66 | 0 | CRITICAL |
-| BSF-2 | 190 | 69 | 0 | CRITICAL |
-| BSF-3 | 191 | 68 | 0 | CRITICAL |
+| BSF-2 | 191 | 68 | 0 | CRITICAL |
+| BSF-3 | 188 | 71 | 0 | CRITICAL |
 | healthy-1 | — | — | 0 | NORMAL |
 | healthy-2 | — | — | 0 | NORMAL |
 | healthy-3 | — | — | 0 | NORMAL |
@@ -118,12 +118,12 @@ Total flaps across the fleet: **0**. Hysteresis (separate enter and exit thresho
 
 | true fault | healthy | BPFO | BPFI | BSF | indeterminate |
 |---|---|---|---|---|---|
-| BPFO | 362 | 235 | 0 | 1 | 2 |
-| BPFI | 353 | 0 | 245 | 0 | 2 |
-| BSF | 375 | 0 | 0 | 224 | 1 |
+| BPFO | 365 | 235 | 0 | 0 | 0 |
+| BPFI | 368 | 1 | 227 | 4 | 0 |
+| BSF | 376 | 4 | 0 | 218 | 2 |
 | healthy | 591 | 3 | 1 | 5 | 0 |
 
-On cycles where a fault is genuinely developed (severity > 0.15), the diagnosis names the correct race 98% of the time, and says "indeterminate" 0% of the time. Indeterminate is a supported output, not a failure: "the outer race is spalled, order part X" and "something is wrong with this bearing" are different work orders, and issuing the first when you only know the second is how a monitoring team loses its credibility with maintenance.
+On cycles where a fault is genuinely developed (severity > 0.15), the diagnosis names the correct race 97% of the time, and says "indeterminate" 0% of the time. Indeterminate is a supported output, not a failure: "the outer race is spalled, order part X" and "something is wrong with this bearing" are different work orders, and issuing the first when you only know the second is how a monitoring team loses its credibility with maintenance.
 
 ---
 *Generated from `out/results.json`. Every lead time is measured against a known failure cycle; every false alarm is counted on assets that never fail.*
