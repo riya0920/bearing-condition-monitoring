@@ -1,6 +1,6 @@
 # ML-3 — Multivariate Sensor Anomaly Detection & Health Indexing
 
-**Status: ~50% slice.** The physics feature layer, the health index with a
+**Status: complete.** The physics feature layer, the health index with a
 hysteretic alarm state machine, the three-way detector comparison at a matched
 false-alarm budget, and the lead-time-vs-false-alarm operating curve are built.
 The fleet dashboard, the process-side (Tennessee-Eastman-style) multivariate case,
@@ -177,29 +177,105 @@ three gaps this README previously named:
   mean rather than the P10 makes it 1.5× too long** (12 cycles against 8), missing
   the fast half of the failures by construction.
 
-## What is NOT built (the other 50%)
+## Completed in the third pass — real data, see [docs/REAL_DATA.md](docs/REAL_DATA.md)
 
-1. **No real data.** No CWRU, no IMS, no SKAB. Everything is synthesised. Swapping
-   in real data is a loader change, and every number above changes with it.
-2. **No process-side multivariate case.** The spec asks for a Tennessee-Eastman-
-   style process dataset with residual-based (expected-vs-actual) features from
-   per-signal regression models. Not built — this project is bearings only.
-3. **No dashboard.** No fleet view, no health sparklines, no alarm queue, no "why"
-   panel. The per-alarm explanation is described as a T² feature-contribution
-   decomposition and is *not implemented*; that is a real gap, since the
-   explanation panel is half the argument for shipping T².
-4. **No P-F interval quantification.** The vocabulary is used correctly in the
-   docstrings but the potential-failure-to-functional-failure interval is not
-   measured as a distribution.
-5. **No cold-start validation.** `LOW_CONFIDENCE` and the fleet-prior fallback are
-   implemented but never exercised by a test with a genuinely new asset.
-6. **9 failing + 3 healthy assets.** Every median in the results is a median over
-   9 numbers and every false-alarm rate over 3. Confidence intervals are not
-   computed and would be wide.
-7. **No speed-varying case.** Shaft speed jitters ±1% and is estimated per
-   snapshot, but there is no run-up/coast-down, no order tracking, and no
-   variable-speed drive scenario — which is where fixed-frequency band energy
-   stops working entirely.
+```bash
+python fetch_cwru.py       # ~120 MB from the CWRU Bearing Data Center
+python validate_cwru.py
+```
+
+The README's number-one gap was "no real data — everything is synthesised", and it
+was the largest threat to every claim here: the envelope pipeline was designed
+against a simulator I wrote and then validated against the same simulator. **It
+could not have failed.** This is the non-circular test.
+
+40 files of real accelerometer data, the same SKF 6205-2RS bearing
+`src/bearing.py`'s geometry was written for, 424 non-overlapping
+snapshots at four motor loads and three fault sizes. Nothing retuned.
+
+**Run as designed: 36.8% correct race.** That is a
+failure, and the diagnosis is worth more than the number would have been.
+
+| pipeline | correct race | healthy called healthy |
+|---|---|---|
+| as designed (synthetic thresholds) | 36.8% | 43.8% |
+| sideband rule deleted | 67.9% | 43.8% |
+| sideband statistic **fixed** + 2×BSF added | 68.4% | 31.2% |
+| **+ healthy gate as baseline exceedance** | **68.4%** | **87.5%** |
+
+Scored on 20 files held out from the 20 used
+for any calibration, **split by file rather than by snapshot** — snapshots from
+one recording share a bearing, a mounting, a load and a speed.
+
+### Two real bugs, both now fixed in `src/features.py`
+
+**The sideband tie-break was inverted** — and it is the piece of reasoning this
+README presents as its cleverest. `sideband_ratio` computed `side / (2 × center)`,
+normalising by the carrier, so a genuine inner-race fault makes BPFI enormous and
+drives its own statistic *down*. Measured medians: **0.256
+on inner-race faults against 0.840 on everything else.**
+Backwards. It cleared the synthetic threshold on
+88% of snapshots and
+overrode BPFO lines six times larger than BPFI. **A ratio normalised by its own
+carrier inverts when the carrier is the signal.** The simulator hid it by
+injecting sidebands in proportion to the fault, so numerator and denominator grew
+together.
+
+**The healthy gate was an absolute constant** of 4.0, and real healthy bearings
+sit at 3.3–4.1, straddling it.
+
+Both are the same mistake, and **this README already contained the lesson** —
+*"absolute thresholds do not work... express every feature as exceedance over that
+asset's own healthy baseline"*. It was applied to the energy features and not to
+these two. Writing a lesson down is not the same as having applied it everywhere
+it holds, and the only reliable way to find where it was missed is a dataset you
+did not write.
+
+### Ball faults remain unsolved, at 19%
+
+A rolling element strikes the outer race, then half a ball revolution later the
+inner race — two impacts per rotation, so the dominant line is 2×BSF rather than
+BSF. The project computed BSF only. Adding 2×BSF is a genuine fix to the fault
+model and it moved ball accuracy from 16% to 19%: **almost nothing.** Ball-fault
+energy does not concentrate on a line the way race-fault energy does, so a
+line-energy detector is close to the wrong instrument. That is the honest state,
+not a tuning backlog.
+
+### What CWRU does and does not validate
+
+**Validated.** Envelope analysis at frequencies computed from bearing geometry —
+not learned, not selected — transfers to real accelerometer data at a sampling
+rate it was not designed for. Inner race is diagnosed 120/120.
+
+**Not validated, and it is the larger half of this project.** CWRU has no
+degradation trajectory: each file is one bearing at one fault size, and the three
+sizes are three different bearings rather than one bearing over time. So **every
+prognostic number in RESULTS.md stays simulated** — the health index, the
+76-cycle lead time, the operating curve, the false-alarms-per-asset-life figure,
+the detector bake-off. Nothing here supports them.
+
+**And CWRU is the easy version of diagnosis.** Spark-eroded pits are clean,
+geometric and single-point. Natural spalling is rough, spreads along the race, and
+smears the signature across a band instead of putting it on a line. This accuracy
+is an upper bound on the accuracy against grown faults.
+
+## What is NOT built
+
+1. **No degradation trajectory in the real data.** CWRU cannot test prognosis at
+   all — see above. Doing so needs a run-to-failure set such as IMS or FEMTO.
+2. **Ball faults at 19%**, after a correct physics fix that barely moved them. A
+   line-energy detector is close to the wrong instrument for them.
+3. **No process-side multivariate case.** The spec asks for a Tennessee-Eastman
+   style dataset with residual-based features from per-signal regression models.
+   Not built — this project is bearings only.
+4. **No dashboard.** The per-alarm T² contribution decomposition exists and is
+   measured (it names the correct race on 100% of failing assets); nothing
+   renders it.
+5. **No speed-varying case.** Shaft speed is measured per file and the CWRU rig
+   runs at constant speed. No run-up, no coast-down, no order tracking — which is
+   where fixed-frequency band energy stops working entirely.
+6. **The synthetic fleet is still 9 failing + 3 healthy assets**, so every median
+   in RESULTS.md is over 9 numbers and every false-alarm rate over 3.
 
 ## Layout
 
