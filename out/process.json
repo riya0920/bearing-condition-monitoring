@@ -1,0 +1,386 @@
+{
+ "runs": [
+  {
+   "fault": "feed_composition_step",
+   "description": "IDV-1 style: a step in feed A composition. The process moves to a new operating point ALONG its normal correlation structure",
+   "fault_start": 1000,
+   "n": 3000,
+   "n_components": 8,
+   "variance_explained": 0.9143696329869591,
+   "detectors": {
+    "univariate 3-sigma (the wall of charts)": {
+     "delay": 773,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.076
+    },
+    "PCA T2 only": {
+     "delay": 523,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.0465
+    },
+    "PCA SPE only": {
+     "delay": null,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.0175
+    },
+    "T2 or SPE": {
+     "delay": 523,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.063
+    },
+    "residual (model-based)": {
+     "delay": 1259,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.037
+    }
+   },
+   "r2_by_tag": {
+    "feed_a_flow": 0.10895869942772385,
+    "feed_d_flow": 0.9956020576595467,
+    "feed_e_flow": 0.9962240287756295,
+    "recycle_flow": 0.9791264396232767,
+    "reactor_temp": 0.2934795789292036,
+    "reactor_press": 0.9977029839974321,
+    "reactor_level": 0.5683559912711535,
+    "sep_temp": 0.10173519415152299,
+    "sep_level": 0.7069174024263021,
+    "sep_underflow": 0.9374647136345173,
+    "stripper_level": 0.1922434324954454,
+    "stripper_temp": 0.048204815144348045,
+    "stripper_flow": 0.7365818499884167,
+    "cool_water_flow": 0.9830836130900003,
+    "cool_water_outlet_temp": 0.5464451704932212,
+    "compressor_work": 0.975388533235898,
+    "purge_rate": 0.27363309165447325,
+    "product_rate": 0.3593547702776132
+   },
+   "first_diagnosis": {
+    "sample": 18,
+    "statistic": "SPE",
+    "t2": 3.2725022050193706,
+    "spe": 5.198068030874366,
+    "top_tags": [
+     {
+      "tag": "cool_water_outlet_temp",
+      "contribution": 2.732789771644918
+     },
+     {
+      "tag": "reactor_level",
+      "contribution": 1.761105351720268
+     },
+     {
+      "tag": "recycle_flow",
+      "contribution": 0.1945392818367765
+     }
+    ],
+    "reading": "relationships broken -- a state that violates the process's own correlations"
+   }
+  },
+  {
+   "fault": "heat_exchanger_fouling",
+   "description": "IDV-4 style: cooling capacity degrades slowly. The COOLING-FLOW-to-TEMPERATURE relationship changes while both stay in range",
+   "fault_start": 1000,
+   "n": 3000,
+   "n_components": 8,
+   "variance_explained": 0.9143696329869591,
+   "detectors": {
+    "univariate 3-sigma (the wall of charts)": {
+     "delay": 773,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.0645
+    },
+    "PCA T2 only": {
+     "delay": null,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.011
+    },
+    "PCA SPE only": {
+     "delay": 1384,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.1535
+    },
+    "T2 or SPE": {
+     "delay": 897,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.164
+    },
+    "residual (model-based)": {
+     "delay": 292,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.719
+    }
+   },
+   "r2_by_tag": {
+    "feed_a_flow": 0.10895869942772385,
+    "feed_d_flow": 0.9956020576595467,
+    "feed_e_flow": 0.9962240287756295,
+    "recycle_flow": 0.9791264396232767,
+    "reactor_temp": 0.2934795789292036,
+    "reactor_press": 0.9977029839974321,
+    "reactor_level": 0.5683559912711535,
+    "sep_temp": 0.10173519415152299,
+    "sep_level": 0.7069174024263021,
+    "sep_underflow": 0.9374647136345173,
+    "stripper_level": 0.1922434324954454,
+    "stripper_temp": 0.048204815144348045,
+    "stripper_flow": 0.7365818499884167,
+    "cool_water_flow": 0.9830836130900003,
+    "cool_water_outlet_temp": 0.5464451704932212,
+    "compressor_work": 0.975388533235898,
+    "purge_rate": 0.27363309165447325,
+    "product_rate": 0.3593547702776132
+   },
+   "first_diagnosis": {
+    "sample": 7,
+    "statistic": "T2",
+    "t2": 21.404498926329616,
+    "spe": 0.38204278688843046,
+    "top_tags": [
+     {
+      "tag": "stripper_level",
+      "contribution": 8.987849597593934
+     },
+     {
+      "tag": "sep_temp",
+      "contribution": 4.242267719551638
+     },
+     {
+      "tag": "feed_a_flow",
+      "contribution": 3.2085906199432577
+     }
+    ],
+    "reading": "normal state, extreme magnitude"
+   }
+  },
+  {
+   "fault": "kinetics_drift",
+   "description": "IDV-13 style: slow drift in reaction kinetics; moves magnitudes and relationships together",
+   "fault_start": 1000,
+   "n": 3000,
+   "n_components": 8,
+   "variance_explained": 0.9143696329869591,
+   "detectors": {
+    "univariate 3-sigma (the wall of charts)": {
+     "delay": null,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.0165
+    },
+    "PCA T2 only": {
+     "delay": null,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.0095
+    },
+    "PCA SPE only": {
+     "delay": null,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.0175
+    },
+    "T2 or SPE": {
+     "delay": null,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.027
+    },
+    "residual (model-based)": {
+     "delay": 1259,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.0785
+    }
+   },
+   "r2_by_tag": {
+    "feed_a_flow": 0.10895869942772385,
+    "feed_d_flow": 0.9956020576595467,
+    "feed_e_flow": 0.9962240287756295,
+    "recycle_flow": 0.9791264396232767,
+    "reactor_temp": 0.2934795789292036,
+    "reactor_press": 0.9977029839974321,
+    "reactor_level": 0.5683559912711535,
+    "sep_temp": 0.10173519415152299,
+    "sep_level": 0.7069174024263021,
+    "sep_underflow": 0.9374647136345173,
+    "stripper_level": 0.1922434324954454,
+    "stripper_temp": 0.048204815144348045,
+    "stripper_flow": 0.7365818499884167,
+    "cool_water_flow": 0.9830836130900003,
+    "cool_water_outlet_temp": 0.5464451704932212,
+    "compressor_work": 0.975388533235898,
+    "purge_rate": 0.27363309165447325,
+    "product_rate": 0.3593547702776132
+   },
+   "first_diagnosis": {
+    "sample": 7,
+    "statistic": "T2",
+    "t2": 21.398009005542626,
+    "spe": 0.37972266517527775,
+    "top_tags": [
+     {
+      "tag": "stripper_level",
+      "contribution": 8.98634563060303
+     },
+     {
+      "tag": "sep_temp",
+      "contribution": 4.251818018712702
+     },
+     {
+      "tag": "feed_a_flow",
+      "contribution": 3.2059416356749515
+     }
+    ],
+    "reading": "normal state, extreme magnitude"
+   }
+  },
+  {
+   "fault": "valve_stick",
+   "description": "a control valve stops responding; the controller compensates elsewhere, so the loop looks stable and the relationships are wrong",
+   "fault_start": 1000,
+   "n": 3000,
+   "n_components": 8,
+   "variance_explained": 0.9143696329869591,
+   "detectors": {
+    "univariate 3-sigma (the wall of charts)": {
+     "delay": 69,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.5255
+    },
+    "PCA T2 only": {
+     "delay": 72,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.4385
+    },
+    "PCA SPE only": {
+     "delay": 86,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.109
+    },
+    "T2 or SPE": {
+     "delay": 72,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.4525
+    },
+    "residual (model-based)": {
+     "delay": 66,
+     "false_per_1000": 0.0,
+     "alarm_frac_after": 0.5855
+    }
+   },
+   "r2_by_tag": {
+    "feed_a_flow": 0.10895869942772385,
+    "feed_d_flow": 0.9956020576595467,
+    "feed_e_flow": 0.9962240287756295,
+    "recycle_flow": 0.9791264396232767,
+    "reactor_temp": 0.2934795789292036,
+    "reactor_press": 0.9977029839974321,
+    "reactor_level": 0.5683559912711535,
+    "sep_temp": 0.10173519415152299,
+    "sep_level": 0.7069174024263021,
+    "sep_underflow": 0.9374647136345173,
+    "stripper_level": 0.1922434324954454,
+    "stripper_temp": 0.048204815144348045,
+    "stripper_flow": 0.7365818499884167,
+    "cool_water_flow": 0.9830836130900003,
+    "cool_water_outlet_temp": 0.5464451704932212,
+    "compressor_work": 0.975388533235898,
+    "purge_rate": 0.27363309165447325,
+    "product_rate": 0.3593547702776132
+   },
+   "first_diagnosis": {
+    "sample": 7,
+    "statistic": "T2",
+    "t2": 21.743008705613263,
+    "spe": 0.49763023803854217,
+    "top_tags": [
+     {
+      "tag": "stripper_level",
+      "contribution": 8.949154193491411
+     },
+     {
+      "tag": "sep_temp",
+      "contribution": 3.9444289123816856
+     },
+     {
+      "tag": "feed_a_flow",
+      "contribution": 3.362680050985341
+     }
+    ],
+    "reading": "normal state, extreme magnitude"
+   }
+  }
+ ],
+ "control": {
+  "fault": "none",
+  "description": "no disturbance",
+  "fault_start": 1000,
+  "n": 3000,
+  "n_components": 8,
+  "variance_explained": 0.9162169880214234,
+  "detectors": {
+   "univariate 3-sigma (the wall of charts)": {
+    "delay": null,
+    "false_per_1000": 0.0,
+    "alarm_frac_after": 0.022
+   },
+   "PCA T2 only": {
+    "delay": null,
+    "false_per_1000": 0.0,
+    "alarm_frac_after": 0.0095
+   },
+   "PCA SPE only": {
+    "delay": null,
+    "false_per_1000": 0.0,
+    "alarm_frac_after": 0.009
+   },
+   "T2 or SPE": {
+    "delay": null,
+    "false_per_1000": 0.0,
+    "alarm_frac_after": 0.0185
+   },
+   "residual (model-based)": {
+    "delay": null,
+    "false_per_1000": 0.0,
+    "alarm_frac_after": 0.014
+   }
+  },
+  "r2_by_tag": {
+   "feed_a_flow": 0.14937759198839462,
+   "feed_d_flow": 0.9955880422864507,
+   "feed_e_flow": 0.9963447276368086,
+   "recycle_flow": 0.9793627597701567,
+   "reactor_temp": 0.28295004539186963,
+   "reactor_press": 0.9976760341661626,
+   "reactor_level": 0.5604196703987083,
+   "sep_temp": 0.11362793331593879,
+   "sep_level": 0.7366115408166856,
+   "sep_underflow": 0.9387797468030723,
+   "stripper_level": 0.22846394653675206,
+   "stripper_temp": 0.057042694599581,
+   "stripper_flow": 0.7391193230915161,
+   "cool_water_flow": 0.9823302650801511,
+   "cool_water_outlet_temp": 0.5613242234265771,
+   "compressor_work": 0.9740977469130205,
+   "purge_rate": 0.2683645361297593,
+   "product_rate": 0.3795397428458879
+  },
+  "first_diagnosis": {
+   "sample": 85,
+   "statistic": "SPE",
+   "t2": 10.187334132152213,
+   "spe": 6.02324480630209,
+   "top_tags": [
+    {
+     "tag": "cool_water_outlet_temp",
+     "contribution": 4.357717835045577
+    },
+    {
+     "tag": "reactor_temp",
+     "contribution": 0.4487846745301588
+    },
+    {
+     "tag": "sep_underflow",
+     "contribution": 0.26233898318693927
+    }
+   ],
+   "reading": "relationships broken -- a state that violates the process's own correlations"
+  }
+ },
+ "quick": false,
+ "wall_seconds": 2.473012800095603
+}

@@ -259,22 +259,91 @@ geometric and single-point. Natural spalling is rough, spreads along the race, a
 smears the signature across a band instead of putting it on a line. This accuracy
 is an upper bound on the accuracy against grown faults.
 
+## The process side — see [docs/PROCESS_SIDE.md](docs/PROCESS_SIDE.md)
+
+```bash
+python run_process.py       # ~2 s
+```
+
+The spec asks for a **Tennessee-Eastman-style process case** with residual-based
+features and the process-monitoring classics — Mahalanobis / PCA-T² / SPE — named
+as such. That was the last item in this portfolio a spec named outright and it
+was not built. It is now.
+
+**It is TE-*style*, not TE.** The real Downs-and-Vogel model is a FORTRAN plant
+simulation with fifty states; reimplementing it here would be a claim I could not
+support. This is a reactor / separator / stripper loop with the structure that
+matters for monitoring — eighteen tags coupled by physical relationships, with a
+recycle. Every derived tag is computed *from* its drivers, so the covariance
+structure is a consequence of the process rather than something imposed on it.
+That is what makes it possible to break a relationship while leaving every
+magnitude in range.
+
+### Why this is a different problem from the bearing side
+
+A bearing gives one signal with physics in its **frequency content**: fault
+frequencies come from geometry and you go and look at them. A process gives
+eighteen signals with physics in their **relationships**. So on the bearing side
+feature engineering *is* the physics; on the process side the physics is a set of
+constraints between variables, and a fault is a violated constraint — invisible
+in every individual tag.
+
+### T² and SPE
+
+PCA splits the space in two. The first *k* components span the **model plane**,
+which encodes the correlation structure; everything orthogonal is the **residual
+space**. **T²** is distance from centre *inside* the plane — a normal state at an
+extreme magnitude. **SPE** is distance *from* the plane — a state that violates
+the process's own relationships.
+
+### The scorecard, and it is not the one I set out to write
+
+| fault | univariate | T² only | SPE only | residual |
+|---|---|---|---|---|
+| `feed_composition_step` | 773 | **523** | never | 1259 |
+| `heat_exchanger_fouling` | 773 | never | 1384 | **292** |
+| `kinetics_drift` | never | never | never | **1259** |
+| `valve_stick` | 69 | 72 | 86 | **66** |
+| **fastest / missed** | 0 / 1 | 1 / 2 | 0 / 2 | 3 / 0 |
+
+**The residual model wins and PCA does not** — fastest on
+3 of 4, and on `kinetics_drift` it is the *only*
+detector that fires at all. I assumed the PCA classics would carry this because
+the spec names them.
+
+**T² alone never wins once and misses 2 of 4
+outright.** That is the argument arriving from the opposite direction to the one
+I planned: not "T² is good and SPE is better", but *monitoring T² alone is close
+to useless here* — and it is the statistic with the familiar name that everybody
+reaches for.
+
+Every fault is deliberately tuned so **no tag moves more than ~3σ from its
+training mean**, because that is the only regime where the question is
+interesting. An earlier version of the simulator moved cooling-water flow **115σ**
+and every detector fired instantly; at that size univariate charts win everything
+and there is nothing multivariate to demonstrate.
+
 ## What is NOT built
 
 1. **No degradation trajectory in the real data.** CWRU cannot test prognosis at
-   all — see above. Doing so needs a run-to-failure set such as IMS or FEMTO.
+   all. Doing so needs a run-to-failure set such as IMS or FEMTO.
 2. **Ball faults at 19%**, after a correct physics fix that barely moved them. A
    line-energy detector is close to the wrong instrument for them.
-3. **No process-side multivariate case.** The spec asks for a Tennessee-Eastman
-   style dataset with residual-based features from per-signal regression models.
-   Not built — this project is bearings only.
-4. **No dashboard.** The per-alarm T² contribution decomposition exists and is
-   measured (it names the correct race on 100% of failing assets); nothing
-   renders it.
-5. **No speed-varying case.** Shaft speed is measured per file and the CWRU rig
-   runs at constant speed. No run-up, no coast-down, no order tracking — which is
+3. **The process case is a simulator I wrote**, which is the same circularity the
+   bearing side had before CWRU — and the bearing side is exactly where real data
+   overturned a claim I was confident in. The residual model winning is the
+   result most likely to be an artefact of a generator built from linear
+   relationships, and I would not defend it until it has run on real TE or SKAB
+   data.
+4. **No dynamic PCA.** Process data is autocorrelated, so the effective sample
+   size behind every control limit is smaller than the row count implies. Lagged
+   copies of each variable are the standard answer and are not implemented.
+5. **No dashboard.** The T² contribution decomposition names the correct bearing
+   race on 100% of failing assets and the SPE contributions isolate the faulty
+   process tag; nothing renders either.
+6. **No speed-varying case.** No run-up, coast-down or order tracking — which is
    where fixed-frequency band energy stops working entirely.
-6. **The synthetic fleet is still 9 failing + 3 healthy assets**, so every median
+7. **The synthetic bearing fleet is still 9 failing + 3 healthy**, so every median
    in RESULTS.md is over 9 numbers and every false-alarm rate over 3.
 
 ## Layout
