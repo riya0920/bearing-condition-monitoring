@@ -10,522 +10,522 @@
         "asset": "BPFO-1",
         "true_fault": "BPFO",
         "cycle": 239,
-        "t2": 7794.698774343839,
+        "t2": 5597.266065512342,
         "top": [
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 7283.536007639292,
-            "pct_of_total": 93.44217420707731,
-            "deviation_sigma": 85.65113503336033
+            "contribution": 5389.5172214838885,
+            "pct_of_total": 96.28838719480387,
+            "deviation_sigma": 73.49417248377323
           },
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 346.34316445050166,
-            "pct_of_total": 4.443316855174521,
-            "deviation_sigma": 17.17207277997844
+            "contribution": 210.16427552014198,
+            "pct_of_total": 3.754766578188467,
+            "deviation_sigma": 13.989662373891294
           },
           {
-            "feature": "env_BSF_ratio",
-            "contribution": 191.36490658532327,
-            "pct_of_total": 2.455064809113581,
-            "deviation_sigma": 13.167127669154427
+            "feature": "crest_factor",
+            "contribution": 14.504966409174608,
+            "pct_of_total": 0.25914377196658966,
+            "deviation_sigma": 2.6492752314109747
           }
         ],
-        "top_n_pct": 100.37447082108827,
-        "sentence": "T\u00b2 = 7794.7, driven by env_BPFO_ratio (93% of the score, +85.7\u03c3 from this asset's baseline); then env_BPFI_ratio, env_BSF_ratio.",
+        "top_n_pct": 100.39658722557118,
+        "sentence": "T\u00b2 = 5597.3, driven by env_BPFO_ratio (96% of the score, +73.5\u03c3 from this asset's baseline); then env_BPFI_ratio, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFO-2",
         "true_fault": "BPFO",
         "cycle": 239,
-        "t2": 6528.293440116799,
+        "t2": 7842.102965430333,
         "top": [
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 6491.60862975683,
-            "pct_of_total": 99.43806431655571,
-            "deviation_sigma": 81.55373294018258
+            "contribution": 7770.699531181798,
+            "pct_of_total": 99.08948614213182,
+            "deviation_sigma": 89.04012696697399
           },
           {
-            "feature": "env_BSF_ratio",
-            "contribution": 43.02321006907611,
-            "pct_of_total": 0.6590269028762649,
-            "deviation_sigma": 12.846489957462094
+            "feature": "env_kurtosis",
+            "contribution": 43.88519018831554,
+            "pct_of_total": 0.5596099717355261,
+            "deviation_sigma": 4.7015989190474095
           },
           {
             "feature": "crest_factor",
-            "contribution": 21.5677960557643,
-            "pct_of_total": 0.33037418206768643,
-            "deviation_sigma": 4.121935138680692
+            "contribution": 43.25655307587525,
+            "pct_of_total": 0.5515937914429253,
+            "deviation_sigma": 5.302019404585372
           }
         ],
-        "top_n_pct": 100.4514633262999,
-        "sentence": "T\u00b2 = 6528.3, driven by env_BPFO_ratio (99% of the score, +81.6\u03c3 from this asset's baseline); then env_BSF_ratio, crest_factor.",
+        "top_n_pct": 100.40214698660215,
+        "sentence": "T\u00b2 = 7842.1, driven by env_BPFO_ratio (99% of the score, +89.0\u03c3 from this asset's baseline); then env_kurtosis, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFO-3",
         "true_fault": "BPFO",
         "cycle": 239,
-        "t2": 7235.644433615783,
+        "t2": 9825.793714484236,
         "top": [
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 7182.28040967483,
-            "pct_of_total": 99.26248415838357,
-            "deviation_sigma": 87.65036248840804
-          },
-          {
-            "feature": "crest_factor",
-            "contribution": 23.47592793354412,
-            "pct_of_total": 0.3244483355826369,
-            "deviation_sigma": 4.178181915409437
+            "contribution": 9830.78144767819,
+            "pct_of_total": 100.05076163146597,
+            "deviation_sigma": 102.28755674528053
           },
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 14.826309318530257,
-            "pct_of_total": 0.20490654916166576,
-            "deviation_sigma": 16.88263163352444
+            "contribution": 16.504603196107833,
+            "pct_of_total": 0.1679722134994381,
+            "deviation_sigma": 21.444318409919696
+          },
+          {
+            "feature": "crest_factor",
+            "contribution": 10.756401132686424,
+            "pct_of_total": 0.1094710661066533,
+            "deviation_sigma": 5.891232848716557
           }
         ],
-        "top_n_pct": 99.91833005137201,
-        "sentence": "T\u00b2 = 7235.6, driven by env_BPFO_ratio (99% of the score, +87.7\u03c3 from this asset's baseline); then crest_factor, env_BPFI_ratio.",
+        "top_n_pct": 100.36687202801029,
+        "sentence": "T\u00b2 = 9825.8, driven by env_BPFO_ratio (100% of the score, +102.3\u03c3 from this asset's baseline); then env_BPFI_ratio, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFO-4",
         "true_fault": "BPFO",
         "cycle": 239,
-        "t2": 5614.2551523968605,
+        "t2": 12502.037130538793,
         "top": [
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 5398.949890748806,
-            "pct_of_total": 96.16502535414452,
-            "deviation_sigma": 73.64510088314493
+            "contribution": 12208.92669946358,
+            "pct_of_total": 97.65549863582447,
+            "deviation_sigma": 110.26767337922297
           },
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 104.03509151527841,
-            "pct_of_total": 1.853052429775361,
-            "deviation_sigma": 13.928429232939433
+            "contribution": 212.73460962759697,
+            "pct_of_total": 1.7015995665854247,
+            "deviation_sigma": 13.662002509992968
           },
           {
-            "feature": "env_BSF_ratio",
-            "contribution": 58.56129370553093,
-            "pct_of_total": 1.0430821563307413,
-            "deviation_sigma": 8.66212922557856
+            "feature": "crest_factor",
+            "contribution": 121.1211602375192,
+            "pct_of_total": 0.9688113942779444,
+            "deviation_sigma": 5.499572891231459
           }
         ],
-        "top_n_pct": 99.48221352320036,
-        "sentence": "T\u00b2 = 5614.3, driven by env_BPFO_ratio (96% of the score, +73.6\u03c3 from this asset's baseline); then env_BPFI_ratio, env_BSF_ratio.",
+        "top_n_pct": 100.47309948191962,
+        "sentence": "T\u00b2 = 12502.0, driven by env_BPFO_ratio (98% of the score, +110.3\u03c3 from this asset's baseline); then env_BPFI_ratio, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFO-5",
         "true_fault": "BPFO",
         "cycle": 239,
-        "t2": 8769.172998414115,
+        "t2": 5160.847491005829,
         "top": [
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 8868.237213956334,
-            "pct_of_total": 101.12968709318581,
-            "deviation_sigma": 95.70354234116031
+            "contribution": 4732.038143375732,
+            "pct_of_total": 91.69110599804753,
+            "deviation_sigma": 70.06218347792864
           },
           {
-            "feature": "crest_factor",
-            "contribution": 4.439429759898965,
-            "pct_of_total": 0.05062540972451821,
-            "deviation_sigma": 3.5104739436920585
+            "feature": "env_BPFI_ratio",
+            "contribution": 219.8719908571406,
+            "pct_of_total": 4.260385358031349,
+            "deviation_sigma": 15.585201565848694
           },
           {
-            "feature": "env_rms",
-            "contribution": 2.02720719675032,
-            "pct_of_total": 0.0231174273459645,
-            "deviation_sigma": 1.430062094141761
+            "feature": "env_BSF_ratio",
+            "contribution": 156.1359634827663,
+            "pct_of_total": 3.025393867090151,
+            "deviation_sigma": 14.25310753078059
           }
         ],
-        "top_n_pct": 101.22542581958456,
-        "sentence": "T\u00b2 = 8769.2, driven by env_BPFO_ratio (101% of the score, +95.7\u03c3 from this asset's baseline); then crest_factor, env_rms.",
+        "top_n_pct": 99.6115014852016,
+        "sentence": "T\u00b2 = 5160.8, driven by env_BPFO_ratio (92% of the score, +70.1\u03c3 from this asset's baseline); then env_BPFI_ratio, env_BSF_ratio.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFO-6",
         "true_fault": "BPFO",
         "cycle": 239,
-        "t2": 4215.215803169796,
+        "t2": 4752.773489884908,
         "top": [
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 4175.820310943013,
-            "pct_of_total": 99.06539797565861,
-            "deviation_sigma": 65.67349517791877
+            "contribution": 4513.799187718846,
+            "pct_of_total": 94.97189793128878,
+            "deviation_sigma": 67.06196353290608
           },
           {
-            "feature": "env_kurtosis",
-            "contribution": 45.05289223111503,
-            "pct_of_total": 1.0688157934223852,
-            "deviation_sigma": 3.7377798627964696
+            "feature": "env_BPFI_ratio",
+            "contribution": 269.91765271521916,
+            "pct_of_total": 5.679160879214453,
+            "deviation_sigma": 13.827697764284812
           },
           {
             "feature": "crest_factor",
-            "contribution": 42.22718516742862,
-            "pct_of_total": 1.0017799120907225,
-            "deviation_sigma": 5.9615295565492
+            "contribution": 23.328406404591846,
+            "pct_of_total": 0.4908377488268805,
+            "deviation_sigma": 3.6085070006080797
           }
         ],
-        "top_n_pct": 101.25128853861676,
-        "sentence": "T\u00b2 = 4215.2, driven by env_BPFO_ratio (99% of the score, +65.7\u03c3 from this asset's baseline); then env_kurtosis, crest_factor.",
+        "top_n_pct": 101.31903339818038,
+        "sentence": "T\u00b2 = 4752.8, driven by env_BPFO_ratio (95% of the score, +67.1\u03c3 from this asset's baseline); then env_BPFI_ratio, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFI-1",
         "true_fault": "BPFI",
         "cycle": 239,
-        "t2": 5849.449121441808,
+        "t2": 6246.231851738385,
         "top": [
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 5722.077327739486,
-            "pct_of_total": 97.82249933185287,
-            "deviation_sigma": 76.1710362684793
+            "contribution": 6098.195034655247,
+            "pct_of_total": 97.62998203401723,
+            "deviation_sigma": 78.44775137007495
           },
           {
-            "feature": "env_kurtosis",
-            "contribution": 111.9424211426482,
-            "pct_of_total": 1.913725870908267,
-            "deviation_sigma": 6.626245442919028
+            "feature": "env_BPFO_ratio",
+            "contribution": 43.122507117725206,
+            "pct_of_total": 0.6903763443510956,
+            "deviation_sigma": 7.294711426696571
           },
           {
             "feature": "crest_factor",
-            "contribution": 42.22528887737022,
-            "pct_of_total": 0.7218677861918436,
-            "deviation_sigma": 6.427859322866983
+            "contribution": 37.88875297694481,
+            "pct_of_total": 0.6065857604437148,
+            "deviation_sigma": 7.818277817235527
           }
         ],
-        "top_n_pct": 101.02364465808697,
-        "sentence": "T\u00b2 = 5849.4, driven by env_BPFI_ratio (98% of the score, +76.2\u03c3 from this asset's baseline); then env_kurtosis, crest_factor.",
+        "top_n_pct": 99.4086979890426,
+        "sentence": "T\u00b2 = 6246.2, driven by env_BPFI_ratio (98% of the score, +78.4\u03c3 from this asset's baseline); then env_BPFO_ratio, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFI-2",
         "true_fault": "BPFI",
         "cycle": 239,
-        "t2": 6769.157344903351,
+        "t2": 5489.110593312344,
         "top": [
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 6718.9796026767835,
-            "pct_of_total": 99.25872985853479,
-            "deviation_sigma": 82.25407808197572
+            "contribution": 5297.97509061334,
+            "pct_of_total": 96.51791488894625,
+            "deviation_sigma": 72.72509544227749
           },
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 24.907123497583747,
-            "pct_of_total": 0.3679501336504886,
-            "deviation_sigma": 1.5514251714412177
+            "contribution": 107.04254678143677,
+            "pct_of_total": 1.9500890893299188,
+            "deviation_sigma": 9.882902514734964
           },
           {
-            "feature": "kurtosis",
-            "contribution": 14.21121086957054,
-            "pct_of_total": 0.20994061957018142,
-            "deviation_sigma": 4.595542744729556
+            "feature": "crest_factor",
+            "contribution": 73.65010291093833,
+            "pct_of_total": 1.3417492990698696,
+            "deviation_sigma": 6.529598608140792
           }
         ],
-        "top_n_pct": 99.96418458246681,
-        "sentence": "T\u00b2 = 6769.2, driven by env_BPFI_ratio (99% of the score, +82.3\u03c3 from this asset's baseline); then env_BPFO_ratio, kurtosis.",
+        "top_n_pct": 100.16774031510295,
+        "sentence": "T\u00b2 = 5489.1, driven by env_BPFI_ratio (97% of the score, +72.7\u03c3 from this asset's baseline); then env_BPFO_ratio, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFI-3",
         "true_fault": "BPFI",
         "cycle": 239,
-        "t2": 9241.101357371947,
+        "t2": 6267.127138279646,
         "top": [
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 9354.356203147949,
-            "pct_of_total": 101.22555571458648,
-            "deviation_sigma": 97.99402594791691
+            "contribution": 5963.166987359674,
+            "pct_of_total": 95.14992844068247,
+            "deviation_sigma": 77.06764941221041
           },
           {
-            "feature": "crest_factor",
-            "contribution": 32.681272364263336,
-            "pct_of_total": 0.35365127056194817,
-            "deviation_sigma": 4.402983169772104
+            "feature": "env_BPFO_ratio",
+            "contribution": 325.04240616526613,
+            "pct_of_total": 5.186465807912295,
+            "deviation_sigma": 13.38405703414937
           },
           {
             "feature": "kurtosis",
-            "contribution": 14.426719395188284,
-            "pct_of_total": 0.15611471876866265,
-            "deviation_sigma": 3.9690886808643087
+            "contribution": 33.037703053624206,
+            "pct_of_total": 0.5271586537925765,
+            "deviation_sigma": 5.9198784135755
           }
         ],
-        "top_n_pct": 101.769180244432,
-        "sentence": "T\u00b2 = 9241.1, driven by env_BPFI_ratio (101% of the score, +98.0\u03c3 from this asset's baseline); then crest_factor, kurtosis.",
+        "top_n_pct": 101.0955602783542,
+        "sentence": "T\u00b2 = 6267.1, driven by env_BPFI_ratio (95% of the score, +77.1\u03c3 from this asset's baseline); then env_BPFO_ratio, kurtosis.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFI-4",
         "true_fault": "BPFI",
         "cycle": 239,
-        "t2": 8309.20294820475,
+        "t2": 6715.642213135664,
         "top": [
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 8292.240031828818,
-            "pct_of_total": 99.7958538685158,
-            "deviation_sigma": 91.69128444030027
+            "contribution": 6469.350010337322,
+            "pct_of_total": 96.3325591956552,
+            "deviation_sigma": 80.39527487292527
+          },
+          {
+            "feature": "crest_factor",
+            "contribution": 84.99240012004937,
+            "pct_of_total": 1.2655885680420245,
+            "deviation_sigma": 6.3235793373857225
           },
           {
             "feature": "env_kurtosis",
-            "contribution": 34.47334695912972,
-            "pct_of_total": 0.41488151359424774,
-            "deviation_sigma": 5.8723390724235385
-          },
-          {
-            "feature": "env_BSF_ratio",
-            "contribution": 31.63537961918064,
-            "pct_of_total": 0.3807270061446224,
-            "deviation_sigma": 1.6870874873641275
+            "contribution": 60.50615744067892,
+            "pct_of_total": 0.9009735111011433,
+            "deviation_sigma": 4.460847216068898
           }
         ],
-        "top_n_pct": 100.89820910987179,
-        "sentence": "T\u00b2 = 8309.2, driven by env_BPFI_ratio (100% of the score, +91.7\u03c3 from this asset's baseline); then env_kurtosis, env_BSF_ratio.",
+        "top_n_pct": 99.31195195989108,
+        "sentence": "T\u00b2 = 6715.6, driven by env_BPFI_ratio (96% of the score, +80.4\u03c3 from this asset's baseline); then crest_factor, env_kurtosis.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFI-5",
         "true_fault": "BPFI",
         "cycle": 239,
-        "t2": 7587.786964147887,
+        "t2": 8128.800471874463,
         "top": [
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 7288.26413462168,
-            "pct_of_total": 96.05256669775461,
-            "deviation_sigma": 85.80076488074309
-          },
-          {
-            "feature": "env_BPFO_ratio",
-            "contribution": 174.44584269117038,
-            "pct_of_total": 2.299034534251197,
-            "deviation_sigma": 14.875293763983816
+            "contribution": 7957.125172320977,
+            "pct_of_total": 97.88806109649904,
+            "deviation_sigma": 89.76452364102963
           },
           {
             "feature": "crest_factor",
-            "contribution": 96.74259540339104,
-            "pct_of_total": 1.274977748591223,
-            "deviation_sigma": 9.047283721809077
+            "contribution": 81.52110046610284,
+            "pct_of_total": 1.002867529448714,
+            "deviation_sigma": 9.414341752739729
+          },
+          {
+            "feature": "kurtosis",
+            "contribution": 40.25294359726076,
+            "pct_of_total": 0.49518921932621407,
+            "deviation_sigma": 6.765101647112695
           }
         ],
-        "top_n_pct": 100.20302274990006,
-        "sentence": "T\u00b2 = 7587.8, driven by env_BPFI_ratio (96% of the score, +85.8\u03c3 from this asset's baseline); then env_BPFO_ratio, crest_factor.",
+        "top_n_pct": 99.80848371915862,
+        "sentence": "T\u00b2 = 8128.8, driven by env_BPFI_ratio (98% of the score, +89.8\u03c3 from this asset's baseline); then crest_factor, kurtosis.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BPFI-6",
         "true_fault": "BPFI",
         "cycle": 239,
-        "t2": 4844.379791020252,
+        "t2": 11111.004160828646,
         "top": [
           {
             "feature": "env_BPFI_ratio",
-            "contribution": 4762.169979947905,
-            "pct_of_total": 98.30298583887384,
-            "deviation_sigma": 69.44885600241172
+            "contribution": 10495.61708822506,
+            "pct_of_total": 94.46146303523936,
+            "deviation_sigma": 100.91288292711208
+          },
+          {
+            "feature": "env_BPFO_ratio",
+            "contribution": 274.0133962170033,
+            "pct_of_total": 2.4661443038877207,
+            "deviation_sigma": 11.313657465105178
           },
           {
             "feature": "crest_factor",
-            "contribution": 78.77037775240909,
-            "pct_of_total": 1.6260157368012556,
-            "deviation_sigma": 5.71548169399447
-          },
-          {
-            "feature": "kurtosis",
-            "contribution": 30.331836340251673,
-            "pct_of_total": 0.6261242439429718,
-            "deviation_sigma": 5.348749651251416
+            "contribution": 168.89603669750224,
+            "pct_of_total": 1.5200789618362105,
+            "deviation_sigma": 9.213010078900519
           }
         ],
-        "top_n_pct": 100.62051769267724,
-        "sentence": "T\u00b2 = 4844.4, driven by env_BPFI_ratio (98% of the score, +69.4\u03c3 from this asset's baseline); then crest_factor, kurtosis.",
+        "top_n_pct": 99.35255774545458,
+        "sentence": "T\u00b2 = 11111.0, driven by env_BPFI_ratio (94% of the score, +100.9\u03c3 from this asset's baseline); then env_BPFO_ratio, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BSF-1",
         "true_fault": "BSF",
         "cycle": 239,
-        "t2": 4714.043456006154,
+        "t2": 3627.6621652909375,
         "top": [
           {
             "feature": "env_BSF_ratio",
-            "contribution": 4504.588561588833,
-            "pct_of_total": 95.55678906289135,
-            "deviation_sigma": 68.93318228809001
+            "contribution": 3371.984478392851,
+            "pct_of_total": 92.95199841527743,
+            "deviation_sigma": 58.72358531355215
           },
           {
             "feature": "env_kurtosis",
-            "contribution": 84.22961865289672,
-            "pct_of_total": 1.7867806998168405,
-            "deviation_sigma": 12.826055219876952
+            "contribution": 206.63601500919262,
+            "pct_of_total": 5.696120685830746,
+            "deviation_sigma": 15.73643729517051
           },
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 76.22858329714254,
-            "pct_of_total": 1.6170530460430916,
-            "deviation_sigma": 15.47068020928586
+            "contribution": 54.388957250643074,
+            "pct_of_total": 1.4992839678134993,
+            "deviation_sigma": 6.531021889153554
           }
         ],
-        "top_n_pct": 99.39727248970998,
-        "sentence": "T\u00b2 = 4714.0, driven by env_BSF_ratio (96% of the score, +68.9\u03c3 from this asset's baseline); then env_kurtosis, env_BPFO_ratio.",
+        "top_n_pct": 100.44848096588065,
+        "sentence": "T\u00b2 = 3627.7, driven by env_BSF_ratio (93% of the score, +58.7\u03c3 from this asset's baseline); then env_kurtosis, env_BPFO_ratio.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BSF-2",
         "true_fault": "BSF",
         "cycle": 239,
-        "t2": 2157.1867235668997,
+        "t2": 3002.8120337176842,
         "top": [
           {
             "feature": "env_BSF_ratio",
-            "contribution": 1798.0196929364904,
-            "pct_of_total": 83.35021133281738,
-            "deviation_sigma": 43.8255631855016
+            "contribution": 2846.9952508226816,
+            "pct_of_total": 94.81097114486748,
+            "deviation_sigma": 53.30274230504811
           },
           {
             "feature": "env_kurtosis",
-            "contribution": 173.34123968326878,
-            "pct_of_total": 8.035523202027209,
-            "deviation_sigma": 15.364510208713712
+            "contribution": 147.11773915925835,
+            "pct_of_total": 4.899332276123746,
+            "deviation_sigma": 11.498417028104797
           },
           {
-            "feature": "env_BPFO_ratio",
-            "contribution": 126.07819942407562,
-            "pct_of_total": 5.844565889762468,
-            "deviation_sigma": 15.875720802950047
+            "feature": "crest_factor",
+            "contribution": 17.17389557370139,
+            "pct_of_total": 0.5719270930334907,
+            "deviation_sigma": 4.9591375359106555
           }
         ],
-        "top_n_pct": 99.19385413368184,
-        "sentence": "T\u00b2 = 2157.2, driven by env_BSF_ratio (83% of the score, +43.8\u03c3 from this asset's baseline); then env_kurtosis, env_BPFO_ratio.",
+        "top_n_pct": 100.4163361606663,
+        "sentence": "T\u00b2 = 3002.8, driven by env_BSF_ratio (95% of the score, +53.3\u03c3 from this asset's baseline); then env_kurtosis, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BSF-3",
         "true_fault": "BSF",
         "cycle": 239,
-        "t2": 3641.2532845983264,
+        "t2": 3494.878025187719,
         "top": [
           {
             "feature": "env_BSF_ratio",
-            "contribution": 3358.815765357672,
-            "pct_of_total": 92.24339816086672,
-            "deviation_sigma": 58.30324160831027
-          },
-          {
-            "feature": "env_kurtosis",
-            "contribution": 136.5408431890746,
-            "pct_of_total": 3.7498309652506543,
-            "deviation_sigma": 12.259414592131984
+            "contribution": 3139.942131983866,
+            "pct_of_total": 89.84411213650903,
+            "deviation_sigma": 56.665690577366384
           },
           {
             "feature": "env_BPFO_ratio",
-            "contribution": 107.94270565405336,
-            "pct_of_total": 2.964438263897391,
-            "deviation_sigma": 13.693985894298693
+            "contribution": 214.02475307333697,
+            "pct_of_total": 6.12395487141046,
+            "deviation_sigma": 15.98043519837303
+          },
+          {
+            "feature": "env_kurtosis",
+            "contribution": 118.85386121545021,
+            "pct_of_total": 3.4008014116334224,
+            "deviation_sigma": 10.498620758998982
           }
         ],
-        "top_n_pct": 99.78799730176952,
-        "sentence": "T\u00b2 = 3641.3, driven by env_BSF_ratio (92% of the score, +58.3\u03c3 from this asset's baseline); then env_kurtosis, env_BPFO_ratio.",
+        "top_n_pct": 99.95525736756483,
+        "sentence": "T\u00b2 = 3494.9, driven by env_BSF_ratio (90% of the score, +56.7\u03c3 from this asset's baseline); then env_BPFO_ratio, env_kurtosis.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BSF-4",
         "true_fault": "BSF",
         "cycle": 239,
-        "t2": 5113.941784979976,
+        "t2": 5644.244062166163,
         "top": [
           {
             "feature": "env_BSF_ratio",
-            "contribution": 4832.011015408535,
-            "pct_of_total": 94.48701644591472,
-            "deviation_sigma": 68.89182600681431
+            "contribution": 5246.6023181028295,
+            "pct_of_total": 92.95491584552909,
+            "deviation_sigma": 72.8156339035563
           },
           {
             "feature": "env_kurtosis",
-            "contribution": 242.5446807876266,
-            "pct_of_total": 4.742812706628734,
-            "deviation_sigma": 12.119453938411507
+            "contribution": 250.49430388621894,
+            "pct_of_total": 4.438048764852376,
+            "deviation_sigma": 11.014453139645713
           },
           {
-            "feature": "crest_factor",
-            "contribution": 38.60256876958435,
-            "pct_of_total": 0.7548495933794737,
-            "deviation_sigma": 3.803512226740877
+            "feature": "env_BPFO_ratio",
+            "contribution": 120.85325692910696,
+            "pct_of_total": 2.141177022078056,
+            "deviation_sigma": 17.777098371998694
           }
         ],
-        "top_n_pct": 100.0395610354455,
-        "sentence": "T\u00b2 = 5113.9, driven by env_BSF_ratio (94% of the score, +68.9\u03c3 from this asset's baseline); then env_kurtosis, crest_factor.",
+        "top_n_pct": 99.72777475885994,
+        "sentence": "T\u00b2 = 5644.2, driven by env_BSF_ratio (93% of the score, +72.8\u03c3 from this asset's baseline); then env_kurtosis, env_BPFO_ratio.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BSF-5",
         "true_fault": "BSF",
         "cycle": 239,
-        "t2": 4504.017287331554,
+        "t2": 3650.194283581051,
         "top": [
           {
             "feature": "env_BSF_ratio",
-            "contribution": 4326.184057528259,
-            "pct_of_total": 96.05167523882541,
-            "deviation_sigma": 66.06316803026938
+            "contribution": 3313.6495985501724,
+            "pct_of_total": 90.78008843132841,
+            "deviation_sigma": 57.30150553599581
           },
           {
             "feature": "env_kurtosis",
-            "contribution": 106.1509380946654,
-            "pct_of_total": 2.3568057430249225,
-            "deviation_sigma": 13.610934018153147
+            "contribution": 278.4124697580558,
+            "pct_of_total": 7.627332906919057,
+            "deviation_sigma": 15.6941049290924
           },
           {
-            "feature": "env_BPFO_ratio",
-            "contribution": 45.011020924298094,
-            "pct_of_total": 0.9993527567245479,
-            "deviation_sigma": 9.099301874278698
+            "feature": "crest_factor",
+            "contribution": 49.951979691466825,
+            "pct_of_total": 1.3684745471263258,
+            "deviation_sigma": 7.391496192612582
           }
         ],
-        "top_n_pct": 99.84611594522163,
-        "sentence": "T\u00b2 = 4504.0, driven by env_BSF_ratio (96% of the score, +66.1\u03c3 from this asset's baseline); then env_kurtosis, env_BPFO_ratio.",
+        "top_n_pct": 99.95433074196566,
+        "sentence": "T\u00b2 = 3650.2, driven by env_BSF_ratio (91% of the score, +57.3\u03c3 from this asset's baseline); then env_kurtosis, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
         "asset": "BSF-6",
         "true_fault": "BSF",
         "cycle": 239,
-        "t2": 3817.766956677864,
+        "t2": 4100.287248534087,
         "top": [
           {
             "feature": "env_BSF_ratio",
-            "contribution": 3478.995731464316,
-            "pct_of_total": 91.12645614418699,
-            "deviation_sigma": 58.67856847105283
-          },
-          {
-            "feature": "env_BPFO_ratio",
-            "contribution": 263.52588824025077,
-            "pct_of_total": 6.902618500044988,
-            "deviation_sigma": 12.281377150195627
+            "contribution": 3721.919472919404,
+            "pct_of_total": 90.77216417581586,
+            "deviation_sigma": 60.55654209729631
           },
           {
             "feature": "env_kurtosis",
-            "contribution": 49.61898051531916,
-            "pct_of_total": 1.299685944123119,
-            "deviation_sigma": 12.140231157501038
+            "contribution": 342.7811567211179,
+            "pct_of_total": 8.3599303157033,
+            "deviation_sigma": 12.989417061350526
+          },
+          {
+            "feature": "crest_factor",
+            "contribution": 17.092358525992804,
+            "pct_of_total": 0.4168575880166341,
+            "deviation_sigma": 4.8322616444663495
           }
         ],
-        "top_n_pct": 100.02982804783484,
-        "sentence": "T\u00b2 = 3817.8, driven by env_BSF_ratio (91% of the score, +58.7\u03c3 from this asset's baseline); then env_BPFO_ratio, env_kurtosis.",
+        "top_n_pct": 99.93201672424112,
+        "sentence": "T\u00b2 = 4100.3, driven by env_BSF_ratio (91% of the score, +60.6\u03c3 from this asset's baseline); then env_kurtosis, crest_factor.",
         "explanation_names_true_fault": true
       },
       {
@@ -762,45 +762,45 @@
   "pf": {
     "per_asset": [
       {
-        "p_index": 141,
-        "f_index": 183,
-        "pf_interval_cycles": 42,
-        "p_before_failure": 98,
+        "p_index": 161,
+        "f_index": 174,
+        "pf_interval_cycles": 13,
+        "p_before_failure": 78,
         "detected": true,
         "asset": "BPFO-1",
         "fault": "BPFO"
       },
       {
-        "p_index": 148,
-        "f_index": 179,
-        "pf_interval_cycles": 31,
-        "p_before_failure": 91,
+        "p_index": 150,
+        "f_index": 176,
+        "pf_interval_cycles": 26,
+        "p_before_failure": 89,
         "detected": true,
         "asset": "BPFO-2",
         "fault": "BPFO"
       },
       {
-        "p_index": 158,
-        "f_index": 182,
-        "pf_interval_cycles": 24,
-        "p_before_failure": 81,
+        "p_index": 163,
+        "f_index": 177,
+        "pf_interval_cycles": 14,
+        "p_before_failure": 76,
         "detected": true,
         "asset": "BPFO-3",
         "fault": "BPFO"
       },
       {
-        "p_index": 164,
-        "f_index": 184,
-        "pf_interval_cycles": 20,
-        "p_before_failure": 75,
+        "p_index": 163,
+        "f_index": 177,
+        "pf_interval_cycles": 14,
+        "p_before_failure": 76,
         "detected": true,
         "asset": "BPFO-4",
         "fault": "BPFO"
       },
       {
         "p_index": 157,
-        "f_index": 174,
-        "pf_interval_cycles": 17,
+        "f_index": 182,
+        "pf_interval_cycles": 25,
         "p_before_failure": 82,
         "detected": true,
         "asset": "BPFO-5",
@@ -808,117 +808,117 @@
       },
       {
         "p_index": 161,
-        "f_index": 178,
-        "pf_interval_cycles": 17,
+        "f_index": 179,
+        "pf_interval_cycles": 18,
         "p_before_failure": 78,
         "detected": true,
         "asset": "BPFO-6",
         "fault": "BPFO"
       },
       {
-        "p_index": 153,
-        "f_index": 179,
-        "pf_interval_cycles": 26,
-        "p_before_failure": 86,
+        "p_index": 162,
+        "f_index": 177,
+        "pf_interval_cycles": 15,
+        "p_before_failure": 77,
         "detected": true,
         "asset": "BPFI-1",
         "fault": "BPFI"
       },
       {
-        "p_index": 145,
-        "f_index": 178,
-        "pf_interval_cycles": 33,
-        "p_before_failure": 94,
+        "p_index": 163,
+        "f_index": 176,
+        "pf_interval_cycles": 13,
+        "p_before_failure": 76,
         "detected": true,
         "asset": "BPFI-2",
         "fault": "BPFI"
       },
       {
-        "p_index": 144,
-        "f_index": 176,
-        "pf_interval_cycles": 32,
-        "p_before_failure": 95,
+        "p_index": 154,
+        "f_index": 179,
+        "pf_interval_cycles": 25,
+        "p_before_failure": 85,
         "detected": true,
         "asset": "BPFI-3",
         "fault": "BPFI"
       },
       {
-        "p_index": 153,
-        "f_index": 174,
-        "pf_interval_cycles": 21,
-        "p_before_failure": 86,
+        "p_index": 151,
+        "f_index": 178,
+        "pf_interval_cycles": 27,
+        "p_before_failure": 88,
         "detected": true,
         "asset": "BPFI-4",
         "fault": "BPFI"
       },
       {
-        "p_index": 155,
-        "f_index": 173,
-        "pf_interval_cycles": 18,
-        "p_before_failure": 84,
+        "p_index": 146,
+        "f_index": 177,
+        "pf_interval_cycles": 31,
+        "p_before_failure": 93,
         "detected": true,
         "asset": "BPFI-5",
         "fault": "BPFI"
       },
       {
-        "p_index": 159,
-        "f_index": 176,
-        "pf_interval_cycles": 17,
-        "p_before_failure": 80,
+        "p_index": 149,
+        "f_index": 173,
+        "pf_interval_cycles": 24,
+        "p_before_failure": 90,
         "detected": true,
         "asset": "BPFI-6",
         "fault": "BPFI"
       },
       {
-        "p_index": 147,
+        "p_index": 153,
         "f_index": 184,
-        "pf_interval_cycles": 37,
-        "p_before_failure": 92,
+        "pf_interval_cycles": 31,
+        "p_before_failure": 86,
         "detected": true,
         "asset": "BSF-1",
         "fault": "BSF"
       },
       {
-        "p_index": 168,
+        "p_index": 165,
         "f_index": 187,
-        "pf_interval_cycles": 19,
-        "p_before_failure": 71,
+        "pf_interval_cycles": 22,
+        "p_before_failure": 74,
         "detected": true,
         "asset": "BSF-2",
         "fault": "BSF"
       },
       {
-        "p_index": 154,
-        "f_index": 183,
-        "pf_interval_cycles": 29,
-        "p_before_failure": 85,
+        "p_index": 168,
+        "f_index": 184,
+        "pf_interval_cycles": 16,
+        "p_before_failure": 71,
         "detected": true,
         "asset": "BSF-3",
         "fault": "BSF"
       },
       {
-        "p_index": 164,
-        "f_index": 185,
-        "pf_interval_cycles": 21,
-        "p_before_failure": 75,
+        "p_index": 149,
+        "f_index": 184,
+        "pf_interval_cycles": 35,
+        "p_before_failure": 90,
         "detected": true,
         "asset": "BSF-4",
         "fault": "BSF"
       },
       {
-        "p_index": 163,
-        "f_index": 182,
-        "pf_interval_cycles": 19,
-        "p_before_failure": 76,
+        "p_index": 159,
+        "f_index": 177,
+        "pf_interval_cycles": 18,
+        "p_before_failure": 80,
         "detected": true,
         "asset": "BSF-5",
         "fault": "BSF"
       },
       {
-        "p_index": 159,
-        "f_index": 180,
-        "pf_interval_cycles": 21,
-        "p_before_failure": 80,
+        "p_index": 162,
+        "f_index": 188,
+        "pf_interval_cycles": 26,
+        "p_before_failure": 77,
         "detected": true,
         "asset": "BSF-6",
         "fault": "BSF"
@@ -926,14 +926,14 @@
     ],
     "summary": {
       "n": 18,
-      "pf_mean": 24.666666666666668,
-      "pf_median": 21.0,
-      "pf_p10": 17.0,
-      "pf_min": 17.0,
-      "recommended_interval_cycles": 8.5,
-      "interval_if_mean_used": 12.333333333333334,
+      "pf_mean": 21.833333333333332,
+      "pf_median": 23.0,
+      "pf_p10": 13.7,
+      "pf_min": 13.0,
+      "recommended_interval_cycles": 6.85,
+      "interval_if_mean_used": 10.916666666666666,
       "percentile_used": 10.0
     }
   },
-  "wall_seconds": 138.4191641000216
+  "wall_seconds": 136.84404399991035
 }

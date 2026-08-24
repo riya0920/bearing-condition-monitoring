@@ -10,18 +10,18 @@ The decomposition is exact rather than an attribution heuristic. With `d = x −
 
 | asset | true fault | T² | leading contributor | % of score | top-3 % | 
 |---|---|---|---|---|---|
-| BPFO-1 | BPFO | 7795 | env_BPFO_ratio | 93% | 100% |
-| BPFO-2 | BPFO | 6528 | env_BPFO_ratio | 99% | 100% |
-| BPFO-3 | BPFO | 7236 | env_BPFO_ratio | 99% | 100% |
-| BPFO-4 | BPFO | 5614 | env_BPFO_ratio | 96% | 99% |
-| BPFO-5 | BPFO | 8769 | env_BPFO_ratio | 101% | 101% |
-| BPFO-6 | BPFO | 4215 | env_BPFO_ratio | 99% | 101% |
-| BPFI-1 | BPFI | 5849 | env_BPFI_ratio | 98% | 101% |
-| BPFI-2 | BPFI | 6769 | env_BPFI_ratio | 99% | 100% |
-| BPFI-3 | BPFI | 9241 | env_BPFI_ratio | 101% | 102% |
-| BPFI-4 | BPFI | 8309 | env_BPFI_ratio | 100% | 101% |
-| BPFI-5 | BPFI | 7588 | env_BPFI_ratio | 96% | 100% |
-| BPFI-6 | BPFI | 4844 | env_BPFI_ratio | 98% | 101% |
+| BPFO-1 | BPFO | 5597 | env_BPFO_ratio | 96% | 100% |
+| BPFO-2 | BPFO | 7842 | env_BPFO_ratio | 99% | 100% |
+| BPFO-3 | BPFO | 9826 | env_BPFO_ratio | 100% | 100% |
+| BPFO-4 | BPFO | 12502 | env_BPFO_ratio | 98% | 100% |
+| BPFO-5 | BPFO | 5161 | env_BPFO_ratio | 92% | 100% |
+| BPFO-6 | BPFO | 4753 | env_BPFO_ratio | 95% | 101% |
+| BPFI-1 | BPFI | 6246 | env_BPFI_ratio | 98% | 99% |
+| BPFI-2 | BPFI | 5489 | env_BPFI_ratio | 97% | 100% |
+| BPFI-3 | BPFI | 6267 | env_BPFI_ratio | 95% | 101% |
+| BPFI-4 | BPFI | 6716 | env_BPFI_ratio | 96% | 99% |
+| BPFI-5 | BPFI | 8129 | env_BPFI_ratio | 98% | 100% |
+| BPFI-6 | BPFI | 11111 | env_BPFI_ratio | 94% | 99% |
 
 **The leading contributor names the true fault frequency on 100% of the 18 failing assets.** That is the property that makes the panel worth putting on screen: the top line of the explanation points at the right bearing race, so the alarm card carries a diagnosis and not just a score.
 
@@ -29,7 +29,7 @@ A sample alarm card:
 
 ```
 ASSET  BPFO-1      HEALTH  alarm at cycle 239
-WHY    T² = 7794.7, driven by env_BPFO_ratio (93% of the score, +85.7σ from this asset's baseline); then env_BPFI_ratio, env_BSF_ratio.
+WHY    T² = 5597.3, driven by env_BPFO_ratio (96% of the score, +73.5σ from this asset's baseline); then env_BPFI_ratio, crest_factor.
 ```
 
 Contributions can be **negative** when features are correlated — a feature moving *with* its correlated partners reduces the distance. That is real information (the deviation is in the expected direction) and it is reported rather than clipped to zero.
@@ -58,14 +58,14 @@ The last column is the practical consequence: the same failing asset scored agai
 | statistic | cycles |
 |---|---|
 | assets with a detected P point | 18 |
-| mean P-F interval | 25 |
-| median | 21 |
-| **P10** | **17** |
-| minimum observed | 17 |
-| **recommended inspection interval** (P10 ÷ 2) | **8** |
-| interval if the MEAN were used instead | 12 |
+| mean P-F interval | 22 |
+| median | 23 |
+| **P10** | **14** |
+| minimum observed | 13 |
+| **recommended inspection interval** (P10 ÷ 2) | **7** |
+| interval if the MEAN were used instead | 11 |
 
-**Setting the interval from the mean would make it 1.5× too long.** Half the *mean* P-F interval misses the fast half of the failures by construction — the distribution is the deliverable, not its centre. This is the same argument as quoting lead time at a false-alarm budget rather than on its own, and it is the form a planner can act on: *inspect every 8 cycles* is a schedule; *the mean P-F interval is 25* is trivia.
+**Setting the interval from the mean would make it 1.6× too long.** Half the *mean* P-F interval misses the fast half of the failures by construction — the distribution is the deliverable, not its centre. This is the same argument as quoting lead time at a false-alarm budget rather than on its own, and it is the form a planner can act on: *inspect every 7 cycles* is a schedule; *the mean P-F interval is 22* is trivia.
 
 ---
 *Regenerate with `python extend.py`.*

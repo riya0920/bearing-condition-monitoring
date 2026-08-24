@@ -9,3 +9,5 @@ out/*.log
 
 # CWRU bearing data: fetched by fetch_cwru.py, not redistributed (see its docstring)
 data/CWRU/*.mat
+
+out/rerun*.log

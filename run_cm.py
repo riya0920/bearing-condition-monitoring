@@ -14,6 +14,8 @@ import pathlib
 import sys
 import time
 
+import zlib
+
 import numpy as np
 
 ROOT = pathlib.Path(__file__).resolve().parent
@@ -45,7 +47,7 @@ def build_fleet(quick: bool) -> list[dict]:
     for fault in ("BPFO", "BPFI", "BSF"):
         for s in seeds:
             snaps, sev, speeds, truth = bearing.simulate_run_to_failure(
-                GEOM, fault, n_cycles=n_cycles, onset=onset, seed=s * 17 + hash(fault) % 100
+                GEOM, fault, n_cycles=n_cycles, onset=onset, seed=s * 17 + zlib.crc32(fault.encode()) % 100
             )
             fleet.append({"asset": f"{fault}-{s}", "fault": fault, "snaps": snaps,
                           "severity": sev, "truth": truth, "failing": True})
