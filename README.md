@@ -323,27 +323,80 @@ interesting. An earlier version of the simulator moved cooling-water flow **115�
 and every detector fired instantly; at that size univariate charts win everything
 and there is nothing multivariate to demonstrate.
 
+## Built in the fourth pass — the fleet dashboard
+
+```bash
+python run_dashboard.py    # writes out/fleet_dashboard.html
+```
+
+Item 5 on the list below: *the T² contribution decomposition names the correct
+bearing race and the SPE contributions isolate the faulty process tag; nothing
+renders either.* Now both are rendered, self-contained, no CDN.
+
+Two decisions that make it a monitoring screen rather than a table dump:
+
+- **The ordering is the product.** A plant with four hundred bearings has four
+  hundred rows and an operator has ten minutes, so the only useful sort is
+  *which one do I look at next*: faults first, then abstentions, then healthy,
+  and within a severity by how far the winning band stands above the noise
+  floor — not by asset id and not by raw score, which is not comparable between
+  a healthy and a faulty spectrum.
+- **A call without its evidence does not get acted on.** "BPFI on MC-14" is an
+  assertion. Beside it are all four band ratios against the local noise floor,
+  the inner-race sideband prominence that broke the tie, and the fraction of
+  snapshots that agreed — a bearing called BPFI on 15 of 16 and one called BPFI
+  on 9 of 16 are different situations. That is what lets a millwright disagree,
+  and a screen that hides it trains people to ignore it.
+
+Abstentions are rendered rather than dropped. 6 of
+40 assets are *indeterminate* — no band stands clear, so the
+diagnoser refuses rather than picking the largest of four similar numbers — and
+showing those as blank would turn a deliberate refusal into an apparent gap in
+coverage.
+
+### And rendering the fleet produced a finding the tables had not
+
+**Nothing on the screen is green.** 4 of these assets
+are healthy bearings and **0 of them is
+called healthy**; they come out as faults or abstentions. RESULTS.md reports
+21.9% of healthy *snapshots* called healthy, which reads as a middling number.
+Aggregated to assets by majority vote it is **zero**.
+
+A condition-monitoring screen on which nothing is ever green is a screen that
+gets ignored within a week, and that is a worse problem than the accuracy figure
+suggests. The page says so in a callout rather than simply being red, because a
+dashboard that displays its own failure mode without naming it is just a red
+screen. The per-snapshot number was in the results the whole time; it took
+drawing the fleet to see what it meant.
+
 ## What is NOT built
 
 1. **No degradation trajectory in the real data.** CWRU cannot test prognosis at
    all. Doing so needs a run-to-failure set such as IMS or FEMTO.
 2. **Ball faults at 19%**, after a correct physics fix that barely moved them. A
    line-energy detector is close to the wrong instrument for them.
-3. **The process case is a simulator I wrote**, which is the same circularity the
+3. **Healthy bearings are not recognised as healthy at asset level.** Zero of
+   four, as the dashboard now says out loud. The detector is tuned to find
+   faults and the cost is that it finds them everywhere; fixing it means a
+   healthy-baseline model per asset rather than a threshold on band ratios, and
+   that is not implemented.
+4. **The process case is a simulator I wrote**, which is the same circularity the
    bearing side had before CWRU — and the bearing side is exactly where real data
    overturned a claim I was confident in. The residual model winning is the
    result most likely to be an artefact of a generator built from linear
    relationships, and I would not defend it until it has run on real TE or SKAB
    data.
-4. **No dynamic PCA.** Process data is autocorrelated, so the effective sample
+5. **No dynamic PCA.** Process data is autocorrelated, so the effective sample
    size behind every control limit is smaller than the row count implies. Lagged
    copies of each variable are the standard answer and are not implemented.
-5. **No dashboard.** The T² contribution decomposition names the correct bearing
-   race on 100% of failing assets and the SPE contributions isolate the faulty
-   process tag; nothing renders either.
-6. **No speed-varying case.** No run-up, coast-down or order tracking — which is
+6. **The dashboard is a static page, not a service.** It is rendered from the
+   result files by a script; nothing polls, nothing pushes, there is no
+   acknowledge-and-clear, and an asset's history is not kept — so it shows what
+   the fleet looks like now and cannot show what changed since yesterday, which
+   is the question a monitoring screen is usually asked.
+7. **No speed-varying case.** No run-up, coast-down or order tracking — which is
    where fixed-frequency band energy stops working entirely.
-7. **The synthetic bearing fleet is still 9 failing + 3 healthy**, so every median
+8. **The synthetic bearing fleet is still 9 failing + 3 healthy**, so every median
    in RESULTS.md is over 9 numbers and every false-alarm rate over 3.
 
 ## Layout
@@ -353,5 +406,10 @@ src/bearing.py     geometry, fault frequencies, run-to-failure and healthy simul
 src/features.py    time domain, spectral kurtosis band selection, envelope spectrum, sidebands
 src/health.py      per-asset baselines, health index, hysteretic alarm state machine, diagnosis
 src/detectors.py   T2 / IsolationForest / autoencoder at a matched false-alarm budget
+src/cwru.py        the real CWRU files: loading, snapshots, shaft speed, band rule
+src/process.py     an 18-tag process with injected faults, and a residual model
+src/pca_monitor.py T2 and SPE, empirical limits, contribution decomposition
+src/dashboard.py   the fleet screen: ordering, evidence, and what it refuses to hide
 run_cm.py          orchestration; writes docs/RESULTS.md
+run_dashboard.py   renders out/fleet_dashboard.html from the measured results
 ```
