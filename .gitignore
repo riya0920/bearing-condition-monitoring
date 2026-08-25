@@ -11,3 +11,7 @@ out/*.log
 data/CWRU/*.mat
 
 out/rerun*.log
+
+# Real process benchmarks: Tennessee Eastman (Braatz distribution) and SKAB.
+# Not redistributed -- see fetch_process.py for provenance and licence.
+data/PROCESS/

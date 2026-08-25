@@ -1,0 +1,1746 @@
+{
+  "te": {
+    "available": true,
+    "rows": [
+      {
+        "fault": 1,
+        "description": "A/C feed ratio step, B composition constant",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 5,
+            "detected": true,
+            "alarm_frac_after": 0.99625,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 7,
+            "detected": true,
+            "alarm_frac_after": 0.99375,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 4,
+            "detected": true,
+            "alarm_frac_after": 0.9975,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 4,
+            "detected": true,
+            "alarm_frac_after": 0.9975,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.99875,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "SPE",
+          "t2": 37.30486283870901,
+          "spe": 40.278767065238256,
+          "top_tags": [
+            {
+              "tag": "stripper_press",
+              "contribution": 9.3318736377877
+            },
+            {
+              "tag": "compressor_work",
+              "contribution": 8.099481982456544
+            },
+            {
+              "tag": "reactor_cw_outlet",
+              "contribution": 3.5798705378186453
+            }
+          ],
+          "reading": "relationships broken -- a state that violates the process's own correlations"
+        }
+      },
+      {
+        "fault": 3,
+        "description": "D feed temperature step (widely reported as near-undetectable)",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 52,
+            "detected": true,
+            "alarm_frac_after": 0.025,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": null,
+            "detected": false,
+            "alarm_frac_after": 0.01125,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 539,
+            "detected": true,
+            "alarm_frac_after": 0.0175,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 539,
+            "detected": true,
+            "alarm_frac_after": 0.0175,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 618,
+            "detected": true,
+            "alarm_frac_after": 0.03625,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "SPE",
+          "t2": 39.126533377127224,
+          "spe": 18.666048924668914,
+          "top_tags": [
+            {
+              "tag": "prod_E",
+              "contribution": 4.0702533455653604
+            },
+            {
+              "tag": "comp_B",
+              "contribution": 1.6189442010651738
+            },
+            {
+              "tag": "purge_A",
+              "contribution": 1.5811386368278315
+            }
+          ],
+          "reading": "relationships broken -- a state that violates the process's own correlations"
+        }
+      },
+      {
+        "fault": 4,
+        "description": "reactor cooling water inlet temperature step",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.4025,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 0.9925,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 0.9925,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "both",
+          "t2": 69.8768453642953,
+          "spe": 18.772160951933635,
+          "top_tags": [
+            {
+              "tag": "reactor_cw_valve",
+              "contribution": 5.954586890590807
+            },
+            {
+              "tag": "reactor_temp",
+              "contribution": 5.708791337159627
+            },
+            {
+              "tag": "D_feed",
+              "contribution": 0.9740398647430165
+            }
+          ],
+          "reading": "both magnitude and relationships have moved"
+        }
+      },
+      {
+        "fault": 5,
+        "description": "condenser cooling water inlet temperature step",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 0.27125,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 0.25,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.2275,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 0.2475,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "both",
+          "t2": 155.02145940414218,
+          "spe": 21.265566798800947,
+          "top_tags": [
+            {
+              "tag": "cond_cw_outlet",
+              "contribution": 2.9112415370733835
+            },
+            {
+              "tag": "sep_temp",
+              "contribution": 2.6680085239161886
+            },
+            {
+              "tag": "A_C_feed",
+              "contribution": 1.8947969103290672
+            }
+          ],
+          "reading": "both magnitude and relationships have moved"
+        }
+      },
+      {
+        "fault": 6,
+        "description": "A feed loss (step)",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 10,
+            "detected": true,
+            "alarm_frac_after": 0.99,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "SPE",
+          "t2": 41.05894518288802,
+          "spe": 112.74520015555532,
+          "top_tags": [
+            {
+              "tag": "A_feed_valve",
+              "contribution": 54.686690239201525
+            },
+            {
+              "tag": "A_feed",
+              "contribution": 46.40002573865654
+            },
+            {
+              "tag": "reactor_cw_outlet",
+              "contribution": 2.6206848033612724
+            }
+          ],
+          "reading": "relationships broken -- a state that violates the process's own correlations"
+        }
+      },
+      {
+        "fault": 9,
+        "description": "D feed temperature random variation (near-undetectable)",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 232,
+            "detected": true,
+            "alarm_frac_after": 0.0225,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 6,
+            "detected": true,
+            "alarm_frac_after": 0.0175,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 490,
+            "detected": true,
+            "alarm_frac_after": 0.02,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 490,
+            "detected": true,
+            "alarm_frac_after": 0.02,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 255,
+            "detected": true,
+            "alarm_frac_after": 0.02875,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "both",
+          "t2": 67.24205080212954,
+          "spe": 11.21278508371697,
+          "top_tags": [
+            {
+              "tag": "cond_cw_outlet",
+              "contribution": 1.903495740556687
+            },
+            {
+              "tag": "D_feed_valve",
+              "contribution": 1.0240364204092598
+            },
+            {
+              "tag": "comp_C",
+              "contribution": 0.6384328414693412
+            }
+          ],
+          "reading": "both magnitude and relationships have moved"
+        }
+      },
+      {
+        "fault": 11,
+        "description": "reactor cooling water inlet temperature, random variation",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 7,
+            "detected": true,
+            "alarm_frac_after": 0.725,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 10,
+            "detected": true,
+            "alarm_frac_after": 0.49125,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 9,
+            "detected": true,
+            "alarm_frac_after": 0.485,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 9,
+            "detected": true,
+            "alarm_frac_after": 0.59625,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 7,
+            "detected": true,
+            "alarm_frac_after": 0.77,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "both",
+          "t2": 73.80105924049465,
+          "spe": 16.44690736810753,
+          "top_tags": [
+            {
+              "tag": "reactor_cw_valve",
+              "contribution": 3.6448091384867443
+            },
+            {
+              "tag": "reactor_temp",
+              "contribution": 2.786635341454148
+            },
+            {
+              "tag": "purge_C",
+              "contribution": 1.203821575116182
+            }
+          ],
+          "reading": "both magnitude and relationships have moved"
+        }
+      },
+      {
+        "fault": 13,
+        "description": "reaction kinetics, slow drift",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 45,
+            "detected": true,
+            "alarm_frac_after": 0.94625,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 38,
+            "detected": true,
+            "alarm_frac_after": 0.95125,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 44,
+            "detected": true,
+            "alarm_frac_after": 0.94875,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 44,
+            "detected": true,
+            "alarm_frac_after": 0.94875,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 46,
+            "detected": true,
+            "alarm_frac_after": 0.9475,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "both",
+          "t2": 82.91875331340762,
+          "spe": 17.776709990648193,
+          "top_tags": [
+            {
+              "tag": "reactor_cw_outlet",
+              "contribution": 3.0461686113312645
+            },
+            {
+              "tag": "compressor_work",
+              "contribution": 2.056193404105654
+            },
+            {
+              "tag": "stripper_press",
+              "contribution": 2.027303980716157
+            }
+          ],
+          "reading": "both magnitude and relationships have moved"
+        }
+      },
+      {
+        "fault": 14,
+        "description": "reactor cooling water valve sticking",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 4,
+            "detected": true,
+            "alarm_frac_after": 0.945,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.99875,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.99875,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": {
+          "sample": 0,
+          "statistic": "both",
+          "t2": 186.8189769076605,
+          "spe": 94.98100051722355,
+          "top_tags": [
+            {
+              "tag": "reactor_cw_outlet",
+              "contribution": 51.61283528112842
+            },
+            {
+              "tag": "D_feed",
+              "contribution": 17.025452061749537
+            },
+            {
+              "tag": "D_feed_valve",
+              "contribution": 6.908184949589515
+            }
+          ],
+          "reading": "both magnitude and relationships have moved"
+        }
+      },
+      {
+        "fault": 15,
+        "description": "condenser cooling water valve sticking (near-undetectable)",
+        "n": 960,
+        "onset": 160,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 240,
+            "detected": true,
+            "alarm_frac_after": 0.075,
+            "false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "delay": 742,
+            "detected": true,
+            "alarm_frac_after": 0.02125,
+            "false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "delay": 707,
+            "detected": true,
+            "alarm_frac_after": 0.0225,
+            "false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "delay": 707,
+            "detected": true,
+            "alarm_frac_after": 0.0225,
+            "false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "delay": 139,
+            "detected": true,
+            "alarm_frac_after": 0.0775,
+            "false_per_1000": 0.0
+          }
+        },
+        "first_diagnosis": null
+      }
+    ],
+    "thresholds": {
+      "univariate 3-sigma (the wall of charts)": {
+        "threshold": 4.0617522057704525,
+        "achieved_per_1000": 0.0
+      },
+      "PCA T2 only": {
+        "threshold": 61.71476391871163,
+        "achieved_per_1000": 0.0
+      },
+      "PCA SPE only": {
+        "threshold": 18.60660232856111,
+        "achieved_per_1000": 0.0
+      },
+      "T2 or SPE": {
+        "threshold": 1.7884987483812738,
+        "achieved_per_1000": 0.0
+      },
+      "residual (model-based)": {
+        "threshold": 4.2879207033912845,
+        "achieved_per_1000": 0.0
+      }
+    },
+    "fa_budget_per_1000": 1.0,
+    "sweep": [
+      {
+        "budget_per_1000": 1.0,
+        "achieved": {
+          "univariate 3-sigma (the wall of charts)": 0.0,
+          "PCA T2 only": 0.0,
+          "PCA SPE only": 0.0,
+          "T2 or SPE": 0.0,
+          "residual (model-based)": 0.0
+        },
+        "all": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 6.0,
+            "mean_false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "detected": 9,
+            "of": 10,
+            "median_delay": 7.0,
+            "mean_false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 6.5,
+            "mean_false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 6.5,
+            "mean_false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 5.0,
+            "mean_false_per_1000": 0.0
+          }
+        },
+        "detectable": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 7.0,
+            "mean_false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 4.0,
+            "mean_false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 0.0
+          }
+        },
+        "hard": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 232.0,
+            "mean_false_per_1000": 0.0
+          },
+          "PCA T2 only": {
+            "detected": 2,
+            "of": 3,
+            "median_delay": 374.0,
+            "mean_false_per_1000": 0.0
+          },
+          "PCA SPE only": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 539.0,
+            "mean_false_per_1000": 0.0
+          },
+          "T2 or SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 539.0,
+            "mean_false_per_1000": 0.0
+          },
+          "residual (model-based)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 255.0,
+            "mean_false_per_1000": 0.0
+          }
+        }
+      },
+      {
+        "budget_per_1000": 5.0,
+        "achieved": {
+          "univariate 3-sigma (the wall of charts)": 4.166666666666667,
+          "PCA T2 only": 4.166666666666667,
+          "PCA SPE only": 4.166666666666667,
+          "T2 or SPE": 4.166666666666667,
+          "residual (model-based)": 4.166666666666667
+        },
+        "all": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 5.5,
+            "mean_false_per_1000": 4.166666666666666
+          },
+          "PCA T2 only": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 4.5,
+            "mean_false_per_1000": 4.166666666666666
+          },
+          "PCA SPE only": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 5.5,
+            "mean_false_per_1000": 4.166666666666666
+          },
+          "T2 or SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 4.0,
+            "mean_false_per_1000": 4.166666666666666
+          },
+          "residual (model-based)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 5.0,
+            "mean_false_per_1000": 4.166666666666666
+          }
+        },
+        "detectable": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "PCA T2 only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "PCA SPE only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "T2 or SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "residual (model-based)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 4.166666666666667
+          }
+        },
+        "hard": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 231.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "PCA T2 only": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 22.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "PCA SPE only": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 99.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "T2 or SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 54.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "residual (model-based)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 139.0,
+            "mean_false_per_1000": 4.166666666666667
+          }
+        }
+      },
+      {
+        "budget_per_1000": 20.0,
+        "achieved": {
+          "univariate 3-sigma (the wall of charts)": 19.791666666666668,
+          "PCA T2 only": 19.791666666666668,
+          "PCA SPE only": 19.791666666666668,
+          "T2 or SPE": 19.791666666666668,
+          "residual (model-based)": 19.791666666666668
+        },
+        "all": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 4.5,
+            "mean_false_per_1000": 19.791666666666664
+          },
+          "PCA T2 only": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 4.5,
+            "mean_false_per_1000": 19.791666666666664
+          },
+          "PCA SPE only": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666664
+          },
+          "T2 or SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666664
+          },
+          "residual (model-based)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666664
+          }
+        },
+        "detectable": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "PCA T2 only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "PCA SPE only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "T2 or SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "residual (model-based)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666668
+          }
+        },
+        "hard": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 42.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "PCA T2 only": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 22.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "PCA SPE only": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 4.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "T2 or SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "residual (model-based)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 0.0,
+            "mean_false_per_1000": 19.791666666666668
+          }
+        }
+      },
+      {
+        "budget_per_1000": 50.0,
+        "achieved": {
+          "univariate 3-sigma (the wall of charts)": 50.0,
+          "PCA T2 only": 50.0,
+          "PCA SPE only": 50.0,
+          "T2 or SPE": 50.0,
+          "residual (model-based)": 50.0
+        },
+        "all": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.5,
+            "mean_false_per_1000": 50.0
+          },
+          "PCA T2 only": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.5,
+            "mean_false_per_1000": 50.0
+          },
+          "PCA SPE only": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "T2 or SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "residual (model-based)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          }
+        },
+        "detectable": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "PCA T2 only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "PCA SPE only": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "T2 or SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "residual (model-based)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          }
+        },
+        "hard": {
+          "univariate 3-sigma (the wall of charts)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 7.0,
+            "mean_false_per_1000": 50.0
+          },
+          "PCA T2 only": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 22.0,
+            "mean_false_per_1000": 50.0
+          },
+          "PCA SPE only": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "T2 or SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "residual (model-based)": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 0.0,
+            "mean_false_per_1000": 50.0
+          }
+        }
+      }
+    ],
+    "n_train": 500,
+    "n_vars": 52,
+    "n_normal_test": 960,
+    "sample_minutes": 3.0,
+    "hard_faults": [
+      3,
+      9,
+      15
+    ]
+  },
+  "skab": {
+    "available": true,
+    "rows": [
+      {
+        "source": "valve1/0.csv",
+        "n": 1147,
+        "onset": 573,
+        "anomaly_frac": 0.34960767218831734,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve1/1.csv",
+        "n": 1145,
+        "onset": 572,
+        "anomaly_frac": 0.35109170305676857,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.9895287958115183,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve1/2.csv",
+        "n": 1075,
+        "onset": 566,
+        "anomaly_frac": 0.31348837209302327,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.9724950884086444,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve1/3.csv",
+        "n": 1148,
+        "onset": 573,
+        "anomaly_frac": 0.3519163763066202,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.951304347826087,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve1/4.csv",
+        "n": 1095,
+        "onset": 573,
+        "anomaly_frac": 0.3187214611872146,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.9137931034482759,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve1/5.csv",
+        "n": 1154,
+        "onset": 577,
+        "anomaly_frac": 0.3492201039861352,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.9774696707105719,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve1/6.csv",
+        "n": 1154,
+        "onset": 576,
+        "anomaly_frac": 0.3509532062391681,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.8927335640138409,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve1/7.csv",
+        "n": 1094,
+        "onset": 578,
+        "anomaly_frac": 0.3702010968921389,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.9844961240310077,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve2/0.csv",
+        "n": 1125,
+        "onset": 562,
+        "anomaly_frac": 0.3502222222222222,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.8685612788632326,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve2/1.csv",
+        "n": 1063,
+        "onset": 560,
+        "anomaly_frac": 0.31326434619002824,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.8767395626242545,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve2/2.csv",
+        "n": 1129,
+        "onset": 565,
+        "anomaly_frac": 0.34986713906111605,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.851063829787234,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      },
+      {
+        "source": "valve2/3.csv",
+        "n": 995,
+        "onset": 564,
+        "anomaly_frac": 0.3969849246231156,
+        "detectors": {
+          "univariate 3-sigma (the wall of charts)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA T2 only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 0.9605568445475638,
+            "false_per_1000": 0.850520944078248
+          },
+          "PCA SPE only": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          }
+        }
+      }
+    ],
+    "tags": [
+      "Accelerometer1RMS",
+      "Accelerometer2RMS",
+      "Current",
+      "Pressure",
+      "Temperature",
+      "Thermocouple",
+      "Voltage",
+      "Volume Flow RateRMS"
+    ],
+    "n_normal": 9405
+  },
+  "elapsed_s": 100.22278714179993,
+  "te_summary_all": {
+    "univariate 3-sigma (the wall of charts)": {
+      "detected": 10,
+      "of": 10,
+      "median_delay": 6.0,
+      "mean_false_per_1000": 0.0
+    },
+    "PCA T2 only": {
+      "detected": 9,
+      "of": 10,
+      "median_delay": 7.0,
+      "mean_false_per_1000": 0.0
+    },
+    "PCA SPE only": {
+      "detected": 10,
+      "of": 10,
+      "median_delay": 6.5,
+      "mean_false_per_1000": 0.0
+    },
+    "T2 or SPE": {
+      "detected": 10,
+      "of": 10,
+      "median_delay": 6.5,
+      "mean_false_per_1000": 0.0
+    },
+    "residual (model-based)": {
+      "detected": 10,
+      "of": 10,
+      "median_delay": 5.0,
+      "mean_false_per_1000": 0.0
+    }
+  },
+  "te_summary_detectable": {
+    "univariate 3-sigma (the wall of charts)": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 2.0,
+      "mean_false_per_1000": 0.0
+    },
+    "PCA T2 only": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 7.0,
+      "mean_false_per_1000": 0.0
+    },
+    "PCA SPE only": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 4.0,
+      "mean_false_per_1000": 0.0
+    },
+    "T2 or SPE": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 3.0,
+      "mean_false_per_1000": 0.0
+    },
+    "residual (model-based)": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 3.0,
+      "mean_false_per_1000": 0.0
+    }
+  },
+  "te_summary_hard": {
+    "univariate 3-sigma (the wall of charts)": {
+      "detected": 3,
+      "of": 3,
+      "median_delay": 232.0,
+      "mean_false_per_1000": 0.0
+    },
+    "PCA T2 only": {
+      "detected": 2,
+      "of": 3,
+      "median_delay": 374.0,
+      "mean_false_per_1000": 0.0
+    },
+    "PCA SPE only": {
+      "detected": 3,
+      "of": 3,
+      "median_delay": 539.0,
+      "mean_false_per_1000": 0.0
+    },
+    "T2 or SPE": {
+      "detected": 3,
+      "of": 3,
+      "median_delay": 539.0,
+      "mean_false_per_1000": 0.0
+    },
+    "residual (model-based)": {
+      "detected": 3,
+      "of": 3,
+      "median_delay": 255.0,
+      "mean_false_per_1000": 0.0
+    }
+  },
+  "skab_summary": {
+    "univariate 3-sigma (the wall of charts)": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    },
+    "PCA T2 only": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    },
+    "PCA SPE only": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    },
+    "T2 or SPE": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    },
+    "residual (model-based)": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    }
+  },
+  "synthetic": {
+    "feed_composition_step": {
+      "univariate 3-sigma (the wall of charts)": {
+        "delay": 773,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.076
+      },
+      "PCA T2 only": {
+        "delay": 523,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.0465
+      },
+      "PCA SPE only": {
+        "delay": null,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.0175
+      },
+      "T2 or SPE": {
+        "delay": 523,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.063
+      },
+      "residual (model-based)": {
+        "delay": 1259,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.037
+      }
+    },
+    "heat_exchanger_fouling": {
+      "univariate 3-sigma (the wall of charts)": {
+        "delay": 773,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.0645
+      },
+      "PCA T2 only": {
+        "delay": null,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.011
+      },
+      "PCA SPE only": {
+        "delay": 1384,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.1535
+      },
+      "T2 or SPE": {
+        "delay": 897,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.164
+      },
+      "residual (model-based)": {
+        "delay": 292,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.719
+      }
+    },
+    "kinetics_drift": {
+      "univariate 3-sigma (the wall of charts)": {
+        "delay": null,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.0165
+      },
+      "PCA T2 only": {
+        "delay": null,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.0095
+      },
+      "PCA SPE only": {
+        "delay": null,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.0175
+      },
+      "T2 or SPE": {
+        "delay": null,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.027
+      },
+      "residual (model-based)": {
+        "delay": 1259,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.0785
+      }
+    },
+    "valve_stick": {
+      "univariate 3-sigma (the wall of charts)": {
+        "delay": 69,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.5255
+      },
+      "PCA T2 only": {
+        "delay": 72,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.4385
+      },
+      "PCA SPE only": {
+        "delay": 86,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.109
+      },
+      "T2 or SPE": {
+        "delay": 72,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.4525
+      },
+      "residual (model-based)": {
+        "delay": 66,
+        "false_per_1000": 0.0,
+        "alarm_frac_after": 0.5855
+      }
+    }
+  }
+}

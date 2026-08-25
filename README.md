@@ -311,6 +311,12 @@ the process's own relationships.
 detector that fires at all. I assumed the PCA classics would carry this because
 the spec names them.
 
+> **Superseded by pass 5.** This table is one operating point, and on Tennessee
+> Eastman the ranking of these same detectors changes at every false-alarm budget
+> tested. The numbers below remain correct measurements *of this generator*; the
+> claim built on them does not survive. See
+> [docs/REAL_PROCESS.md](docs/REAL_PROCESS.md).
+
 **T² alone never wins once and misses 2 of 4
 outright.** That is the argument arriving from the opposite direction to the one
 I planned: not "T² is good and SPE is better", but *monitoring T² alone is close
@@ -369,6 +375,93 @@ dashboard that displays its own failure mode without naming it is just a red
 screen. The per-snapshot number was in the results the whole time; it took
 drawing the fleet to see what it meant.
 
+## Built in the fifth pass — see [docs/REAL_PROCESS.md](docs/REAL_PROCESS.md)
+
+```bash
+python fetch_process.py       # Tennessee Eastman + SKAB, gitignored
+python run_real_process.py    # ~100 s
+```
+
+The README said the process side was *the same circularity the bearing side had
+before CWRU*, and that the residual model's win was *the result most likely to be
+an artefact of a generator built from linear relationships*. So it now runs on
+Tennessee Eastman — 52 variables, 10 fault runs, the
+reference benchmark for T²/SPE work for thirty years — and on SKAB, a real
+water-circulation rig. The detectors are unchanged; the new code is the loading
+and the calibration.
+
+TE is still a simulation. But it is a simulation **somebody else built**, of a
+process I did not design, with faults I did not choose — which is what breaks the
+circularity, because the monitor cannot have been tuned to a generator I never saw.
+
+### The first version of this was wrong, and wrong flatteringly
+
+Setting each detector at its own 99% limit and comparing delays produced a table
+where **all five detectors found all ten faults**, including the three the
+literature agrees are near-undetectable, at false-alarm rates of four to six
+percent. That is not a comparison of methods; it is a comparison of thresholds,
+and the loosest one wins every race while paying in a column the delay table does
+not show.
+
+Everything below holds every detector to the **same false-alarm budget** —
+alarm episodes per 1000 samples on a normal run held out from fitting — and
+sweeps that budget, because a ranking that holds at one operating point is not a
+ranking.
+
+### The seven detectable faults: no resolution at all
+
+| false-alarm budget | univariate | T² | SPE | T² or SPE | residual |
+|---|---:|---:|---:|---:|---:|
+| 1 per 1000 | **2** | 7 | 4 | 3 | 3 |
+| 5 per 1000 | **2** | 3 | 3 | **2** | **2** |
+| 20 per 1000 | **2** | 3 | **2** | **2** | **2** |
+| 50 per 1000 | **2** | **2** | **2** | **2** | **2** |
+
+Every detector sits at the 3-of-n floor, and **the univariate "wall of charts" is
+never worse than anything else at any budget**. On TE's detectable faults the
+multivariate machinery buys nothing: they are steps and drifts that push
+individual measurements clean outside their normal range, which is what a per-tag
+limit was already good at. The multivariate argument is about faults that break
+*correlations* without moving any single tag much, and these are not those.
+
+### The three hard faults: the ranking will not sit still
+
+| false-alarm budget | univariate | T² | SPE | T² or SPE | residual |
+|---|---:|---:|---:|---:|---:|
+| 1 per 1000 | **232** | 374 (2/3) | 539 | 539 | 255 |
+| 5 per 1000 | 231 | **22** | 99 | 54 | 139 |
+| 20 per 1000 | 42 | 22 | 4 | 3 | **0** |
+| 50 per 1000 | 7 | 22 | 2 | 2 | **0** |
+
+**The winner changes at every budget** — univariate, T², residual, residual across the four.
+Nothing about the data changed; only how much nuisance the operating point
+tolerates.
+
+That is the finding, and it is a criticism of the synthetic study rather than a
+result from it. **The synthetic comparison reported a single operating point**,
+and on this evidence a single operating point cannot support a ranking. The
+residual model's win there is not so much refuted as shown to have been
+unfalsifiable as stated. The zeros at the loose budgets deserve suspicion rather
+than satisfaction: a delay of 0 on a fault nobody detects, bought at 20–50
+nuisance alarms per 1000 samples, is a detector alarming most of the time and
+being right by coincidence.
+
+### SKAB was a null, and is reported as one
+
+Every detector fires on the first labelled sample of all 12
+runs, so SKAB separates nothing. Its faults are physical interventions on a small
+loop — a valve closed by hand, a rotor unbalanced — large, abrupt and already
+under way when the label starts. A benchmark on which everything scores
+identically is worth reporting as such; dropping it would leave the impression
+that both datasets agreed with TE.
+
+### A labelling bug caught by a test
+
+`TE_NAMES` had 54 entries for 52 columns: the reactor-feed analysis block is
+components A–F, not A–H. Every contribution plot from the composition block
+onwards would have named the wrong tag, and nothing about the arrays' shapes
+would have complained.
+
 ## What is NOT built
 
 1. **No degradation trajectory in the real data.** CWRU cannot test prognosis at
@@ -376,28 +469,32 @@ drawing the fleet to see what it meant.
 2. **Ball faults at 19%**, after a correct physics fix that barely moved them. A
    line-energy detector is close to the wrong instrument for them.
 3. **Healthy bearings are not recognised as healthy at asset level.** Zero of
-   four, as the dashboard now says out loud. The detector is tuned to find
-   faults and the cost is that it finds them everywhere; fixing it means a
-   healthy-baseline model per asset rather than a threshold on band ratios, and
-   that is not implemented.
-4. **The process case is a simulator I wrote**, which is the same circularity the
-   bearing side had before CWRU — and the bearing side is exactly where real data
-   overturned a claim I was confident in. The residual model winning is the
-   result most likely to be an artefact of a generator built from linear
-   relationships, and I would not defend it until it has run on real TE or SKAB
-   data.
-5. **No dynamic PCA.** Process data is autocorrelated, so the effective sample
+   four, as the dashboard says out loud. The detector is tuned to find faults and
+   the cost is that it finds them everywhere; fixing it means a healthy-baseline
+   model per asset rather than a threshold on band ratios, and that is not
+   implemented.
+4. **The synthetic process study is superseded, not re-run.** Its numbers stand
+   as measurements of its own generator and the conclusion drawn from them does
+   not; `src/process.py` and its report are left in place with a pointer rather
+   than deleted, because deleting the thing that was wrong removes the evidence
+   that it was.
+5. **Tennessee Eastman is a simulation.** A well-studied one that I did not
+   build, which is what it was brought in for — not a plant.
+6. **No dynamic PCA.** Process data is autocorrelated, so the effective sample
    size behind every control limit is smaller than the row count implies. Lagged
-   copies of each variable are the standard answer and are not implemented.
-6. **The dashboard is a static page, not a service.** It is rendered from the
+   copies of each variable are the standard answer and are not implemented, and
+   on TE that matters more than on the synthetic case because TE's dynamics are
+   real.
+7. **Only ten of TE's twenty-one faults**, chosen to span the failure modes and
+   to include the three hard ones. The other eleven are a fetch away.
+8. **The dashboard is a static page, not a service.** It is rendered from the
    result files by a script; nothing polls, nothing pushes, there is no
    acknowledge-and-clear, and an asset's history is not kept — so it shows what
-   the fleet looks like now and cannot show what changed since yesterday, which
-   is the question a monitoring screen is usually asked.
-7. **No speed-varying case.** No run-up, coast-down or order tracking — which is
+   the fleet looks like now and cannot show what changed since yesterday.
+9. **No speed-varying case.** No run-up, coast-down or order tracking — which is
    where fixed-frequency band energy stops working entirely.
-8. **The synthetic bearing fleet is still 9 failing + 3 healthy**, so every median
-   in RESULTS.md is over 9 numbers and every false-alarm rate over 3.
+10. **The synthetic bearing fleet is still 9 failing + 3 healthy**, so every
+    median in RESULTS.md is over 9 numbers and every false-alarm rate over 3.
 
 ## Layout
 
@@ -408,6 +505,8 @@ src/health.py      per-asset baselines, health index, hysteretic alarm state mac
 src/detectors.py   T2 / IsolationForest / autoencoder at a matched false-alarm budget
 src/cwru.py        the real CWRU files: loading, snapshots, shaft speed, band rule
 src/process.py     an 18-tag process with injected faults, and a residual model
+fetch_process.py   Tennessee Eastman + SKAB (gitignored)
+run_real_process.py  the same detectors at a matched false-alarm budget, swept
 src/pca_monitor.py T2 and SPE, empirical limits, contribution decomposition
 src/dashboard.py   the fleet screen: ordering, evidence, and what it refuses to hide
 run_cm.py          orchestration; writes docs/RESULTS.md
