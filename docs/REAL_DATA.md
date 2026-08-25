@@ -11,9 +11,9 @@ Every other number in this project came from a simulator I wrote, which makes th
 | | |
 |---|---|
 | correct race on faulty bearings | **61.9%** (360 snapshots) |
-| healthy called healthy | **21.9%** (64 snapshots) |
-| false diagnosis on a healthy bearing | 18 |
-| refused to call (indeterminate) | 8.1% |
+| healthy called healthy | **95.3%** (64 snapshots) |
+| false diagnosis on a healthy bearing | 3 |
+| refused to call (indeterminate) | 8.3% |
 
 ## Confusion matrix
 
@@ -21,8 +21,8 @@ Every other number in this project came from a simulator I wrote, which makes th
 |---|---|---|---|---|---|
 | outer_race | 0 | **80** | 29 | 0 | 11 |
 | inner_race | 0 | 0 | **120** | 0 | 0 |
-| ball | 0 | 6 | 73 | **23** | 18 |
-| normal | **14** | 3 | 3 | 12 | 32 |
+| ball | 0 | 6 | 72 | **23** | 19 |
+| normal | **61** | 0 | 0 | 3 | 0 |
 
 ## Fault size is the difficulty axis
 
@@ -48,9 +48,9 @@ Fault frequencies scale with shaft speed, so the search window is only in the ri
 
 | speed source | correct race | false calls on healthy |
 |---|---|---|
-| measured RPM | 61.9% | 18 / 64 |
-| nameplate RPM | 61.9% | 17 / 64 |
-| estimated from spectrum | 57.8% | 13 / 64 |
+| measured RPM | 61.9% | 3 / 64 |
+| nameplate RPM | 61.9% | 3 / 64 |
+| estimated from spectrum | 57.8% | 2 / 64 |
 
 A tachometer is worth **+0.0 points** over the nameplate and **+4.2 points** over estimating the speed from the spectrum. That is a purchasing decision with a number attached, which is the kind of output this project is supposed to produce.
 
@@ -65,7 +65,7 @@ Everything below is scored on 20 files (206 snapshots) held out from the 20 used
 | as designed (synthetic thresholds) | 36.8% | 43.8% |
 | sideband threshold merely refitted (2.00) | 62.6% | 43.8% |
 | sideband rule deleted | 67.9% | 43.8% |
-| sideband statistic **fixed** + 2×BSF added | 68.4% | 31.2% |
+| sideband statistic **fixed** + 2×BSF added | 68.4% | 87.5% |
 | **+ healthy gate as baseline exceedance** | 68.4% | 87.5% |
 
 **37% → 68% on faults and 44% → 88% on healthy bearings**, without touching the feature extraction. The physics was never the problem.
@@ -87,7 +87,7 @@ Two things were wrong and both are fixed in `src/features.py`: the statistic now
 
 ### Correction 2 — the healthy gate was an absolute constant
 
-`min_ratio` was a hard-coded 4.0. Healthy CWRU bearings sit at 3.3–4.1, straddling it, which is why the corrected pipeline still called two thirds of healthy snapshots faulty. Calibrated instead as the 95th percentile of the healthy population — **5.82**, fitted on calibration files only — healthy accuracy goes 31% → 88% with no loss on faults.
+`min_ratio` was a hard-coded 4.0. Healthy CWRU bearings sit at 3.3–4.1, straddling it, which is why the corrected pipeline still called two thirds of healthy snapshots faulty. Calibrated instead as the 95th percentile of the healthy population — **5.82**, fitted on calibration files only — healthy accuracy goes 88% → 88% with no loss on faults.
 
 ### Both corrections are the same lesson, and this project had already written it down
 
@@ -116,4 +116,4 @@ So the honest position is that this is not a threshold problem and I have not so
 **Still open: ball faults.** 19% after a correct physics fix, and the section above argues that a line-energy detector is close to the wrong instrument for them. That is the honest state, not a tuning backlog.
 
 ---
-*Data: Case Western Reserve University Bearing Data Center, https://engineering.case.edu/bearingdatacenter — not redistributed here; fetch with `python fetch_cwru.py`. Generated in 15s.*
+*Data: Case Western Reserve University Bearing Data Center, https://engineering.case.edu/bearingdatacenter — not redistributed here; fetch with `python fetch_cwru.py`. Generated in 6s.*

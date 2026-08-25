@@ -479,6 +479,37 @@ monotonic (three lags beats two) and each median is over three hard faults, so
 the ordering between non-zero lag counts is noise. What the table supports is the
 negative result.
 
+### The healthy gate had never been calibrated
+
+The fleet dashboard's finding — *nothing on the screen is green* — traced to a
+single constant. `features.diagnose` opens with
+`if best_band < min_ratio: return healthy`, and `min_ratio` was **4.0**.
+The band ratio is normalised to its own spectrum's noise floor, so the gate looks
+scale-free; it is not, and **78%
+of healthy snapshots sat above it**. Pass 3's recalibration tuned the *sideband*
+threshold and never touched this one — visible in its own output, where healthy
+accuracy is 0.4375 for every variant it tried.
+
+Sweeping it found a **plateau 4.75–8.25** (3.50
+wide) where every healthy asset is called healthy, no faulty asset is missed, and
+correct-race does not fall. Leave-one-healthy-file-out picks
+5.25–5.50 in all four folds — inside the
+plateau. `min_ratio` is now **6.0**: above every fold's choice,
+2.25 below where the first fault starts being missed.
+
+| | old gate | new gate |
+|---|---:|---:|
+| healthy snapshots called healthy | 22% | **95%** |
+| healthy assets green | 0/4 | **4/4** |
+| faulty: correct race | 62% | 62% |
+| faulty assets missed | 0/36 | 0/36 |
+
+**The draft of that analysis concluded the opposite** — that four files cannot
+pin a threshold so the default should stand. True, and not the question: the
+plateau means the threshold does not need pinning. The wrong conclusion is
+recorded in [docs/HEALTHY_GATE.md](docs/HEALTHY_GATE.md) because the reasoning
+that produced it is the tempting one.
+
 ### A labelling bug caught by a test
 
 `TE_NAMES` had 54 entries for 52 columns: the reactor-feed analysis block is
@@ -492,11 +523,10 @@ would have complained.
    all. Doing so needs a run-to-failure set such as IMS or FEMTO.
 2. **Ball faults at 19%**, after a correct physics fix that barely moved them. A
    line-energy detector is close to the wrong instrument for them.
-3. **Healthy bearings are not recognised as healthy at asset level.** Zero of
-   four, as the dashboard says out loud. The detector is tuned to find faults and
-   the cost is that it finds them everywhere; fixing it means a healthy-baseline
-   model per asset rather than a threshold on band ratios, and that is not
-   implemented.
+3. **The healthy gate is calibrated on four recordings.** The plateau is
+   measured on the same four healthy files it is validated against, so its width
+   is itself an n = 4 estimate. More healthy files at more load levels would
+   narrow it; CWRU has them.
 4. **The synthetic process study is superseded, not re-run.** Its numbers stand
    as measurements of its own generator and the conclusion drawn from them does
    not; `src/process.py` and its report are left in place with a pointer rather

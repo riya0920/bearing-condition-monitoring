@@ -172,16 +172,38 @@ def test_it_renders_from_the_real_outputs():
 
 
 @pytest.mark.skipif(not HAVE_DATA, reason="run the CWRU and process stages first")
-def test_the_fleet_view_says_nothing_is_green_when_nothing_is():
-    """The finding the fleet view produced. RESULTS.md reports 21.9% of healthy
-    SNAPSHOTS called healthy, which reads as a weak number; aggregated to assets
-    by majority vote it is zero, and a screen on which nothing is ever green
-    gets ignored within a week."""
+def test_the_fleet_view_is_now_green_where_it_should_be():
+    """This test used to assert the opposite, and that was the point of it.
+
+    The fleet view's finding was that NOTHING was green: four healthy bearings
+    and none called healthy. Pass 5 traced that to an uncalibrated gate inside
+    the healthy distribution and fixed it (see run_healthy_gate.py), so the
+    assertion is inverted -- and the callout must now be absent, because a page
+    that warns about a problem it no longer has is as misleading as one that
+    hides a problem it does.
+    """
     out = D.render_from_out(OUT)
     assert out["truly_healthy_assets"] > 0
-    assert out["healthy_assets_called_healthy"] == 0
+    assert out["healthy_assets_called_healthy"] == out["truly_healthy_assets"]
     html = (OUT / "fleet_dashboard.html").read_text(encoding="utf-8")
-    assert "Nothing on this screen is green" in html
+    assert "Nothing on this screen is green" not in html
+
+
+def test_the_all_red_callout_still_fires_when_it_should(tmp_path):
+    """The mechanism, kept alive on synthetic data now that the real fleet no
+    longer triggers it."""
+    rows = []
+    for i in range(4):
+        rows.append({"fid": "H", "call": "BPFO", "fault": "normal",
+                     "expected": None, "score": 9.0, "size_in": 0.0,
+                     "load_hp": 0, "shaft_hz": 29.9, "sbp_BPFI": 1.0,
+                     "r_BPFO": 90.0, "r_BPFI": 10.0, "r_BSF": 9.0, "r_FTF": 0.0})
+    out = D.render(tmp_path / "d.html", {"rows": rows, "scores": {}},
+                   {"runs": []})
+    assert out["truly_healthy_assets"] == 1
+    assert out["healthy_assets_called_healthy"] == 0
+    assert "Nothing on this screen is green" in (
+        tmp_path / "d.html").read_text(encoding="utf-8")
 
 
 @pytest.mark.skipif(not HAVE_DATA, reason="run the CWRU and process stages first")

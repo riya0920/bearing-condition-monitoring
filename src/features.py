@@ -286,7 +286,7 @@ def snapshot_features(x: np.ndarray, geom, fs: float = FS,
 
 
 def diagnose(feats: dict, margin: float = 1.25, sideband_threshold: float = 4.0,
-             min_ratio: float = 4.0) -> tuple[str, float]:
+             min_ratio: float = 6.0) -> tuple[str, float]:
     """Name the fault, or refuse to.
 
     Three gates, in order:
@@ -294,6 +294,21 @@ def diagnose(feats: dict, margin: float = 1.25, sideband_threshold: float = 4.0,
     1. IS ANYTHING THERE? If the best candidate is below `min_ratio` the answer is
        "healthy". A diagnosis engine that always names a race is a random
        part-number generator.
+
+       `min_ratio` WAS 4.0, AND 4.0 WAS NEVER CALIBRATED. Healthy CWRU spectra
+       have best-band ratios whose 75th percentile is above it, so the gate sat
+       inside the healthy distribution: 78% of healthy snapshots fell on the
+       wrong side and NO healthy asset was called healthy at majority vote. The
+       fleet dashboard is what made that visible -- nothing on the screen was
+       ever green.
+
+       6.0 is chosen from a measured plateau, not tuned. Between 4.75 and 8.25
+       every healthy asset is called healthy, no faulty asset is missed, and the
+       correct-race rate does not fall; leave-one-healthy-file-out picks
+       5.25-5.50 in all four folds, comfortably inside it. 6.0 sits above every
+       fold's choice and 2.25 below the first gate that misses a fault, so it is
+       a margin inside a plateau rather than an optimum on four recordings.
+       See run_healthy_gate.py and docs/HEALTHY_GATE.md.
     2. SIDEBANDS FIRST. If the BPFI line carries shaft-rate sidebands above
        `sideband_threshold`, call it inner race regardless of which raw energy is
        larger -- because the BPFO x 3 / BPFI x 2 collision means raw energy is
