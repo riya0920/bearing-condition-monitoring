@@ -585,8 +585,24 @@ acknowledgement is not noticed until somebody looks.
    a claim rather than an identity; re-arming changes what the screen shows and
    notifies nobody; and an asset that degrades between polls is seen at the next
    one.
-9. **No speed-varying case.** No run-up, coast-down or order tracking — which is
-   where fixed-frequency band energy stops working entirely.
+9. ~~**No speed-varying case.**~~ **Built** (`src/order_tracking.py`,
+   `run_speed_varying.py`, `docs/SPEED_VARYING.md`) — and the claim it made was
+   **too strong**. Fixed-frequency detection does not stop working entirely; it
+   keeps naming the right fault out to ±50% speed variation, because every
+   competing candidate smears too and the winner only has to win. What
+   collapses is the MARGIN: the ratio falls 92 → 9 while the order-tracked
+   ratio holds at ~110. On WEAK faults that is the whole ballgame — of the
+   early faults the detector finds at constant speed, fixed-frequency analysis
+   loses **66 of 74** below the healthy gate when the speed moves and order
+   tracking loses **4 of 74**. A fault under the gate is not misnamed; it is
+   called healthy. What is still not built here: **no real speed-varying
+   data** — CWRU runs at constant speed, so the run-up is simulated and only
+   the constant-speed agreement check (97% of calls, r = 1.000 on log ratios)
+   uses real measurements; the tacho phase is EXACT because the generator knows
+   the speed profile, where a real keyphasor interpolates between pulses; and
+   `track_speed` follows the strongest line in a speed window, so a gearbox
+   with a dominant mesh order would send it to the wrong line and every angle
+   after that is wrong.
 10. **The synthetic bearing fleet is still 9 failing + 3 healthy**, so every
     median in RESULTS.md is over 9 numbers and every false-alarm rate over 3.
 
