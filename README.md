@@ -455,6 +455,30 @@ under way when the label starts. A benchmark on which everything scores
 identically is worth reporting as such; dropping it would leave the impression
 that both datasets agreed with TE.
 
+### Dynamic PCA: the textbook fix, and it does not help
+
+Item 6 on the old list. Static PCA assumes the rows are independent and TE's are
+not — median lag-1 autocorrelation **0.55**, **58%**
+of variables above 0.5 — so lag embedding (Ku, Storch & Georgakis 1995) is the
+standard correction. It multiplies the column count by *l*+1 while the training
+set stays at 500 rows:
+
+| lags | columns | samples per column | hard faults | detectable |
+|---:|---:|---:|---:|---:|
+| 0 ← | 52 | 9.6 | 3 | 2 |
+| 1 | 104 | 4.8 | 22 | 2 |
+| 2 | 156 | 3.2 | 131 | 2 |
+| 3 | 208 | 2.4 | 8 | 2 |
+| 4 | 260 | 1.9 | 26 | 2 |
+
+**Static PCA wins**, and every lag count is worse. The likely reason is that lag
+embedding spends the fix on dimensions the training set cannot afford — a
+covariance estimate in 156 dimensions from 500 rows is not the same object as one
+in 52. That explanation is **offered, not demonstrated**: the sweep is not
+monotonic (three lags beats two) and each median is over three hard faults, so
+the ordering between non-zero lag counts is noise. What the table supports is the
+negative result.
+
 ### A labelling bug caught by a test
 
 `TE_NAMES` had 54 entries for 52 columns: the reactor-feed analysis block is
@@ -480,11 +504,12 @@ would have complained.
    that it was.
 5. **Tennessee Eastman is a simulation.** A well-studied one that I did not
    build, which is what it was brought in for — not a plant.
-6. **No dynamic PCA.** Process data is autocorrelated, so the effective sample
-   size behind every control limit is smaller than the row count implies. Lagged
-   copies of each variable are the standard answer and are not implemented, and
-   on TE that matters more than on the synthetic case because TE's dynamics are
-   real.
+6. **Dynamic PCA is implemented and does not help, and why is not settled.**
+   The explanation offered — too few samples per column once lag embedding
+   triples the width — is consistent with the sweep and not demonstrated by it,
+   because the sweep is non-monotonic and each median is over three faults.
+   Separating *the method does not help here* from *the method cannot be fitted
+   here* needs a longer normal run than the 500 samples TE ships.
 7. **Only ten of TE's twenty-one faults**, chosen to span the failure modes and
    to include the three hard ones. The other eleven are a fetch away.
 8. **The dashboard is a static page, not a service.** It is rendered from the

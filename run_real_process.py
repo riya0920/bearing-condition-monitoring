@@ -53,6 +53,10 @@ ALPHA = 0.99        # limit quantile, matching the synthetic study
 # 1000 normal samples. One per 1000 is roughly one nuisance interruption per
 # two days at 3-minute sampling, which is about what a control room tolerates.
 FA_BUDGET_PER_1000 = 1.0
+# Lags for dynamic PCA. Two is the usual starting point in the literature and is
+# enough to carry a first-order dynamic plus its derivative; it triples the
+# column count, which is the cost.
+LAGS = 2
 
 
 # ---------------------------------------------------------------------------
@@ -66,7 +70,7 @@ class _Bank:
     afterwards and jointly -- see `calibrate`.
     """
 
-    def __init__(self, train: np.ndarray):
+    def __init__(self, train: np.ndarray, lags: int = LAGS):
         self.mu = train.mean(0)
         sd = train.std(0, ddof=1)
         self.sd = np.where(sd < 1e-12, 1.0, sd)
@@ -75,6 +79,16 @@ class _Bank:
         r = self.res.residuals(train)
         rs = r.std(0, ddof=1)
         self.rs = np.where(rs < 1e-12, 1.0, rs)
+
+        # Dynamic PCA: the same monitor on lag-embedded data, so the model sees
+        # the process's dynamics instead of assuming the rows are independent.
+        # TE's median lag-1 autocorrelation is 0.55 and 58% of its variables are
+        # above 0.5, so this is a case where the assumption is plainly false.
+        self.lags = int(lags)
+        self.dpca = None
+        if self.lags > 0 and len(train) > self.lags + 10:
+            self.dpca = PM.PCAMonitor().fit(
+                PM.lag_embed(train, self.lags), alpha=ALPHA)
 
     def stats(self, x: np.ndarray) -> dict:
         s = self.pca.score(x)
@@ -85,7 +99,7 @@ class _Bank:
         uni = np.abs((x - self.mu) / self.sd).max(axis=1)
         resid = np.abs(self.res.residuals(x) / self.rs).max(axis=1)
         t2, spe = np.asarray(s["t2"], float), np.asarray(s["spe"], float)
-        return {
+        out = {
             "univariate 3-sigma (the wall of charts)": uni,
             "PCA T2 only": t2,
             "PCA SPE only": spe,
@@ -97,6 +111,24 @@ class _Bank:
                                     spe / max(float(s["spe_limit"]), 1e-12)),
             "residual (model-based)": resid,
         }
+        if self.dpca is not None:
+            ds = self.dpca.score(PM.lag_embed(x, self.lags))
+            # The first `lags` rows have no history and are dropped by the
+            # embedding. Padding the front with the series minimum keeps the
+            # alarm vector aligned with the ORIGINAL sample indices, which is
+            # what every detection delay is measured against -- shifting the
+            # index by the lag count is the obvious way to get a dynamic model
+            # to look faster than it is.
+            for key, arr, lim in (("DPCA T2", np.asarray(ds["t2"], float),
+                                   float(ds["t2_limit"])),
+                                  ("DPCA SPE", np.asarray(ds["spe"], float),
+                                   float(ds["spe_limit"]))):
+                pad = np.full(self.lags, float(arr.min()))
+                out[key] = np.concatenate([pad, arr])
+            out["DPCA T2 or SPE"] = np.maximum(
+                out["DPCA T2"] / max(float(ds["t2_limit"]), 1e-12),
+                out["DPCA SPE"] / max(float(ds["spe_limit"]), 1e-12))
+        return out
 
 
 def calibrate(bank: "_Bank", normal: np.ndarray, target_per_1000: float,
@@ -154,7 +186,8 @@ def _score(alarm: np.ndarray, onset: int, normal_alarm: np.ndarray) -> dict:
 
 
 DETECTORS = ["univariate 3-sigma (the wall of charts)", "PCA T2 only",
-             "PCA SPE only", "T2 or SPE", "residual (model-based)"]
+             "PCA SPE only", "T2 or SPE", "residual (model-based)",
+             "DPCA T2", "DPCA SPE", "DPCA T2 or SPE"]
 
 
 def summarise(rows: list, exclude=()) -> dict:
@@ -245,7 +278,47 @@ def run_te() -> dict:
             "hard": summarise(srows, exclude=tuple(
                 f for f in ids if f not in (3, 9, 15)))})
 
+    # Does adding lags help, and how does that track the sample-to-column
+    # ratio? Lag embedding is the textbook answer to autocorrelation and it
+    # multiplies the column count by (lags + 1) while the training set stays
+    # 500 rows. Both halves get reported.
+    lag_rows = []
+    for lg in (0, 1, 2, 3, 4):
+        b = _Bank(train, lags=lg)
+        cols = train.shape[1] * (lg + 1)
+        t = calibrate(b, normal_test, 20.0)
+        na = _alarms(b, normal_test, t)
+        rws = []
+        for fid in ids:
+            key = f"test_fault_{fid:02d}"
+            if key not in z.files:
+                continue
+            a = _alarms(b, z[key], t)
+            rws.append({"fault": fid,
+                        "detectors": {k: _score(v, onset, na[k])
+                                      for k, v in a.items()}})
+        stat = "DPCA T2 or SPE" if lg > 0 else "T2 or SPE"
+
+        def _med(rws, excl, stat=stat):
+            det = [r["detectors"][stat] for r in rws if r["fault"] not in excl]
+            found = [x for x in det if x["delay"] is not None]
+            return ({"median": float(np.median([x["delay"] for x in found]))
+                     if found else None,
+                     "detected": len(found), "of": len(det)})
+
+        lag_rows.append({
+            "lags": lg, "columns": cols,
+            "samples_per_column": len(train) / cols,
+            "hard": _med(rws, tuple(f for f in ids if f not in (3, 9, 15))),
+            "detectable": _med(rws, (3, 9, 15))})
+
+    ac = PM.autocorrelation(train)
     return {"available": True, "rows": rows, "thresholds": thr,
+            "lag_sweep": lag_rows,
+            "lags": LAGS,
+            "autocorrelation": {"median": float(np.median(ac)),
+                                "max": float(ac.max()),
+                                "frac_above_0_5": float((ac > 0.5).mean())},
             "fa_budget_per_1000": FA_BUDGET_PER_1000, "sweep": sweep,
             "n_train": int(len(train)), "n_vars": int(train.shape[1]),
             "n_normal_test": int(len(normal_test)),
@@ -337,6 +410,9 @@ SHORT = {
     "PCA SPE only": "SPE",
     "T2 or SPE": "T² or SPE",
     "residual (model-based)": "residual",
+    "DPCA T2": "DPCA T²",
+    "DPCA SPE": "DPCA SPE",
+    "DPCA T2 or SPE": "DPCA T²|SPE",
 }
 
 
@@ -456,6 +532,46 @@ def report(d: dict) -> str:
       "satisfaction. A delay of 0 on a fault the literature calls undetectable, "
       "bought at 20–50 nuisance alarms per 1000 samples, is a detector alarming "
       "most of the time and being right by coincidence.\n")
+
+    ls = te.get("lag_sweep")
+    ac = te.get("autocorrelation", {})
+    if ls:
+        A("\n### Dynamic PCA: the textbook fix, and it does not help\n")
+        A(f"Static PCA assumes the rows are independent. TE's are not — median "
+          f"lag-1 autocorrelation **{ac.get('median', float('nan')):.2f}**, "
+          f"**{ac.get('frac_above_0_5', 0) * 100:.0f}%** of variables above 0.5 "
+          f"— so the effective sample size behind every limit is smaller than "
+          "the row count implies. Lag embedding (Ku, Storch & Georgakis 1995) "
+          "is the standard answer: stack *l* lagged copies so the dynamics move "
+          "inside the model.\n")
+        A("It costs columns, and the training set does not grow:\n")
+        A("| lags | columns | samples per column | hard faults | detectable |")
+        A("|---:|---:|---:|---:|---:|")
+        for r in ls:
+            h = r["hard"]
+            hm = ("never" if h["median"] is None else f"{h['median']:.0f}")
+            if h["detected"] < h["of"]:
+                hm += f" ({h['detected']}/{h['of']})"
+            d_ = r["detectable"]
+            dm = "never" if d_["median"] is None else f"{d_['median']:.0f}"
+            star = " ←" if r["lags"] == 0 else ""
+            A(f"| {r['lags']}{star} | {r['columns']} | "
+              f"{r['samples_per_column']:.1f} | {hm} | {dm} |")
+        A(f"\n**Static PCA wins.** At {ls[0]['samples_per_column']:.1f} samples "
+          f"per column it detects the hard faults at a median of "
+          f"{ls[0]['hard']['median']:.0f}; every lag count is worse, and the "
+          f"ratio falls to {ls[-1]['samples_per_column']:.1f} by four lags. The "
+          "likely reason is that lag embedding spends the fix on dimensions the "
+          "training set cannot afford — a covariance estimate in 156 dimensions "
+          "from 500 rows is not the same object as one in 52.\n")
+        A("**That explanation is offered, not demonstrated.** The sweep is not "
+          "monotonic — three lags beats two — and with only three hard faults "
+          "each median is over three numbers, so the ordering between the "
+          "non-zero lag counts is noise. What the table supports is the "
+          "negative result: on this data, at this training-set size, the "
+          "textbook correction for autocorrelation does not improve detection. "
+          "It would need a longer normal run to separate *the method does not "
+          "help here* from *the method cannot be fitted here*.\n")
 
     if sk.get("available") and sk.get("rows"):
         s = d.get("skab_summary", {})

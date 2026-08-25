@@ -37,6 +37,24 @@
             "detected": true,
             "alarm_frac_after": 0.99875,
             "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 6,
+            "detected": true,
+            "alarm_frac_after": 0.995,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 5,
+            "detected": true,
+            "alarm_frac_after": 0.99625,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": 5,
+            "detected": true,
+            "alarm_frac_after": 0.99625,
+            "false_per_1000": 0.0
           }
         },
         "first_diagnosis": {
@@ -96,6 +114,24 @@
             "detected": true,
             "alarm_frac_after": 0.03625,
             "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": null,
+            "detected": false,
+            "alarm_frac_after": 0.005,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 570,
+            "detected": true,
+            "alarm_frac_after": 0.0175,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": 570,
+            "detected": true,
+            "alarm_frac_after": 0.0175,
+            "false_per_1000": 0.0
           }
         },
         "first_diagnosis": {
@@ -151,6 +187,24 @@
             "false_per_1000": 0.0
           },
           "residual (model-based)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 77,
+            "detected": true,
+            "alarm_frac_after": 0.09125,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
             "delay": 2,
             "detected": true,
             "alarm_frac_after": 1.0,
@@ -214,6 +268,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.25375,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.22125,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 0.26375,
+            "false_per_1000": 0.0
           }
         },
         "first_diagnosis": {
@@ -269,6 +341,24 @@
             "false_per_1000": 0.0
           },
           "residual (model-based)": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 8,
+            "detected": true,
+            "alarm_frac_after": 0.9925,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
             "delay": 2,
             "detected": true,
             "alarm_frac_after": 1.0,
@@ -332,6 +422,24 @@
             "detected": true,
             "alarm_frac_after": 0.02875,
             "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 734,
+            "detected": true,
+            "alarm_frac_after": 0.01125,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": null,
+            "detected": false,
+            "alarm_frac_after": 0.0125,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": null,
+            "detected": false,
+            "alarm_frac_after": 0.0125,
+            "false_per_1000": 0.0
           }
         },
         "first_diagnosis": {
@@ -390,6 +498,24 @@
             "delay": 7,
             "detected": true,
             "alarm_frac_after": 0.77,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 12,
+            "detected": true,
+            "alarm_frac_after": 0.3675,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 8,
+            "detected": true,
+            "alarm_frac_after": 0.8675,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": 8,
+            "detected": true,
+            "alarm_frac_after": 0.8675,
             "false_per_1000": 0.0
           }
         },
@@ -450,6 +576,24 @@
             "detected": true,
             "alarm_frac_after": 0.9475,
             "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 40,
+            "detected": true,
+            "alarm_frac_after": 0.95125,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 40,
+            "detected": true,
+            "alarm_frac_after": 0.93875,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": 40,
+            "detected": true,
+            "alarm_frac_after": 0.9525,
+            "false_per_1000": 0.0
           }
         },
         "first_diagnosis": {
@@ -508,6 +652,24 @@
             "delay": 3,
             "detected": true,
             "alarm_frac_after": 0.99875,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 3,
+            "detected": true,
+            "alarm_frac_after": 0.99875,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": 2,
+            "detected": true,
+            "alarm_frac_after": 1.0,
             "false_per_1000": 0.0
           }
         },
@@ -568,6 +730,24 @@
             "detected": true,
             "alarm_frac_after": 0.0775,
             "false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "delay": 681,
+            "detected": true,
+            "alarm_frac_after": 0.02875,
+            "false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "delay": null,
+            "detected": false,
+            "alarm_frac_after": 0.01125,
+            "false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "delay": null,
+            "detected": false,
+            "alarm_frac_after": 0.01125,
+            "false_per_1000": 0.0
           }
         },
         "first_diagnosis": null
@@ -593,7 +773,102 @@
       "residual (model-based)": {
         "threshold": 4.2879207033912845,
         "achieved_per_1000": 0.0
+      },
+      "DPCA T2": {
+        "threshold": 114.3250979701454,
+        "achieved_per_1000": 0.0
+      },
+      "DPCA SPE": {
+        "threshold": 47.35168150272433,
+        "achieved_per_1000": 0.0
+      },
+      "DPCA T2 or SPE": {
+        "threshold": 1.7987146168313768,
+        "achieved_per_1000": 0.0
       }
+    },
+    "lag_sweep": [
+      {
+        "lags": 0,
+        "columns": 52,
+        "samples_per_column": 9.615384615384615,
+        "hard": {
+          "median": 3.0,
+          "detected": 3,
+          "of": 3
+        },
+        "detectable": {
+          "median": 2.0,
+          "detected": 7,
+          "of": 7
+        }
+      },
+      {
+        "lags": 1,
+        "columns": 104,
+        "samples_per_column": 4.8076923076923075,
+        "hard": {
+          "median": 22.0,
+          "detected": 3,
+          "of": 3
+        },
+        "detectable": {
+          "median": 2.0,
+          "detected": 7,
+          "of": 7
+        }
+      },
+      {
+        "lags": 2,
+        "columns": 156,
+        "samples_per_column": 3.2051282051282053,
+        "hard": {
+          "median": 131.0,
+          "detected": 3,
+          "of": 3
+        },
+        "detectable": {
+          "median": 2.0,
+          "detected": 7,
+          "of": 7
+        }
+      },
+      {
+        "lags": 3,
+        "columns": 208,
+        "samples_per_column": 2.4038461538461537,
+        "hard": {
+          "median": 8.0,
+          "detected": 3,
+          "of": 3
+        },
+        "detectable": {
+          "median": 2.0,
+          "detected": 7,
+          "of": 7
+        }
+      },
+      {
+        "lags": 4,
+        "columns": 260,
+        "samples_per_column": 1.9230769230769231,
+        "hard": {
+          "median": 26.0,
+          "detected": 3,
+          "of": 3
+        },
+        "detectable": {
+          "median": 2.0,
+          "detected": 7,
+          "of": 7
+        }
+      }
+    ],
+    "lags": 2,
+    "autocorrelation": {
+      "median": 0.5497170996285148,
+      "max": 0.996245523582594,
+      "frac_above_0_5": 0.5769230769230769
     },
     "fa_budget_per_1000": 1.0,
     "sweep": [
@@ -604,7 +879,10 @@
           "PCA T2 only": 0.0,
           "PCA SPE only": 0.0,
           "T2 or SPE": 0.0,
-          "residual (model-based)": 0.0
+          "residual (model-based)": 0.0,
+          "DPCA T2": 0.0,
+          "DPCA SPE": 0.0,
+          "DPCA T2 or SPE": 0.0
         },
         "all": {
           "univariate 3-sigma (the wall of charts)": {
@@ -635,6 +913,24 @@
             "detected": 10,
             "of": 10,
             "median_delay": 5.0,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "detected": 9,
+            "of": 10,
+            "median_delay": 12.0,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "detected": 8,
+            "of": 10,
+            "median_delay": 4.0,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "detected": 8,
+            "of": 10,
+            "median_delay": 3.5,
             "mean_false_per_1000": 0.0
           }
         },
@@ -667,6 +963,24 @@
             "detected": 7,
             "of": 7,
             "median_delay": 3.0,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 8.0,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
             "mean_false_per_1000": 0.0
           }
         },
@@ -700,6 +1014,24 @@
             "of": 3,
             "median_delay": 255.0,
             "mean_false_per_1000": 0.0
+          },
+          "DPCA T2": {
+            "detected": 2,
+            "of": 3,
+            "median_delay": 707.5,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA SPE": {
+            "detected": 1,
+            "of": 3,
+            "median_delay": 570.0,
+            "mean_false_per_1000": 0.0
+          },
+          "DPCA T2 or SPE": {
+            "detected": 1,
+            "of": 3,
+            "median_delay": 570.0,
+            "mean_false_per_1000": 0.0
           }
         }
       },
@@ -710,7 +1042,10 @@
           "PCA T2 only": 4.166666666666667,
           "PCA SPE only": 4.166666666666667,
           "T2 or SPE": 4.166666666666667,
-          "residual (model-based)": 4.166666666666667
+          "residual (model-based)": 4.166666666666667,
+          "DPCA T2": 4.166666666666667,
+          "DPCA SPE": 4.166666666666667,
+          "DPCA T2 or SPE": 4.166666666666667
         },
         "all": {
           "univariate 3-sigma (the wall of charts)": {
@@ -742,6 +1077,24 @@
             "of": 10,
             "median_delay": 5.0,
             "mean_false_per_1000": 4.166666666666666
+          },
+          "DPCA T2": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 6.0,
+            "mean_false_per_1000": 4.166666666666666
+          },
+          "DPCA SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 5.5,
+            "mean_false_per_1000": 4.166666666666666
+          },
+          "DPCA T2 or SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 5.5,
+            "mean_false_per_1000": 4.166666666666666
           }
         },
         "detectable": {
@@ -770,6 +1123,24 @@
             "mean_false_per_1000": 4.166666666666667
           },
           "residual (model-based)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "DPCA T2": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 5.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "DPCA SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "DPCA T2 or SPE": {
             "detected": 7,
             "of": 7,
             "median_delay": 2.0,
@@ -806,6 +1177,24 @@
             "of": 3,
             "median_delay": 139.0,
             "mean_false_per_1000": 4.166666666666667
+          },
+          "DPCA T2": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 44.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "DPCA SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 133.0,
+            "mean_false_per_1000": 4.166666666666667
+          },
+          "DPCA T2 or SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 363.0,
+            "mean_false_per_1000": 4.166666666666667
           }
         }
       },
@@ -816,7 +1205,10 @@
           "PCA T2 only": 19.791666666666668,
           "PCA SPE only": 19.791666666666668,
           "T2 or SPE": 19.791666666666668,
-          "residual (model-based)": 19.791666666666668
+          "residual (model-based)": 19.791666666666668,
+          "DPCA T2": 19.791666666666668,
+          "DPCA SPE": 19.791666666666668,
+          "DPCA T2 or SPE": 19.791666666666668
         },
         "all": {
           "univariate 3-sigma (the wall of charts)": {
@@ -848,6 +1240,24 @@
             "of": 10,
             "median_delay": 2.0,
             "mean_false_per_1000": 19.791666666666664
+          },
+          "DPCA T2": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 6.0,
+            "mean_false_per_1000": 19.791666666666664
+          },
+          "DPCA SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 19.791666666666664
+          },
+          "DPCA T2 or SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 19.791666666666664
           }
         },
         "detectable": {
@@ -876,6 +1286,24 @@
             "mean_false_per_1000": 19.791666666666668
           },
           "residual (model-based)": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "DPCA T2": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 5.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "DPCA SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "DPCA T2 or SPE": {
             "detected": 7,
             "of": 7,
             "median_delay": 2.0,
@@ -912,6 +1340,24 @@
             "of": 3,
             "median_delay": 0.0,
             "mean_false_per_1000": 19.791666666666668
+          },
+          "DPCA T2": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 23.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "DPCA SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 53.0,
+            "mean_false_per_1000": 19.791666666666668
+          },
+          "DPCA T2 or SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 131.0,
+            "mean_false_per_1000": 19.791666666666668
           }
         }
       },
@@ -922,7 +1368,10 @@
           "PCA T2 only": 50.0,
           "PCA SPE only": 50.0,
           "T2 or SPE": 50.0,
-          "residual (model-based)": 50.0
+          "residual (model-based)": 50.0,
+          "DPCA T2": 50.0,
+          "DPCA SPE": 50.0,
+          "DPCA T2 or SPE": 50.0
         },
         "all": {
           "univariate 3-sigma (the wall of charts)": {
@@ -950,6 +1399,24 @@
             "mean_false_per_1000": 50.0
           },
           "residual (model-based)": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA T2": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA SPE": {
+            "detected": 10,
+            "of": 10,
+            "median_delay": 2.5,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA T2 or SPE": {
             "detected": 10,
             "of": 10,
             "median_delay": 2.0,
@@ -986,6 +1453,24 @@
             "of": 7,
             "median_delay": 2.0,
             "mean_false_per_1000": 50.0
+          },
+          "DPCA T2": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 3.0,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA T2 or SPE": {
+            "detected": 7,
+            "of": 7,
+            "median_delay": 2.0,
+            "mean_false_per_1000": 50.0
           }
         },
         "hard": {
@@ -1017,6 +1502,24 @@
             "detected": 3,
             "of": 3,
             "median_delay": 0.0,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA T2": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 23.0,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 6.0,
+            "mean_false_per_1000": 50.0
+          },
+          "DPCA T2 or SPE": {
+            "detected": 3,
+            "of": 3,
+            "median_delay": 3.0,
             "mean_false_per_1000": 50.0
           }
         }
@@ -1070,6 +1573,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
           }
         }
       },
@@ -1104,6 +1625,24 @@
             "false_per_1000": 0.850520944078248
           },
           "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
             "delay": 0,
             "detected": true,
             "alarm_frac_after": 1.0,
@@ -1146,6 +1685,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
           }
         }
       },
@@ -1180,6 +1737,24 @@
             "false_per_1000": 0.850520944078248
           },
           "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
             "delay": 0,
             "detected": true,
             "alarm_frac_after": 1.0,
@@ -1222,6 +1797,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
           }
         }
       },
@@ -1256,6 +1849,24 @@
             "false_per_1000": 0.850520944078248
           },
           "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
             "delay": 0,
             "detected": true,
             "alarm_frac_after": 1.0,
@@ -1298,6 +1909,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
           }
         }
       },
@@ -1332,6 +1961,24 @@
             "false_per_1000": 0.850520944078248
           },
           "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
             "delay": 0,
             "detected": true,
             "alarm_frac_after": 1.0,
@@ -1374,6 +2021,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
           }
         }
       },
@@ -1408,6 +2073,24 @@
             "false_per_1000": 0.850520944078248
           },
           "residual (model-based)": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
             "delay": 0,
             "detected": true,
             "alarm_frac_after": 1.0,
@@ -1450,6 +2133,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
           }
         }
       },
@@ -1488,6 +2189,24 @@
             "detected": true,
             "alarm_frac_after": 1.0,
             "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
+          },
+          "DPCA T2 or SPE": {
+            "delay": 0,
+            "detected": true,
+            "alarm_frac_after": 1.0,
+            "false_per_1000": 0.850520944078248
           }
         }
       }
@@ -1504,7 +2223,7 @@
     ],
     "n_normal": 9405
   },
-  "elapsed_s": 100.22278714179993,
+  "elapsed_s": 87.04501962661743,
   "te_summary_all": {
     "univariate 3-sigma (the wall of charts)": {
       "detected": 10,
@@ -1534,6 +2253,24 @@
       "detected": 10,
       "of": 10,
       "median_delay": 5.0,
+      "mean_false_per_1000": 0.0
+    },
+    "DPCA T2": {
+      "detected": 9,
+      "of": 10,
+      "median_delay": 12.0,
+      "mean_false_per_1000": 0.0
+    },
+    "DPCA SPE": {
+      "detected": 8,
+      "of": 10,
+      "median_delay": 4.0,
+      "mean_false_per_1000": 0.0
+    },
+    "DPCA T2 or SPE": {
+      "detected": 8,
+      "of": 10,
+      "median_delay": 3.5,
       "mean_false_per_1000": 0.0
     }
   },
@@ -1567,6 +2304,24 @@
       "of": 7,
       "median_delay": 3.0,
       "mean_false_per_1000": 0.0
+    },
+    "DPCA T2": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 8.0,
+      "mean_false_per_1000": 0.0
+    },
+    "DPCA SPE": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 3.0,
+      "mean_false_per_1000": 0.0
+    },
+    "DPCA T2 or SPE": {
+      "detected": 7,
+      "of": 7,
+      "median_delay": 2.0,
+      "mean_false_per_1000": 0.0
     }
   },
   "te_summary_hard": {
@@ -1599,6 +2354,24 @@
       "of": 3,
       "median_delay": 255.0,
       "mean_false_per_1000": 0.0
+    },
+    "DPCA T2": {
+      "detected": 2,
+      "of": 3,
+      "median_delay": 707.5,
+      "mean_false_per_1000": 0.0
+    },
+    "DPCA SPE": {
+      "detected": 1,
+      "of": 3,
+      "median_delay": 570.0,
+      "mean_false_per_1000": 0.0
+    },
+    "DPCA T2 or SPE": {
+      "detected": 1,
+      "of": 3,
+      "median_delay": 570.0,
+      "mean_false_per_1000": 0.0
     }
   },
   "skab_summary": {
@@ -1627,6 +2400,24 @@
       "mean_false_per_1000": 0.850520944078248
     },
     "residual (model-based)": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    },
+    "DPCA T2": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    },
+    "DPCA SPE": {
+      "detected": 12,
+      "of": 12,
+      "median_delay": 0.0,
+      "mean_false_per_1000": 0.850520944078248
+    },
+    "DPCA T2 or SPE": {
       "detected": 12,
       "of": 12,
       "median_delay": 0.0,

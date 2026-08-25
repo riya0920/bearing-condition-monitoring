@@ -201,3 +201,53 @@ def false_alarm_rate(alarm: np.ndarray, fault_start: int, m: int = 3,
         else:
             i += 1
     return 1000.0 * hits / len(a)
+
+
+# ---------------------------------------------------------------------------
+# dynamic PCA
+# ---------------------------------------------------------------------------
+
+def lag_embed(x: np.ndarray, lags: int) -> np.ndarray:
+    """Stack l lagged copies alongside the current sample.
+
+    Row t becomes [x_t, x_{t-1}, ..., x_{t-l}], so a model fitted on this sees
+    the process's DYNAMICS rather than only its instantaneous cross-section.
+
+    Why it matters, and it is not a refinement. Static PCA assumes the rows are
+    independent. Process data is autocorrelated, so the effective sample size
+    behind every control limit is smaller than the row count implies -- a limit
+    set from an empirical quantile of 500 correlated samples is a limit set from
+    rather fewer than 500 pieces of information, and it comes out too tight. The
+    visible symptom is a false-alarm rate above the nominal one, which reads as
+    a sensitive detector rather than as a miscalibrated one.
+
+    Lag embedding is the standard answer (Ku, Storch & Georgakis 1995). It does
+    not remove the autocorrelation; it moves the dynamics INSIDE the model, so
+    that what is left over is closer to independent.
+
+    The cost is real and is not hidden: l lags multiply the column count by
+    (l + 1), and the first l rows have no history and are dropped.
+    """
+    x = np.asarray(x, dtype=float)
+    lags = int(lags)
+    if lags < 0:
+        raise ValueError("lags must be >= 0")
+    if lags == 0:
+        return x
+    n, p = x.shape
+    if n <= lags:
+        raise ValueError(f"{n} samples cannot support {lags} lags")
+    return np.concatenate([x[lags - i: n - i] for i in range(lags + 1)], axis=1)
+
+
+def autocorrelation(x: np.ndarray, lag: int = 1) -> np.ndarray:
+    """Per-column lag-`lag` autocorrelation. The evidence that DPCA is needed
+    at all -- if this is near zero, lag embedding buys nothing and costs
+    columns."""
+    x = np.asarray(x, dtype=float)
+    z = x - x.mean(0)
+    sd = z.std(0)
+    sd = np.where(sd < 1e-12, 1.0, sd)
+    z = z / sd
+    a, b = z[lag:], z[:-lag]
+    return (a * b).mean(0)
