@@ -15,3 +15,8 @@ out/rerun*.log
 # Real process benchmarks: Tennessee Eastman (Braatz distribution) and SKAB.
 # Not redistributed -- see fetch_process.py for provenance and licence.
 data/PROCESS/
+
+# the served fleet database and its demo
+out/fleet*.db
+out/fleet*.db-wal
+out/fleet*.db-shm

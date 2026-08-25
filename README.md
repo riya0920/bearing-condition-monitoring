@@ -517,6 +517,44 @@ components A–F, not A–H. Every contribution plot from the composition block
 onwards would have named the wrong tag, and nothing about the arrays' shapes
 would have complained.
 
+## Also in the fifth pass — the dashboard as a service
+
+```bash
+python run_fleet_service.py --demo   # history, acknowledgement, re-arming
+python run_fleet_service.py          # serves the page with a live API
+```
+
+The item said the dashboard *is a static page, not a service … nothing polls,
+there is no acknowledge-and-clear, and an asset's history is not kept*. All three
+are built, and the middle one is where the design is.
+
+**An acknowledgement is a claim about EVIDENCE, not about an asset.** "MC-14
+acknowledged" is the design that turns a monitoring screen into a screen nobody
+reads: the bearing gets worse, the alarm stays acknowledged, and the first anyone
+hears is the failure. So an acknowledgement records *what* was acknowledged — the
+call and the evidence strength at that moment — and **re-arms itself** when:
+
+| trigger | why |
+|---|---|
+| the call changes | BPFO → BPFI is a different fault; that is not what was accepted |
+| the evidence worsens past a stated fraction (default 25%) | accepting a risk at one severity is not accepting it at any severity |
+| the term expires (default 72 h) | a stale acknowledgement is a forgotten one |
+
+A reason is **required** — "acknowledged" with no reason is indistinguishable
+from "dismissed", and six months later nobody can tell which it was. Re-arming is
+written to the record, so *why did this come back* has an answer. And an
+acknowledged asset is **marked, not hidden**: a screen that hides what somebody
+accepted cannot be audited.
+
+History makes *what changed since yesterday* answerable — the question a
+monitoring screen is usually asked and the one a static page cannot answer at
+all. `run_dashboard.py` still writes the self-contained page, because a page that
+needs a service running is a page that cannot be emailed.
+
+Re-arming is evaluated on **read**, not on a timer: a service nobody opens does
+not silence anything, which is the safe direction, and it does mean an expired
+acknowledgement is not noticed until somebody looks.
+
 ## What is NOT built
 
 1. **No degradation trajectory in the real data.** CWRU cannot test prognosis at
@@ -542,10 +580,11 @@ would have complained.
    here* needs a longer normal run than the 500 samples TE ships.
 7. **Only ten of TE's twenty-one faults**, chosen to span the failure modes and
    to include the three hard ones. The other eleven are a fetch away.
-8. **The dashboard is a static page, not a service.** It is rendered from the
-   result files by a script; nothing polls, nothing pushes, there is no
-   acknowledge-and-clear, and an asset's history is not kept — so it shows what
-   the fleet looks like now and cannot show what changed since yesterday.
+8. **The service polls and does not push, and nobody is authenticated.** `who`
+   on an acknowledgement is whatever the caller says it is, so the trail records
+   a claim rather than an identity; re-arming changes what the screen shows and
+   notifies nobody; and an asset that degrades between polls is seen at the next
+   one.
 9. **No speed-varying case.** No run-up, coast-down or order tracking — which is
    where fixed-frequency band energy stops working entirely.
 10. **The synthetic bearing fleet is still 9 failing + 3 healthy**, so every
@@ -564,6 +603,7 @@ fetch_process.py   Tennessee Eastman + SKAB (gitignored)
 run_real_process.py  the same detectors at a matched false-alarm budget, swept
 src/pca_monitor.py T2 and SPE, empirical limits, contribution decomposition
 src/dashboard.py   the fleet screen: ordering, evidence, and what it refuses to hide
+src/fleet_service.py  history, acknowledge-and-re-arm, and an HTTP API
 run_cm.py          orchestration; writes docs/RESULTS.md
 run_dashboard.py   renders out/fleet_dashboard.html from the measured results
 ```

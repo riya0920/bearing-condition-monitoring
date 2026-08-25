@@ -1,0 +1,120 @@
+{
+  "runs": [
+    {
+      "run_id": "monday",
+      "ts": "2026-08-25T02:26:33.380836+00:00",
+      "assets": 40
+    },
+    {
+      "run_id": "tuesday",
+      "ts": "2026-08-25T02:26:33.384271+00:00",
+      "assets": 40
+    },
+    {
+      "run_id": "wednesday",
+      "ts": "2026-08-25T02:26:33.394746+00:00",
+      "assets": 40
+    }
+  ],
+  "steps": [
+    {
+      "step": "what changed since monday",
+      "n_changed": 1,
+      "changed": [
+        {
+          "asset": "188",
+          "from_call": "BPFI",
+          "to_call": "BSF",
+          "from_state": "faulty",
+          "to_state": "faulty",
+          "score_delta": 0.0
+        }
+      ]
+    },
+    {
+      "step": "acknowledge with no reason",
+      "refused": "an acknowledgement needs a reason: without one it is indistinguishable from dismissing the alarm"
+    },
+    {
+      "step": "acknowledge",
+      "asset": "223",
+      "acknowledged_call": "BPFI",
+      "acknowledged_score": 19.83591258948622,
+      "ttl_hours": 72.0
+    },
+    {
+      "step": "status after acknowledging",
+      "acknowledged": true
+    },
+    {
+      "step": "status after the evidence worsened",
+      "acknowledged": false,
+      "why": "the evidence worsened by more than 25% (19.8 -> 39.7)"
+    },
+    {
+      "step": "status 100 hours later",
+      "acknowledged": false,
+      "why": "the acknowledgement is older than its 72-hour term"
+    }
+  ],
+  "fleet_now_sample": [
+    {
+      "id": 82,
+      "ts": "2026-08-25T02:26:33.394746+00:00",
+      "run_id": "wednesday",
+      "asset": "223",
+      "call": "BPFI",
+      "state": "faulty",
+      "score": 39.67182517897244,
+      "agreement": 0.7,
+      "truth": "ball",
+      "acknowledged": false,
+      "ack_reason": null,
+      "ack_by": null,
+      "rearmed_why": null,
+      "previous_call": "BPFI",
+      "changed": false
+    },
+    {
+      "id": 81,
+      "ts": "2026-08-25T02:26:33.394746+00:00",
+      "run_id": "wednesday",
+      "asset": "188",
+      "call": "BSF",
+      "state": "faulty",
+      "score": 10.984703302257907,
+      "agreement": 0.6,
+      "truth": "ball",
+      "acknowledged": false,
+      "ack_reason": null,
+      "ack_by": null,
+      "rearmed_why": null,
+      "previous_call": "BSF",
+      "changed": false
+    },
+    {
+      "id": 83,
+      "ts": "2026-08-25T02:26:33.394746+00:00",
+      "run_id": "wednesday",
+      "asset": "235",
+      "call": "BPFO",
+      "state": "faulty",
+      "score": 9.342310871502384,
+      "agreement": 1.0,
+      "truth": "outer_race",
+      "acknowledged": false,
+      "ack_reason": null,
+      "ack_by": null,
+      "rearmed_why": null,
+      "previous_call": "BPFO",
+      "changed": false
+    }
+  ],
+  "limits": [
+    "No authentication. `who` is whatever the caller says it is, so the acknowledgement trail records a claim rather than an identity.",
+    "Polling, not push. The page re-fetches; nothing is streamed, and an asset that degrades between polls is seen at the next one.",
+    "Re-arming is evaluated on READ. A service nobody opens does not re-arm anything -- which is the safe direction (nothing is silenced by a service that is not running) and does mean an expired acknowledgement is not noticed until somebody looks.",
+    "No notification. Re-arming changes what the screen shows and tells nobody.",
+    "One process, one SQLite file. It is a shop-floor screen, not a fleet platform."
+  ]
+}
