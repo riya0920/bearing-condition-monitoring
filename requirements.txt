@@ -1,0 +1,5 @@
+numpy
+pytest
+scikit-learn
+scipy
+torch
