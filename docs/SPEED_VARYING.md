@@ -1,6 +1,6 @@
-# ML-3 pass 5 — the speed-varying case
+# ML-3 pass 5: the speed-varying case
 
-Item 9 of the not-built list said no run-up, no coast-down and no order tracking, *"which is where fixed-frequency band energy stops working entirely"*. That was an assertion. Here it is as a measurement, the fix, and — first — the correction, because **the assertion was too strong.**
+Item 9 of the not-built list said no run-up, no coast-down and no order tracking, *"which is where fixed-frequency band energy stops working entirely"*. That was an assertion. Here it is as a measurement, the fix, and, first, the correction, because **the assertion was too strong.**
 
 ## The claim was overstated
 
@@ -10,7 +10,7 @@ Fixed-frequency detection does not stop working at the first sign of speed varia
 
 Every detector in this project locates energy at a FREQUENCY. BPFO is 3.585× shaft, so at 29.95 Hz shaft it is 107.4 Hz and the search window goes there with a 2% tolerance. During a run-up the line sweeps clean across that window and out the other side, so the energy is spread over a band far wider than the tolerance and **the peak the detector is looking for does not exist at any single frequency.**
 
-Order tracking resamples onto uniform shaft ANGLE. A defect strikes once every fixed number of revolutions, not once every fixed number of seconds, so in the angle domain the line is stationary again — at an *order* rather than a frequency. `BearingGeometry.orders()` has been in this codebase since the first pass and nothing had ever used it.
+Order tracking resamples onto uniform shaft ANGLE. A defect strikes once every fixed number of revolutions, not once every fixed number of seconds, so in the angle domain the line is stationary again, at an *order* rather than a frequency. `BearingGeometry.orders()` has been in this codebase since the first pass and nothing had ever used it.
 
 ## 1. The sweep sweep
 
@@ -36,7 +36,7 @@ Now the ratio at the true fault order, which is where the mechanism shows:
 | ±25% | 13.5 | 107.8 | 25.1 |
 | ±50% | 9.2 | 112.6 | 30.8 |
 
-The fixed-frequency ratio falls **92 → 9**, a factor of 10, while the order-tracked ratio goes 105 → 113 — flat, or slightly up. **The energy did not go anywhere. It is exactly where it always was, in angle.** The call survives to ±50% only because a strong fault can afford to lose 10× of its evidence and still outrank the alternatives.
+The fixed-frequency ratio falls **92 → 9**, a factor of 10, while the order-tracked ratio goes 105 → 113, flat, or slightly up. **The energy did not go anywhere. It is exactly where it always was, in angle.** The call survives to ±50% only because a strong fault can afford to lose 10× of its evidence and still outrank the alternatives.
 
 ## 2. Which is why the next table matters more
 
@@ -70,17 +70,17 @@ Speed tracked off the vibration signal instead of a keyphasor. Median absolute s
 | ±25% | +0% | 107.8 | 25.1 |
 | ±50% | +0% | 112.6 | 30.8 |
 
-The call rate barely moves and **the ratio loses about half its margin at every width, including at constant speed**. A constant speed estimated one bin off is a constant speed ERROR, and a constant speed error integrates into a phase that drifts linearly across the record — so the impulses at the end land at a different angle from the ones at the start and the line smears. Estimating the phase does not cost accuracy here; it costs the margin that keeps a weak fault above the gate, which is the same currency the previous section was spending.
+The call rate barely moves and **the ratio loses about half its margin at every width, including at constant speed**. A constant speed estimated one bin off is a constant speed ERROR, and a constant speed error integrates into a phase that drifts linearly across the record, so the impulses at the end land at a different angle from the ones at the start and the line smears. Estimating the phase does not cost accuracy here; it costs the margin that keeps a weak fault above the gate, which is the same currency the previous section was spending.
 
 ## 4. Coast-down
 
-A coast-down is not a reversed run-up — a machine losing energy to friction decays roughly exponentially, so the fast part is at the beginning and most of the record sits near the final speed. Over the same ±50% range: fixed 83%, order/tacho 100%, order/estimated 100%.
+A coast-down is not a reversed run-up: a machine losing energy to friction decays roughly exponentially, so the fast part is at the beginning and most of the record sits near the final speed. Over the same ±50% range: fixed 83%, order/tacho 100%, order/estimated 100%.
 
 ## 5. The check that decides whether any of this is real
 
 36 snapshots from 6 real CWRU records, all at constant speed. The two methods agree on the call **97%** of the time, and their ratio vectors correlate at **r = 1.000** in log space.
 
-Angular resampling has several ways to be silently wrong — an off-by-one in the phase integration, an order axis scaled by the wrong factor, a samples-per-rev low enough to alias one fault order onto another — and every one of them still produces a plausible-looking spectrum with a peak in it. On constant speed the angle axis is a linear function of the time axis, so the two spectra are the same measurement in different units. This is the only available check that can tell a better method from a broken one, and it is the reason the simulated tables above are worth reading at all.
+Angular resampling has several ways to be silently wrong, an off-by-one in the phase integration, an order axis scaled by the wrong factor, a samples-per-rev low enough to alias one fault order onto another, and every one of them still produces a plausible-looking spectrum with a peak in it. On constant speed the angle axis is a linear function of the time axis, so the two spectra are the same measurement in different units. This is the only available check that can tell a better method from a broken one, and it is the reason the simulated tables above are worth reading at all.
 
 ## Honest limits
 

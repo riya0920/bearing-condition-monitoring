@@ -248,8 +248,8 @@ def report(d: dict) -> str:
     A("\n## Why: an absolute constant inside a relative measure\n")
     A("`features.diagnose` opens with `if top < min_ratio: return healthy`, and "
       f"`min_ratio` is **{dist['old_gate']}**. The band ratio is already "
-      "normalised — it is energy at a defect frequency against that same "
-      "spectrum's noise floor — so the gate looks scale-free. It is not: the "
+      "normalised, it is energy at a defect frequency against that same "
+      "spectrum's noise floor, so the gate looks scale-free. It is not: the "
       "healthy distribution sits right on top of it.\n")
     A("| percentile | healthy | faulty |")
     A("|---|---:|---:|")
@@ -258,7 +258,7 @@ def report(d: dict) -> str:
     A(f"\n**{dist['healthy_above_old_gate'] * 100:.0f}% of healthy snapshots sit "
       f"above the gate of {dist['old_gate']}**, which is most of the way to "
       "explaining the zero. Pass 3's recalibration tuned the *sideband* "
-      "threshold and never touched this one — visible in its own output, where "
+      "threshold and never touched this one, visible in its own output, where "
       "healthy accuracy is 0.4375 for every variant it tried.\n")
 
     A("\n## The trade, swept\n")
@@ -286,8 +286,8 @@ def report(d: dict) -> str:
 
     if pl.get("exists"):
         A(f"\n**There is a plateau, and it is wide.** Every gate from "
-          f"**{pl['lo']:.2f} to {pl['hi']:.2f}** — {pl['n_gates']} settings, a "
-          f"band {pl['width']:.2f} wide — turns *all* healthy assets green, "
+          f"**{pl['lo']:.2f} to {pl['hi']:.2f}**, {pl['n_gates']} settings, a "
+          f"band {pl['width']:.2f} wide, turns *all* healthy assets green, "
           "misses *no* faulty asset, and does *not* reduce the correct-race "
           "rate. The trade this section opened by assuming would exist does not "
           "exist in that range: the old gate was not a conservative choice on a "
@@ -304,8 +304,8 @@ def report(d: dict) -> str:
         A(f"| {f['held_out_file']} | {f['chosen_min_ratio']:.2f} | "
           f"{f['held_out_healthy_called_healthy'] * 100:.0f}% | "
           f"{f['faulty_correct_race_at_that_gate'] * 100:.0f}% |")
-    A(f"\n**Every fold picks {loo['gate_min']:.2f}–{loo['gate_max']:.2f}** — a "
-      f"spread of {loo['gate_spread']:.2f} — and all four land inside the "
+    A(f"\n**Every fold picks {loo['gate_min']:.2f}–{loo['gate_max']:.2f}**, a "
+      f"spread of {loo['gate_spread']:.2f}, and all four land inside the "
       f"plateau. That combination is what makes this a calibration rather than "
       "an overfit: the estimator is stable across folds *and* the answer does "
       "not depend on getting it exactly right.\n")
@@ -341,7 +341,7 @@ def report(d: dict) -> str:
       "looked scale-free and was not.")
     A("- **The draft of this document concluded the opposite.** It said the "
       "change should not be applied, on the grounds that four healthy files "
-      "cannot pin a threshold. That is true and it is not the question — the "
+      "cannot pin a threshold. That is true and it is not the question: the "
       "plateau means the threshold does not need pinning, and the leave-one-out "
       "spread being small *inside* a wide flat region is the evidence that "
       "settles it. The wrong conclusion is recorded because the reasoning that "

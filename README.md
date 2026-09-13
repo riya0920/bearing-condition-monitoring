@@ -1,4 +1,4 @@
-# ML-3 — Multivariate Sensor Anomaly Detection & Health Indexing
+# ML-3: Multivariate Sensor Anomaly Detection & Health Indexing
 
 **Status: complete.** The physics feature layer, the health index with a
 hysteretic alarm state machine, the three-way detector comparison at a matched
@@ -12,7 +12,7 @@ python run_cm.py --quick    # smaller fleet
 python run_cm.py --report-only
 ```
 
-## Data provenance — read this first
+## Data provenance: read this first
 
 **The vibration is synthesised, not measured.** `src/bearing.py` generates it:
 impulse trains at the kinematic fault frequencies, each exciting an exponentially
@@ -20,8 +20,8 @@ decaying structural resonance, with rolling-element slip, cycle-to-cycle shaft
 speed jitter, 1× and 2× machine content, and a degradation trajectory with a knee.
 
 It is **not CWRU and not IMS**, and no number here is comparable to a paper using
-those. What the simulation buys is ground truth — fault type, onset cycle, failure
-cycle, and a set of assets that genuinely never fail — which is what turns
+those. What the simulation buys is ground truth: fault type, onset cycle, failure
+cycle, and a set of assets that genuinely never fail, which is what turns
 "detected 79 cycles early" and "0.33 false alarms per asset-life" into scoreable
 claims instead of a screenshot of red dots.
 
@@ -40,13 +40,13 @@ ball, ⌀39.04 mm pitch, 0° contact angle), not from feature selection:
 **Envelope analysis, not an FFT of the raw signal.** A defect impulse is broadband
 and small; what the accelerometer records is a structural resonance being rung by
 it. The fault information is in the *amplitude modulation* of a high-frequency
-carrier, not in any line at BPFO — and the low-frequency end of the raw spectrum is
+carrier, not in any line at BPFO, and the low-frequency end of the raw spectrum is
 dominated by 1× imbalance, which is 10–100× larger than anything the bearing is
 doing. So: band-pass around the resonance → Hilbert envelope → FFT the envelope.
 
 ### The collision, and how it is resolved
 
-For this geometry, **BPFO × 3 = 10.754× shaft and BPFI × 2 = 10.830× shaft — 0.70%
+For this geometry, **BPFO × 3 = 10.754× shaft and BPFI × 2 = 10.830× shaft: 0.70%
 apart**, which is inside the slip tolerance any real detector must allow. Harmonic
 energy alone therefore *cannot* separate an outer-race fault from an inner-race
 one on this bearing.
@@ -54,7 +54,7 @@ one on this bearing.
 The separator is **sidebands**, and it is geometry rather than statistics: an outer
 race defect is stationary in the load zone, so its impulse train has constant
 amplitude and a clean comb at BPFO. An inner race defect rotates with the shaft,
-carrying the defect in and out of the load zone once per revolution — the impulse
+carrying the defect in and out of the load zone once per revolution: the impulse
 train is amplitude-modulated at shaft rate, which puts sidebands at BPFI ± 1× shaft.
 
 That is why `diagnose_with_baseline()` uses sidebands as a **tie-break** and not as
@@ -67,7 +67,7 @@ it is, not evidence that there are two.
 
 ## Results
 
-**Diagnosis** — 98% correct race on developed faults; 591/600 healthy cycles
+**Diagnosis**: 98% correct race on developed faults; 591/600 healthy cycles
 correctly called healthy:
 
 | true fault | healthy | BPFO | BPFI | BSF | indeterminate |
@@ -77,7 +77,7 @@ correctly called healthy:
 | BSF | 375 | 0 | 0 | **224** | 1 |
 | healthy | **591** | 3 | 1 | 5 | 0 |
 
-**The operating curve** — the deliverable of the whole project:
+**The operating curve**: the deliverable of the whole project:
 
 | health-index threshold | median lead (cycles) | P05 lead | false alarms per healthy asset-life | assets missed |
 |---|---|---|---|---|
@@ -111,7 +111,7 @@ trajectories is the sampling noise of a median over 9 numbers. What I would ship
 the T²: thirty lines, no training step and therefore no retraining pipeline, a
 score that decomposes into per-feature contributions so the alarm can be explained
 to the operator who receives it, and failure modes that are a hundred years old and
-documented. The reason deep does not win is not that deep is bad — it is that
+documented. The reason deep does not win is not that deep is bad; it is that
 **the features already contain the physics**. Once envelope energy at BPFO is a
 column, the remaining problem is "is this column unusually large", which is a job
 for a covariance.
@@ -124,8 +124,8 @@ came back with the same meaningless 500–1062 Hz band. The reason is physical: 
 baseline period is healthy, a healthy bearing produces no impulses, and a kurtogram
 with nothing impulsive to find returns whichever band the noise favoured.
 
-The band is a property of the *structure* — the housing resonance that defect
-impulses ring — established by an impact test at commissioning. So it is
+The band is a property of the *structure*: the housing resonance that defect
+impulses ring, established by an impact test at commissioning. So it is
 configuration. What a kurtogram is good for is auditing it, and §2 of RESULTS.md
 shows the asymmetry: on failing assets the kurtogram recovers the commissioned band
 from **degraded** data far more reliably than from healthy data.
@@ -136,14 +136,14 @@ floor, because the peak of a noisy spectrum over a search window is several time
 its median by construction. My first threshold of "4× the floor" fired on
 everything and classified healthy bearings as inner-race faults with total
 confidence. Every feature is now expressed as **exceedance over that asset's own
-healthy baseline** in robust (IQR) units — which is also what makes the cold-start
+healthy baseline** in robust (IQR) units, which is also what makes the cold-start
 policy honest: an asset with too little history gets the `LOW_CONFIDENCE` state
 explicitly, not silence and not a number pretending to be calibrated.
 
 ## The claim that did not survive measurement
 
 The textbook says kurtosis rises before RMS on a degrading bearing. Measured here:
-**median lead 14 cycles, positive on 8 of 9 assets** — weaker than the textbook
+**median lead 14 cycles, positive on 8 of 9 assets**, weaker than the textbook
 implies, and I report it that way rather than trimming the table.
 
 The reason is a limitation of my simulator, not a refutation of the physics: the
@@ -154,13 +154,13 @@ energy, and that phase is where the kurtosis lead is won. What actually delivers
 the lead here is the envelope band energy at the fault frequency, which is
 physics-located rather than a generic shape statistic.
 
-## Built in the second pass — see [docs/EXTENSIONS.md](docs/EXTENSIONS.md)
+## Built in the second pass: see [docs/EXTENSIONS.md](docs/EXTENSIONS.md)
 
-`python extend.py` — a larger fleet (18 failing + 6 healthy, up from 9 + 3) plus
+`python extend.py`: a larger fleet (18 failing + 6 healthy, up from 9 + 3) plus
 three gaps this README previously named:
 
 - **The per-alarm "why" panel.** The first build recommended shipping Hotelling T²
-  *partly because its score decomposes into per-feature contributions* — and then
+  *partly because its score decomposes into per-feature contributions*, and then
   did not decompose it. It does now, exactly: with `d = x − μ`, feature *j*
   contributes `d_j·(S⁻¹d)_j` and the contributions **sum to T² identically**,
   unlike SHAP or occlusion which approximate. **The leading contributor names the
@@ -168,8 +168,8 @@ three gaps this README previously named:
   diagnosis rather than a score.
 - **Cold start, exercised.** `LOW_CONFIDENCE` and the fleet prior existed and were
   never run. Three states now, and the middle one is what most systems omit:
-  `PROVISIONAL` widens thresholds by **1 + 1/√(2(n−1))** — the sampling error of a
-  standard-deviation estimate, not a tuning knob — so the detector becomes less
+  `PROVISIONAL` widens thresholds by **1 + 1/√(2(n−1))**: the sampling error of a
+  standard-deviation estimate, not a tuning knob, so the detector becomes less
   trigger-happy exactly when its baseline is least trustworthy.
 - **The P-F interval, quantified.** The vocabulary was used correctly and the
   number was never produced. It is the quantity that sets the inspection interval,
@@ -177,14 +177,14 @@ three gaps this README previously named:
   mean rather than the P10 makes it 1.5× too long** (12 cycles against 8), missing
   the fast half of the failures by construction.
 
-## Completed in the third pass — real data, see [docs/REAL_DATA.md](docs/REAL_DATA.md)
+## Completed in the third pass: real data, see [docs/REAL_DATA.md](docs/REAL_DATA.md)
 
 ```bash
 python fetch_cwru.py       # ~120 MB from the CWRU Bearing Data Center
 python validate_cwru.py
 ```
 
-The README's number-one gap was "no real data — everything is synthesised", and it
+The README's number-one gap was "no real data: everything is synthesised", and it
 was the largest threat to every claim here: the envelope pipeline was designed
 against a simulator I wrote and then validated against the same simulator. **It
 could not have failed.** This is the non-circular test.
@@ -204,12 +204,12 @@ failure, and the diagnosis is worth more than the number would have been.
 | **+ healthy gate as baseline exceedance** | **68.4%** | **87.5%** |
 
 Scored on 20 files held out from the 20 used
-for any calibration, **split by file rather than by snapshot** — snapshots from
+for any calibration, **split by file rather than by snapshot**: snapshots from
 one recording share a bearing, a mounting, a load and a speed.
 
 ### Two real bugs, both now fixed in `src/features.py`
 
-**The sideband tie-break was inverted** — and it is the piece of reasoning this
+**The sideband tie-break was inverted**, and it is the piece of reasoning this
 README presents as its cleverest. `sideband_ratio` computed `side / (2 × center)`,
 normalising by the carrier, so a genuine inner-race fault makes BPFI enormous and
 drives its own statistic *down*. Measured medians: **0.256
@@ -224,7 +224,7 @@ together.
 **The healthy gate was an absolute constant** of 4.0, and real healthy bearings
 sit at 3.3–4.1, straddling it.
 
-Both are the same mistake, and **this README already contained the lesson** —
+Both are the same mistake, and **this README already contained the lesson**:
 *"absolute thresholds do not work... express every feature as exceedance over that
 asset's own healthy baseline"*. It was applied to the energy features and not to
 these two. Writing a lesson down is not the same as having applied it everywhere
@@ -234,7 +234,7 @@ did not write.
 ### Ball faults remain unsolved, at 19%
 
 A rolling element strikes the outer race, then half a ball revolution later the
-inner race — two impacts per rotation, so the dominant line is 2×BSF rather than
+inner race: two impacts per rotation, so the dominant line is 2×BSF rather than
 BSF. The project computed BSF only. Adding 2×BSF is a genuine fix to the fault
 model and it moved ball accuracy from 16% to 19%: **almost nothing.** Ball-fault
 energy does not concentrate on a line the way race-fault energy does, so a
@@ -243,14 +243,14 @@ not a tuning backlog.
 
 ### What CWRU does and does not validate
 
-**Validated.** Envelope analysis at frequencies computed from bearing geometry —
-not learned, not selected — transfers to real accelerometer data at a sampling
+**Validated.** Envelope analysis at frequencies computed from bearing geometry,
+not learned, not selected, transfers to real accelerometer data at a sampling
 rate it was not designed for. Inner race is diagnosed 120/120.
 
 **Not validated, and it is the larger half of this project.** CWRU has no
 degradation trajectory: each file is one bearing at one fault size, and the three
 sizes are three different bearings rather than one bearing over time. So **every
-prognostic number in RESULTS.md stays simulated** — the health index, the
+prognostic number in RESULTS.md stays simulated**: the health index, the
 76-cycle lead time, the operating curve, the false-alarms-per-asset-life figure,
 the detector bake-off. Nothing here supports them.
 
@@ -259,21 +259,21 @@ geometric and single-point. Natural spalling is rough, spreads along the race, a
 smears the signature across a band instead of putting it on a line. This accuracy
 is an upper bound on the accuracy against grown faults.
 
-## The process side — see [docs/PROCESS_SIDE.md](docs/PROCESS_SIDE.md)
+## The process side: see [docs/PROCESS_SIDE.md](docs/PROCESS_SIDE.md)
 
 ```bash
 python run_process.py       # ~2 s
 ```
 
 The spec asks for a **Tennessee-Eastman-style process case** with residual-based
-features and the process-monitoring classics — Mahalanobis / PCA-T² / SPE — named
+features and the process-monitoring classics, Mahalanobis / PCA-T² / SPE, named
 as such. That was the last item in this portfolio a spec named outright and it
 was not built. It is now.
 
 **It is TE-*style*, not TE.** The real Downs-and-Vogel model is a FORTRAN plant
 simulation with fifty states; reimplementing it here would be a claim I could not
 support. This is a reactor / separator / stripper loop with the structure that
-matters for monitoring — eighteen tags coupled by physical relationships, with a
+matters for monitoring: eighteen tags coupled by physical relationships, with a
 recycle. Every derived tag is computed *from* its drivers, so the covariance
 structure is a consequence of the process rather than something imposed on it.
 That is what makes it possible to break a relationship while leaving every
@@ -285,15 +285,15 @@ A bearing gives one signal with physics in its **frequency content**: fault
 frequencies come from geometry and you go and look at them. A process gives
 eighteen signals with physics in their **relationships**. So on the bearing side
 feature engineering *is* the physics; on the process side the physics is a set of
-constraints between variables, and a fault is a violated constraint — invisible
+constraints between variables, and a fault is a violated constraint, invisible
 in every individual tag.
 
 ### T² and SPE
 
 PCA splits the space in two. The first *k* components span the **model plane**,
 which encodes the correlation structure; everything orthogonal is the **residual
-space**. **T²** is distance from centre *inside* the plane — a normal state at an
-extreme magnitude. **SPE** is distance *from* the plane — a state that violates
+space**. **T²** is distance from centre *inside* the plane: a normal state at an
+extreme magnitude. **SPE** is distance *from* the plane: a state that violates
 the process's own relationships.
 
 ### The scorecard, and it is not the one I set out to write
@@ -306,7 +306,7 @@ the process's own relationships.
 | `valve_stick` | 69 | 72 | 86 | **66** |
 | **fastest / missed** | 0 / 1 | 1 / 2 | 0 / 2 | 3 / 0 |
 
-**The residual model wins and PCA does not** — fastest on
+**The residual model wins and PCA does not**: fastest on
 3 of 4, and on `kinetics_drift` it is the *only*
 detector that fires at all. I assumed the PCA classics would carry this because
 the spec names them.
@@ -320,7 +320,7 @@ the spec names them.
 **T² alone never wins once and misses 2 of 4
 outright.** That is the argument arriving from the opposite direction to the one
 I planned: not "T² is good and SPE is better", but *monitoring T² alone is close
-to useless here* — and it is the statistic with the familiar name that everybody
+to useless here*, and it is the statistic with the familiar name that everybody
 reaches for.
 
 Every fault is deliberately tuned so **no tag moves more than ~3σ from its
@@ -329,7 +329,7 @@ interesting. An earlier version of the simulator moved cooling-water flow **115�
 and every detector fired instantly; at that size univariate charts win everything
 and there is nothing multivariate to demonstrate.
 
-## Built in the fourth pass — the fleet dashboard
+## Built in the fourth pass: the fleet dashboard
 
 ```bash
 python run_dashboard.py    # writes out/fleet_dashboard.html
@@ -345,18 +345,18 @@ Two decisions that make it a monitoring screen rather than a table dump:
   hundred rows and an operator has ten minutes, so the only useful sort is
   *which one do I look at next*: faults first, then abstentions, then healthy,
   and within a severity by how far the winning band stands above the noise
-  floor — not by asset id and not by raw score, which is not comparable between
+  floor, not by asset id and not by raw score, which is not comparable between
   a healthy and a faulty spectrum.
 - **A call without its evidence does not get acted on.** "BPFI on MC-14" is an
   assertion. Beside it are all four band ratios against the local noise floor,
   the inner-race sideband prominence that broke the tie, and the fraction of
-  snapshots that agreed — a bearing called BPFI on 15 of 16 and one called BPFI
+  snapshots that agreed: a bearing called BPFI on 15 of 16 and one called BPFI
   on 9 of 16 are different situations. That is what lets a millwright disagree,
   and a screen that hides it trains people to ignore it.
 
 Abstentions are rendered rather than dropped. 6 of
-40 assets are *indeterminate* — no band stands clear, so the
-diagnoser refuses rather than picking the largest of four similar numbers — and
+40 assets are *indeterminate*: no band stands clear, so the
+diagnoser refuses rather than picking the largest of four similar numbers, and
 showing those as blank would turn a deliberate refusal into an apparent gap in
 coverage.
 
@@ -375,7 +375,7 @@ dashboard that displays its own failure mode without naming it is just a red
 screen. The per-snapshot number was in the results the whole time; it took
 drawing the fleet to see what it meant.
 
-## Built in the fifth pass — see [docs/REAL_PROCESS.md](docs/REAL_PROCESS.md)
+## Built in the fifth pass: see [docs/REAL_PROCESS.md](docs/REAL_PROCESS.md)
 
 ```bash
 python fetch_process.py       # Tennessee Eastman + SKAB, gitignored
@@ -385,13 +385,13 @@ python run_real_process.py    # ~100 s
 The README said the process side was *the same circularity the bearing side had
 before CWRU*, and that the residual model's win was *the result most likely to be
 an artefact of a generator built from linear relationships*. So it now runs on
-Tennessee Eastman — 52 variables, 10 fault runs, the
-reference benchmark for T²/SPE work for thirty years — and on SKAB, a real
+Tennessee Eastman: 52 variables, 10 fault runs, the
+reference benchmark for T²/SPE work for thirty years, and on SKAB, a real
 water-circulation rig. The detectors are unchanged; the new code is the loading
 and the calibration.
 
 TE is still a simulation. But it is a simulation **somebody else built**, of a
-process I did not design, with faults I did not choose — which is what breaks the
+process I did not design, with faults I did not choose, which is what breaks the
 circularity, because the monitor cannot have been tuned to a generator I never saw.
 
 ### The first version of this was wrong, and wrong flatteringly
@@ -403,8 +403,8 @@ percent. That is not a comparison of methods; it is a comparison of thresholds,
 and the loosest one wins every race while paying in a column the delay table does
 not show.
 
-Everything below holds every detector to the **same false-alarm budget** —
-alarm episodes per 1000 samples on a normal run held out from fitting — and
+Everything below holds every detector to the **same false-alarm budget**:
+alarm episodes per 1000 samples on a normal run held out from fitting, and
 sweeps that budget, because a ranking that holds at one operating point is not a
 ranking.
 
@@ -433,7 +433,7 @@ limit was already good at. The multivariate argument is about faults that break
 | 20 per 1000 | 42 | 22 | 4 | 3 | **0** |
 | 50 per 1000 | 7 | 22 | 2 | 2 | **0** |
 
-**The winner changes at every budget** — univariate, T², residual, residual across the four.
+**The winner changes at every budget**: univariate, T², residual, residual across the four.
 Nothing about the data changed; only how much nuisance the operating point
 tolerates.
 
@@ -450,7 +450,7 @@ being right by coincidence.
 
 Every detector fires on the first labelled sample of all 12
 runs, so SKAB separates nothing. Its faults are physical interventions on a small
-loop — a valve closed by hand, a rotor unbalanced — large, abrupt and already
+loop, a valve closed by hand, a rotor unbalanced, large, abrupt and already
 under way when the label starts. A benchmark on which everything scores
 identically is worth reporting as such; dropping it would leave the impression
 that both datasets agreed with TE.
@@ -458,8 +458,8 @@ that both datasets agreed with TE.
 ### Dynamic PCA: the textbook fix, and it does not help
 
 Item 6 on the old list. Static PCA assumes the rows are independent and TE's are
-not — median lag-1 autocorrelation **0.55**, **58%**
-of variables above 0.5 — so lag embedding (Ku, Storch & Georgakis 1995) is the
+not: median lag-1 autocorrelation **0.55**, **58%**
+of variables above 0.5, so lag embedding (Ku, Storch & Georgakis 1995) is the
 standard correction. It multiplies the column count by *l*+1 while the training
 set stays at 500 rows:
 
@@ -472,7 +472,7 @@ set stays at 500 rows:
 | 4 | 260 | 1.9 | 26 | 2 |
 
 **Static PCA wins**, and every lag count is worse. The likely reason is that lag
-embedding spends the fix on dimensions the training set cannot afford — a
+embedding spends the fix on dimensions the training set cannot afford: a
 covariance estimate in 156 dimensions from 500 rows is not the same object as one
 in 52. That explanation is **offered, not demonstrated**: the sweep is not
 monotonic (three lags beats two) and each median is over three hard faults, so
@@ -481,19 +481,19 @@ negative result.
 
 ### The healthy gate had never been calibrated
 
-The fleet dashboard's finding — *nothing on the screen is green* — traced to a
+The fleet dashboard's finding, *nothing on the screen is green*, traced to a
 single constant. `features.diagnose` opens with
 `if best_band < min_ratio: return healthy`, and `min_ratio` was **4.0**.
 The band ratio is normalised to its own spectrum's noise floor, so the gate looks
 scale-free; it is not, and **78%
 of healthy snapshots sat above it**. Pass 3's recalibration tuned the *sideband*
-threshold and never touched this one — visible in its own output, where healthy
+threshold and never touched this one, visible in its own output, where healthy
 accuracy is 0.4375 for every variant it tried.
 
 Sweeping it found a **plateau 4.75–8.25** (3.50
 wide) where every healthy asset is called healthy, no faulty asset is missed, and
 correct-race does not fall. Leave-one-healthy-file-out picks
-5.25–5.50 in all four folds — inside the
+5.25–5.50 in all four folds, inside the
 plateau. `min_ratio` is now **6.0**: above every fold's choice,
 2.25 below where the first fault starts being missed.
 
@@ -504,7 +504,7 @@ plateau. `min_ratio` is now **6.0**: above every fold's choice,
 | faulty: correct race | 62% | 62% |
 | faulty assets missed | 0/36 | 0/36 |
 
-**The draft of that analysis concluded the opposite** — that four files cannot
+**The draft of that analysis concluded the opposite**: that four files cannot
 pin a threshold so the default should stand. True, and not the question: the
 plateau means the threshold does not need pinning. The wrong conclusion is
 recorded in [docs/HEALTHY_GATE.md](docs/HEALTHY_GATE.md) because the reasoning
@@ -517,7 +517,7 @@ components A–F, not A–H. Every contribution plot from the composition block
 onwards would have named the wrong tag, and nothing about the arrays' shapes
 would have complained.
 
-## Also in the fifth pass — the dashboard as a service
+## Also in the fifth pass: the dashboard as a service
 
 ```bash
 python run_fleet_service.py --demo   # history, acknowledgement, re-arming
@@ -531,8 +531,8 @@ are built, and the middle one is where the design is.
 **An acknowledgement is a claim about EVIDENCE, not about an asset.** "MC-14
 acknowledged" is the design that turns a monitoring screen into a screen nobody
 reads: the bearing gets worse, the alarm stays acknowledged, and the first anyone
-hears is the failure. So an acknowledgement records *what* was acknowledged — the
-call and the evidence strength at that moment — and **re-arms itself** when:
+hears is the failure. So an acknowledgement records *what* was acknowledged, the
+call and the evidence strength at that moment, and **re-arms itself** when:
 
 | trigger | why |
 |---|---|
@@ -540,13 +540,13 @@ call and the evidence strength at that moment — and **re-arms itself** when:
 | the evidence worsens past a stated fraction (default 25%) | accepting a risk at one severity is not accepting it at any severity |
 | the term expires (default 72 h) | a stale acknowledgement is a forgotten one |
 
-A reason is **required** — "acknowledged" with no reason is indistinguishable
+A reason is **required**: "acknowledged" with no reason is indistinguishable
 from "dismissed", and six months later nobody can tell which it was. Re-arming is
 written to the record, so *why did this come back* has an answer. And an
 acknowledged asset is **marked, not hidden**: a screen that hides what somebody
 accepted cannot be audited.
 
-History makes *what changed since yesterday* answerable — the question a
+History makes *what changed since yesterday* answerable: the question a
 monitoring screen is usually asked and the one a static page cannot answer at
 all. `run_dashboard.py` still writes the self-contained page, because a page that
 needs a service running is a page that cannot be emailed.
@@ -571,10 +571,10 @@ acknowledgement is not noticed until somebody looks.
    than deleted, because deleting the thing that was wrong removes the evidence
    that it was.
 5. **Tennessee Eastman is a simulation.** A well-studied one that I did not
-   build, which is what it was brought in for — not a plant.
+   build, which is what it was brought in for, not a plant.
 6. **Dynamic PCA is implemented and does not help, and why is not settled.**
-   The explanation offered — too few samples per column once lag embedding
-   triples the width — is consistent with the sweep and not demonstrated by it,
+   The explanation offered, too few samples per column once lag embedding
+   triples the width, is consistent with the sweep and not demonstrated by it,
    because the sweep is non-monotonic and each median is over three faults.
    Separating *the method does not help here* from *the method cannot be fitted
    here* needs a longer normal run than the 500 samples TE ships.
@@ -586,17 +586,17 @@ acknowledgement is not noticed until somebody looks.
    notifies nobody; and an asset that degrades between polls is seen at the next
    one.
 9. ~~**No speed-varying case.**~~ **Built** (`src/order_tracking.py`,
-   `run_speed_varying.py`, `docs/SPEED_VARYING.md`) — and the claim it made was
+   `run_speed_varying.py`, `docs/SPEED_VARYING.md`), and the claim it made was
    **too strong**. Fixed-frequency detection does not stop working entirely; it
    keeps naming the right fault out to ±50% speed variation, because every
    competing candidate smears too and the winner only has to win. What
    collapses is the MARGIN: the ratio falls 92 → 9 while the order-tracked
-   ratio holds at ~110. On WEAK faults that is the whole ballgame — of the
+   ratio holds at ~110. On WEAK faults that is the whole ballgame: of the
    early faults the detector finds at constant speed, fixed-frequency analysis
    loses **66 of 74** below the healthy gate when the speed moves and order
    tracking loses **4 of 74**. A fault under the gate is not misnamed; it is
    called healthy. What is still not built here: **no real speed-varying
-   data** — CWRU runs at constant speed, so the run-up is simulated and only
+   data**: CWRU runs at constant speed, so the run-up is simulated and only
    the constant-speed agreement check (97% of calls, r = 1.000 on log ratios)
    uses real measurements; the tacho phase is EXACT because the generator knows
    the speed profile, where a real keyphasor interpolates between pulses; and

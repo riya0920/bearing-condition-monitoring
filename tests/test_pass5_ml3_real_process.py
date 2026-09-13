@@ -2,7 +2,7 @@
 
 The most important tests here guard the METHOD, not the numbers. The first
 version of this comparison set each detector at its own 99% limit and reported
-that all five found all ten faults including the three nobody finds — a table
+that all five found all ten faults including the three nobody finds: a table
 that was wrong in the most flattering possible direction. What stops that
 recurring is the matched false-alarm budget and the sweep, so those are what get
 pinned.
@@ -120,7 +120,7 @@ def test_a_looser_budget_never_raises_a_threshold():
 def test_calibration_is_what_stops_the_flattering_table():
     """The bug the first version of the script had, on the data it had it on.
 
-    Gaussian toy data will not show this — its detectors all sit at zero false
+    Gaussian toy data will not show this: its detectors all sit at zero false
     alarms at their own 99% quantile, which is exactly why the bug needed real
     tails to surface. So this runs on TE.
     """
@@ -182,7 +182,7 @@ def test_the_te_data_has_the_shape_the_literature_describes():
 @pytest.mark.skipif(not RESULT.exists(), reason="run run_real_process.py first")
 def test_the_hard_faults_are_not_found_quickly_at_a_tight_budget():
     """The sanity check the first version failed. At one alarm per 1000, faults
-    3, 9 and 15 must take a long time or never arrive — a detector that finds
+    3, 9 and 15 must take a long time or never arrive: a detector that finds
     them instantly is reporting its own threshold."""
     d = json.loads(RESULT.read_text(encoding="utf-8"))
     tight = next(s for s in d["te"]["sweep"] if s["budget_per_1000"] == 1.0)

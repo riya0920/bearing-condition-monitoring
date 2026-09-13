@@ -11,7 +11,7 @@ That was the right thing to write and the wrong thing to leave. The bearing side
 of this project is exactly where real data (CWRU) overturned a claim I was
 confident in, and the process side has had no equivalent test.
 
-TENNESSEE EASTMAN. The standard benchmark for multivariate process monitoring —
+TENNESSEE EASTMAN. The standard benchmark for multivariate process monitoring:
 a simulated chemical plant, but simulated by Downs and Vogel from a real Eastman
 process and used as the reference for T2/SPE work for thirty years. 52 variables
 (41 measurements XMEAS, 11 manipulated XMV), 21 fault modes, 3-minute sampling.

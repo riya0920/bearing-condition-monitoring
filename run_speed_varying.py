@@ -236,11 +236,11 @@ def constant_speed_check(n_files: int = 8, n_snaps: int = 6) -> dict:
 def report(sw: dict, sev: dict, coast: dict, real: dict) -> str:
     L = []
     A = L.append
-    A("# ML-3 pass 5 — the speed-varying case\n")
+    A("# ML-3 pass 5: the speed-varying case\n")
     A("Item 9 of the not-built list said no run-up, no coast-down and no order "
       "tracking, *\"which is where fixed-frequency band energy stops working "
       "entirely\"*. That was an assertion. Here it is as a measurement, the fix, "
-      "and — first — the correction, because **the assertion was too strong.**\n")
+      "and, first, the correction, because **the assertion was too strong.**\n")
 
     A("## The claim was overstated\n")
     A("Fixed-frequency detection does not stop working at the first sign of "
@@ -261,7 +261,7 @@ def report(sw: dict, sev: dict, coast: dict, real: dict) -> str:
       "detector is looking for does not exist at any single frequency.**\n")
     A("Order tracking resamples onto uniform shaft ANGLE. A defect strikes once "
       "every fixed number of revolutions, not once every fixed number of "
-      "seconds, so in the angle domain the line is stationary again — at an "
+      "seconds, so in the angle domain the line is stationary again, at an "
       "*order* rather than a frequency. `BearingGeometry.orders()` has been in "
       "this codebase since the first pass and nothing had ever used it.\n")
 
@@ -300,7 +300,7 @@ def report(sw: dict, sev: dict, coast: dict, real: dict) -> str:
     t1 = np.median([r["ratio_tacho"] for r in wide])
     A(f"The fixed-frequency ratio falls **{r0:.0f} → {r1:.0f}**, a factor of "
       f"{r0 / max(r1, 1e-9):.0f}, while the order-tracked ratio goes "
-      f"{t0:.0f} → {t1:.0f} — flat, or slightly up. **The energy did not go "
+      f"{t0:.0f} → {t1:.0f}: flat, or slightly up. **The energy did not go "
       "anywhere. It is exactly where it always was, in angle.** The call "
       f"survives to ±{max(sw['spreads']):.0%} only because a strong fault can "
       f"afford to lose {r0 / max(r1, 1e-9):.0f}× of its evidence and still "
@@ -378,14 +378,14 @@ def report(sw: dict, sev: dict, coast: dict, real: dict) -> str:
     A("The call rate barely moves and **the ratio loses about half its "
       "margin at every width, including at constant speed**. A constant speed "
       "estimated one bin off is a constant speed ERROR, and a constant speed "
-      "error integrates into a phase that drifts linearly across the record — "
+      "error integrates into a phase that drifts linearly across the record, "
       "so the impulses at the end land at a different angle from the ones at "
       "the start and the line smears. Estimating the phase does not cost "
       "accuracy here; it costs the margin that keeps a weak fault above the "
       "gate, which is the same currency the previous section was spending.\n")
 
     A("## 4. Coast-down\n")
-    A(f"A coast-down is not a reversed run-up — a machine losing energy to "
+    A(f"A coast-down is not a reversed run-up: a machine losing energy to "
       f"friction decays roughly exponentially, so the fast part is at the "
       f"beginning and most of the record sits near the final speed. Over the "
       f"same ±50% range: fixed {coast['fixed']:.0%}, order/tacho "
@@ -403,10 +403,10 @@ def report(sw: dict, sev: dict, coast: dict, real: dict) -> str:
           f"**{real['agreement']:.0%}** of the time, and their ratio vectors "
           f"correlate at **r = {real['log_ratio_correlation']:.3f}** in log "
           f"space.\n")
-        A("Angular resampling has several ways to be silently wrong — an "
+        A("Angular resampling has several ways to be silently wrong: an "
           "off-by-one in the phase integration, an order axis scaled by the "
           "wrong factor, a samples-per-rev low enough to alias one fault order "
-          "onto another — and every one of them still produces a "
+          "onto another. And every one of them still produces a "
           "plausible-looking spectrum with a peak in it. On constant speed the "
           "angle axis is a linear function of the time axis, so the two "
           "spectra are the same measurement in different units. This is the "

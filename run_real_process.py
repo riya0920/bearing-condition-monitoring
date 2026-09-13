@@ -449,13 +449,13 @@ def report(d: dict) -> str:
     A("The README named this as the project's remaining circularity and said the "
       "residual model's win was *the result most likely to be an artefact of a "
       "generator built from linear relationships*. It runs here on the Tennessee "
-      "Eastman benchmark and on SKAB, with the detectors unchanged — the only new "
+      "Eastman benchmark and on SKAB, with the detectors unchanged: the only new "
       "code is the loading and the calibration.\n")
     A("**Tennessee Eastman is still a simulation**, and calling it real data "
       "would be the overclaim this project keeps catching. What it is: a "
       "simulation *somebody else built*, of a process I did not design, with "
       "faults I did not choose, that the literature has used as its reference for "
-      "thirty years. That breaks the circularity — the monitor cannot have been "
+      "thirty years. That breaks the circularity: the monitor cannot have been "
       "tuned to a generator I never saw. **SKAB is a real rig**: a water "
       "circulation loop with faults induced by hand.\n")
 
@@ -468,7 +468,7 @@ def report(d: dict) -> str:
       "produced this: **all five detectors found all ten faults**, including the "
       "three the literature agrees are close to undetectable, at false-alarm "
       "rates of four to six percent. That is not a comparison of methods, it is "
-      "a comparison of thresholds — the loosest detector wins every race and pays "
+      "a comparison of thresholds: the loosest detector wins every race and pays "
       "for it in a column the delay table does not show.\n")
     A(f"Everything below sets thresholds so that every detector runs at the "
       f"**same false-alarm budget**, measured as alarm episodes per 1000 samples "
@@ -505,7 +505,7 @@ def report(d: dict) -> str:
       "claims to find what nobody finds* is exactly the question dropping them "
       "hides.\n")
 
-    A("\n### The seven detectable faults — no resolution at all\n")
+    A("\n### The seven detectable faults: no resolution at all\n")
     _sweep_table(te["sweep"], "detectable", A)
     A("\nEvery detector sits at the m-of-n floor. With 3-sample persistence the "
       "fastest possible delay is 2, and at every budget the **univariate "
@@ -517,12 +517,12 @@ def report(d: dict) -> str:
       "*correlations* without moving any single tag much, and these are not "
       "those.\n")
 
-    A("\n### The three hard faults — where the methods differ, and the ranking will not sit still\n")
+    A("\n### The three hard faults: where the methods differ, and the ranking will not sit still\n")
     _sweep_table(te["sweep"], "hard", A)
     A("\n**The ranking flips three times across four budgets.** At 1 per 1000 "
       "the univariate detector is fastest; at 5 it is the slowest of the five "
       "and T² is fastest; at 20 and 50 the residual model is. Nothing about the "
-      "data changed — only how much nuisance the operating point tolerates.\n")
+      "data changed, only how much nuisance the operating point tolerates.\n")
     A("That is the finding, and it is a criticism of the synthetic study rather "
       "than a result from it: **the synthetic comparison reported a single "
       "operating point**, and on this evidence a single operating point cannot "
@@ -537,10 +537,10 @@ def report(d: dict) -> str:
     ac = te.get("autocorrelation", {})
     if ls:
         A("\n### Dynamic PCA: the textbook fix, and it does not help\n")
-        A(f"Static PCA assumes the rows are independent. TE's are not — median "
+        A(f"Static PCA assumes the rows are independent. TE's are not, median "
           f"lag-1 autocorrelation **{ac.get('median', float('nan')):.2f}**, "
-          f"**{ac.get('frac_above_0_5', 0) * 100:.0f}%** of variables above 0.5 "
-          f"— so the effective sample size behind every limit is smaller than "
+          f"**{ac.get('frac_above_0_5', 0) * 100:.0f}%** of variables above 0.5, "
+          f"so the effective sample size behind every limit is smaller than "
           "the row count implies. Lag embedding (Ku, Storch & Georgakis 1995) "
           "is the standard answer: stack *l* lagged copies so the dynamics move "
           "inside the model.\n")
@@ -562,10 +562,10 @@ def report(d: dict) -> str:
           f"{ls[0]['hard']['median']:.0f}; every lag count is worse, and the "
           f"ratio falls to {ls[-1]['samples_per_column']:.1f} by four lags. The "
           "likely reason is that lag embedding spends the fix on dimensions the "
-          "training set cannot afford — a covariance estimate in 156 dimensions "
+          "training set cannot afford: a covariance estimate in 156 dimensions "
           "from 500 rows is not the same object as one in 52.\n")
         A("**That explanation is offered, not demonstrated.** The sweep is not "
-          "monotonic — three lags beats two — and with only three hard faults "
+          "monotonic, three lags beats two, and with only three hard faults "
           "each median is over three numbers, so the ordering between the "
           "non-zero lag counts is noise. What the table supports is the "
           "negative result: on this data, at this training-set size, the "
@@ -575,7 +575,7 @@ def report(d: dict) -> str:
 
     if sk.get("available") and sk.get("rows"):
         s = d.get("skab_summary", {})
-        A("\n## SKAB — a real rig, and a null result\n")
+        A("\n## SKAB: a real rig, and a null result\n")
         A(f"{len(sk['rows'])} runs, {len(sk['tags'])} tags "
           f"({', '.join(sk['tags'][:4])}…), fitted on the first half of "
           f"{sk['n_normal']} anomaly-free samples and calibrated on the second.\n")
@@ -591,8 +591,8 @@ def report(d: dict) -> str:
             A("\n**Every detector fires on the first labelled sample, so SKAB "
               "separates nothing.** That is a property of the dataset as used "
               "here, not a compliment to the detectors: the anomalies are "
-              "physical interventions on a small test loop — a valve closed by "
-              "hand, a rotor unbalanced — and they are large, abrupt, and "
+              "physical interventions on a small test loop, a valve closed by "
+              "hand, a rotor unbalanced, and they are large, abrupt, and "
               "already under way at the first sample the label marks. A "
               "benchmark on which everything scores identically is reported as "
               "such rather than as five methods agreeing.\n")

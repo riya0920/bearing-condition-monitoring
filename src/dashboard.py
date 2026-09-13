@@ -6,13 +6,13 @@ tag; nothing renders either.*
 
 WHAT A CONDITION-MONITORING SCREEN IS FOR. Not showing every asset. A plant with
 four hundred bearings has four hundred rows and an operator has ten minutes, so
-the only useful ordering is *which one do I look at next* — and that is not the
+the only useful ordering is *which one do I look at next*, and that is not the
 same as sorting by the alarm value. Two things separate them:
 
   A CALL WITHOUT ITS EVIDENCE DOES NOT GET ACTED ON. "BPFI on MC-14" is an
-  assertion. The band ratios beside it — how far each of the four defect
+  assertion. The band ratios beside it, how far each of the four defect
   frequencies stands above the noise floor, and by how much the inner-race
-  sidebands exceed the healthy baseline — are the reason, and they are what lets
+  sidebands exceed the healthy baseline, are the reason, and they are what lets
   a millwright disagree. A screen that hides them trains people to ignore it.
 
   AN INDETERMINATE CALL IS A RESULT, NOT A GAP. The diagnoser abstains when no
@@ -23,7 +23,7 @@ same as sorting by the alarm value. Two things separate them:
 For the process side the same rule applies to contributions: T² says the process
 moved, SPE says a *relationship broke*, and the contribution decomposition names
 the tag. Showing the statistic without the decomposition tells an engineer that
-something is wrong and not where — which is the state they were already in.
+something is wrong and not where, which is the state they were already in.
 
 Self-contained: inline SVG and CSS, no CDN, no JavaScript beyond sorting.
 """
@@ -287,7 +287,7 @@ def render(path, cwru: dict, process: dict) -> dict:
             '<div class="note" style="border-left-color:#c53030">'
             f'<b>Nothing on this screen is green.</b> {n_truly_healthy} of these '
             'assets are healthy bearings and <b>none of them is called '
-            'healthy</b> — they come out as faults or abstentions. The summary '
+            'healthy</b>: they come out as faults or abstentions. The summary '
             'in RESULTS.md reports 21.9% of healthy <i>snapshots</i> called '
             'healthy, which reads as a weak number; aggregated to assets by '
             'majority vote it is zero. A screen on which nothing is ever green '
@@ -301,10 +301,10 @@ def render(path, cwru: dict, process: dict) -> dict:
         for k, v, note in cards)
 
     doc = f"""<!doctype html>
-<meta charset="utf-8"><title>Condition monitoring — fleet</title>
+<meta charset="utf-8"><title>Condition monitoring: fleet</title>
 <style>{CSS}</style>
 <header>
-  <h1>Condition monitoring — fleet</h1>
+  <h1>Condition monitoring: fleet</h1>
   <p class="sub">{len(fleet)} bearing assets from CWRU, and
      {len(process.get('runs') or [])} injected process faults.
      Ordered by what to look at next.</p>
@@ -322,7 +322,7 @@ def render(path, cwru: dict, process: dict) -> dict:
   <h2>Bearings</h2>
   <p class="sub">Band ratios are each defect frequency's energy against the local
    noise floor. The highlighted one is the call. <b>sbp</b> is inner-race
-   sideband prominence — the tie-breaker, and the only feature that separates an
+   sideband prominence: the tie-breaker, and the only feature that separates an
    inner-race fault from an outer-race one once both bands are lifted.</p>
   <table>
     <tr><th>asset</th><th>call</th><th>agreement</th><th>evidence</th>
@@ -337,13 +337,13 @@ def render(path, cwru: dict, process: dict) -> dict:
   <h2>Process</h2>
   <p class="sub">T&sup2; says the process moved inside its normal correlation
    structure. SPE says a <i>relationship broke</i>. The contribution
-   decomposition names the tag — showing the statistic without it tells an
+   decomposition names the tag; showing the statistic without it tells an
    engineer that something is wrong and not where, which is the state they were
    already in.</p>
   {_process_runs(process.get('runs') or [])}
 </main>
 <footer>Self-contained; no network requests. Bearing data: CWRU Bearing Data
- Center. Process data: a simulator in <code>src/process.py</code> — every process
+ Center. Process data: a simulator in <code>src/process.py</code>: every process
  number here is a statement about that generator.</footer>
 """
     p = pathlib.Path(path)

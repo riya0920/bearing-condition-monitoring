@@ -80,7 +80,7 @@ def test_moving_along_the_model_plane_raises_t2_and_not_spe():
     The push is scaled by sqrt(eigenvalue), because T² divides each score by its
     component's variance: a fixed push along a HIGH-variance component barely
     moves T² at all. Getting that wrong is how a test like this ends up asserting
-    something the statistic never promised — my first version pushed 6 units
+    something the statistic never promised: my first version pushed 6 units
     along PC1 and produced T² = 8.5 against a limit of 18.8.
     """
     _, mon, train = _fit()
@@ -104,7 +104,7 @@ def test_breaking_a_relationship_moves_spe():
 
 
 def test_spe_contributions_sum_exactly_to_spe():
-    """Exact, not approximate — unlike SHAP or occlusion."""
+    """Exact, not approximate, unlike SHAP or occlusion."""
     _, mon, train = _fit()
     x = train.x[:20]
     sc = mon.score(x)
@@ -146,8 +146,8 @@ def test_r2_says_which_residuals_are_worth_monitoring():
 def test_ridge_is_more_stable_across_refits_than_ols():
     """The actual claim, tested as a comparison rather than a magic threshold.
 
-    Process variables are collinear by construction — that is what makes them a
-    process rather than eighteen independent sensors — so OLS coefficients swing
+    Process variables are collinear by construction, that is what makes them a
+    process rather than eighteen independent sensors, so OLS coefficients swing
     between refits, and residuals that move between refits move for reasons that
     have nothing to do with the plant.
 
