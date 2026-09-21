@@ -32,10 +32,10 @@ behind it.*
 
 **Data:** CWRU bearing dataset, Tennessee Eastman process (TEP), SKAB, industrial sensor data, IIoT, Python, NumPy, scikit-learn, matplotlib
 
-## What we did
+## What I did
 
 1. **Built physics-based features.** Each bearing fault makes a vibration at a
-   frequency set by the bearing's geometry. We compute those frequencies and look
+   frequency set by the bearing's geometry. I compute those frequencies and look
    for energy there, using envelope analysis rather than learning features from data.
 2. **Built a health score and an alarm** that doesn't flip on and off (it uses
    separate on/off levels and needs 3 bad readings out of 5).
@@ -57,7 +57,7 @@ behind it.*
 |---|---|---|
 | Simulated bearing fleet (`src/bearing.py`) | no, simulated | warning time and false alarms (needs full run-to-failure histories with a known failure point) |
 | CWRU bearing data, 40 files | **yes** | fault diagnosis on real vibration |
-| Tennessee Eastman, 52 sensors, 10 faults | standard benchmark (a simulation we did not build) | process-side detectors |
+| Tennessee Eastman, 52 sensors, 10 faults | standard benchmark (a simulation I did not build) | process-side detectors |
 | SKAB water-circulation rig | **yes** | process-side detectors |
 
 The real data is downloaded by `fetch_cwru.py` and `fetch_process.py` and is not
@@ -97,7 +97,7 @@ only **19%**, still unsolved.
 **Other results:**
 
 - **The three detectors tie** (79, 79, 78 cycles of warning, all 9/9 faults
-  found). We would ship the simple statistical one: no training, no retraining,
+  found). I would ship the simple statistical one: no training, no retraining,
   and it can explain every alarm.
 - **Every alarm names its cause.** The statistical score splits exactly into
   per-sensor contributions. The top contributor names the right bearing part on
@@ -130,12 +130,12 @@ imbalance is 10-100× bigger.
 
 **Use sidebands only to break ties.** On this bearing, 3× the outer-race frequency
 and 2× the inner-race frequency are only 0.7% apart. An inner-race fault rotates
-with the shaft, so it adds side peaks; an outer-race fault doesn't. We use that only
+with the shaft, so it adds side peaks; an outer-race fault doesn't. I use that only
 to choose between the two, because letting it override caused wrong calls on
 severe faults.
 
 **Compare each machine to its own healthy baseline, never to a fixed number.**
-Our first fixed threshold flagged every healthy bearing as faulty. Every feature
+My first fixed threshold flagged every healthy bearing as faulty. Every feature
 is now "how far above this machine's normal".
 
 **Set the frequency band at setup, don't learn it.** Learning it from healthy
@@ -149,7 +149,7 @@ can explain its alarms. Once the features contain the physics, what's left is
 **Stop the alarm from flip-flopping.** Separate on/off levels plus "3 of 5"
 persistence gave 0 flip-flops. Alarms that flicker get switched off by operators.
 
-**Compare detectors at the same false-alarm rate, and at several rates.** Our
+**Compare detectors at the same false-alarm rate, and at several rates.** My
 first Tennessee Eastman comparison let each detector use its own threshold. Every
 detector "found" every fault, including ones known to be almost undetectable. With
 a shared budget, the ranking changes from one budget to the next.
