@@ -22,6 +22,16 @@ It covers two kinds of equipment:
 first. Each row shows the call, how often the snapshots agreed, and the evidence
 behind it.*
 
+## Skills and keywords
+
+**Machine learning:** anomaly detection, condition monitoring, predictive maintenance, fault diagnosis, health index, Isolation Forest, autoencoder (PyTorch), Hotelling T² / Mahalanobis distance, PCA (T² and SPE), dynamic PCA, multivariate statistical process control (MSPC), explainable AI (per-feature contributions), false-alarm rate tuning, alarm management, time-series analysis
+
+**Signal processing:** vibration analysis, envelope analysis, Hilbert transform, FFT, band-pass filtering, spectral kurtosis / kurtogram, bearing fault frequencies (BPFO, BPFI, BSF, FTF), sidebands, order tracking, SciPy
+
+**Engineering:** fleet monitoring dashboard, HTTP API, SQLite, alarm acknowledgement workflow, CI/CD (GitHub Actions), pytest (126 tests)
+
+**Data:** CWRU bearing dataset, Tennessee Eastman process (TEP), SKAB, industrial sensor data, IIoT, Python, NumPy, scikit-learn, matplotlib
+
 ## What we did
 
 1. **Built physics-based features.** Each bearing fault makes a vibration at a
